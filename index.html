@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MIYBANK (MYB) — Personal Bank Token on Solana | Leasing Ecosystem</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0A1E3D 0%, #0A2A4A 100%);
+            color: #fff;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        /* Header & Token Section */
+        .token-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            padding: 30px;
+            margin-bottom: 40px;
+            border: 1px solid rgba(255,215,0,0.3);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+        }
+        h1 {
+            font-size: 3rem;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 10px;
+        }
+        .badge {
+            display: inline-block;
+            background: #FFD700;
+            color: #0A1E3D;
+            padding: 5px 15px;
+            border-radius: 40px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin: 10px 0;
+        }
+        .contract {
+            background: #0A1E3D;
+            padding: 15px;
+            border-radius: 15px;
+            font-family: monospace;
+            word-break: break-all;
+            margin: 20px 0;
+            border: 1px solid #FFD700;
+        }
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+        .btn {
+            display: inline-block;
+            background: #FFD700;
+            color: #0A1E3D;
+            padding: 12px 25px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .btn:hover {
+            background: #FFA500;
+            transform: translateY(-2px);
+        }
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #FFD700;
+            color: #FFD700;
+        }
+        .btn-outline:hover {
+            background: #FFD700;
+            color: #0A1E3D;
+        }
+        /* Section headers */
+        .section-title {
+            font-size: 2rem;
+            margin: 40px 0 20px;
+            border-left: 5px solid #FFD700;
+            padding-left: 20px;
+        }
+        /* Leasing Grid */
+        .leasing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        .leasing-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            padding: 20px;
+            transition: 0.3s;
+            border: 1px solid rgba(255,215,0,0.2);
+        }
+        .leasing-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255,215,0,0.1);
+            border-color: #FFD700;
+        }
+        .leasing-card h3 {
+            color: #FFD700;
+            margin-bottom: 10px;
+        }
+        .leasing-card p {
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+        .leasing-link {
+            color: #FFD700;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        /* Table */
+        .table-wrapper {
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            padding: 20px;
+            overflow-x: auto;
+            margin: 30px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        th {
+            color: #FFD700;
+        }
+        .liquidity-link {
+            display: inline-block;
+            margin-top: 15px;
+            color: #FFD700;
+        }
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.8rem;
+        }
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            .btn-group { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <!-- ТОКЕН СЕКЦИЯ -->
+    <div class="token-card">
+        <div class="badge">✦ Token-2022 on Solana</div>
+        <h1>MIYBANK (MYB)</h1>
+        <p><strong>Первый персональный банковский токен семьи Миянмаликовых с лизинговой экосистемой.</strong></p>
+        <div class="contract">
+            📍 Контракт токена (Mint Address): <strong>4EG8Uc78EDxpDnRr1BdaA6t5ceWhDddiX6Zbb1zHu11k</strong>
+        </div>
+        <div class="btn-group">
+            <a href="https://github.com/miybank/mb" class="btn" target="_blank">GitHub</a>
+            <a href="https://www.geckoterminal.com/solana/pools/Euz7efcdGYFZxvuVXE3spbr3dY3JpsTjzDEcg4vqnrSF" class="btn" target="_blank">Купить на GeckoTerminal</a>
+            <a href="https://jup.ag/swap/SOL-MYB" class="btn" target="_blank">Купить на Jupiter</a>
+            <a href="https://raydium.io/swap/?inputMint=sol&outputMint=4EG8Uc78EDxpDnRr1BdaA6t5ceWhDddiX6Zbb1zHu11k" class="btn btn-outline" target="_blank">Купить на Raydium</a>
+        </div>
+    </div>
+
+    <!-- ОПИСАНИЕ ТОКЕНА -->
+    <div class="token-card">
+        <h2>📌 О токене MIYBANK</h2>
+        <p><strong>MIYBANK (MYB)</strong> — дефляционный банковский токен на Solana (Token-2022), созданный семьёй Миянмаликовых. Transfer fee 0.01% автоматически пополняет лизинговую казну. Держатели MYB получают доступ к экосистеме лизинга, скидкам и DAO-управлению.</p>
+        <p><strong>Расшифровка MYB:</strong> Miyanmalikov's Your Bank / Miyanmalikov Yield Bank.</p>
+        <p>🔗 <strong>Активный пул:</strong> MYB/USDT на Meteora (TVL ~$1M)</p>
+    </div>
+
+    <!-- ЛИЗИНГОВАЯ ЭКОСИСТЕМА -->
+    <h2 class="section-title">🏗️ Лизинговая экосистема MIYBANK</h2>
+    <div class="leasing-grid">
+        <div class="leasing-card"><h3>🏗️ Спецтехника</h3><p>Экскаваторы, бульдозеры, краны — лизинг от 6 месяцев.</p><a href="leasing/special.html" class="leasing-link">Подробнее →</a></div>
+        <div class="leasing-card"><h3>🌾 Сезонная техника</h3><p>Комбайны, тракторы, опрыскиватели на посевной сезон.</p><a href="leasing/seasonal.html" class="leasing-link">Подробнее →</a></div>
+        <div class="leasing-card"><h3>⚡ Электромобили</h3><p>EV-каршеринг и личный лизинг Tesla, BYD, Zeekr.</p><a href="leasing/ev.html" class="leasing-link">Подробнее →</a></div>
+        <div class="leasing-card"><h3>🚗 Автомобили</h3><p>Легковые и коммерческие авто любой марки.</p><a href="leasing/cars.html" class="leasing-link">Подробнее →</a></div>
+        <div class="leasing-card"><h3>🏗️ Строительная техника</h3><p>Бетономешалки, подъёмники, виброплиты.</p><a href="leasing/construction.html" class="leasing-link">Подробнее →</a></div>
+        <div class="leasing-card"><h3>🏭 Промышленное оборудование</h3><p>Конвейеры, компрессоры, вентиляция.</p><a href="leasing/industrial.html" class="leasing-link">Подробнее →</a></div>
+        <div class="leasing-card"><h3>⚙️ Станки и стройматериалы</h3><p>ЧПУ, фрезерные, производство блоков.</p><a href="leasing/machinery.html" class="leasing-link">Подробнее →</a></div>
+        <div class="leasing-card"><h3>🍔 Оборудование для пищевых продуктов</h3><p>Линии розлива, упаковки, холодильники.</p><a href="leasing/food.html" class="leasing-link">Подробнее →</a></div>
+        <div class="leasing-card"><h3>💱 Лизинг финансовых инструментов</h3><p>SBLC / Bank Guarantee от 10M евро.</p><a href="leasing/financial.html" class="leasing-link">Подробнее →</a></div>
+        <div class="leasing-card"><h3>💰 Кредит токенами</h3><p>Залог MYB → получи USDT или SOL на развитие.</p><a href="leasing/credit.html" class="leasing-link">Подробнее →</a></div>
+    </div>
+
+    <!-- ТАБЛИЦЫ ЛИКВИДНОСТИ (iframe или скопированный контент) -->
+    <h2 class="section-title">💧 Ликвидность и пулы</h2>
+    <div class="table-wrapper">
+        <iframe src="liquidity.html" width="100%" height="600" frameborder="0" style="border-radius: 20px; background: #0A1E3D;"></iframe>
+    </div>
+    <a href="liquidity.html" class="liquidity-link" target="_blank">📊 Открыть полную таблицу ликвидности →</a>
+
+    <footer>
+        © 2025 MIYBANK (MYB) — Personal Bank Token of Miyanmalikov Family.<br>
+        Контракт токена: 4EG8Uc78EDxpDnRr1BdaA6t5ceWhDddiX6Zbb1zHu11k | Built on Solana Token-2022
+    </footer>
+</div>
+</body>
+</html>
