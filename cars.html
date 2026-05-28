@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MIYBANK — Лизинг автомобилей | 15% годовых</title>
+    <title>MIYBANK — Лизинг автомобилей | Ставка 23% (UZS) / 13.8% (MYB)</title>
     <link rel="icon" href="favicon.ico">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
@@ -28,6 +28,7 @@
         footer { border-top: 1px solid rgba(255,255,255,0.1); margin-top: 40px; padding: 20px; text-align: center; font-size: 0.8rem; color: #aaa; }
         .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }
         @media (max-width: 768px) { .grid { grid-template-columns: 1fr; } }
+        .rate-note { font-size: 0.7rem; margin-top: 5px; }
     </style>
 </head>
 <body>
@@ -49,6 +50,7 @@
             <a href="cars.html" class="nav-link active-nav">🚗 Авто</a>
             <a href="ev.html" class="nav-link">⚡ EV</a>
             <a href="seasonal.html" class="nav-link">🌾 Сезонная</a>
+            <a href="halal-leasing.html" class="nav-link">☪️ Халяльный</a>
         </div>
     </div>
 </header>
@@ -57,13 +59,13 @@
     <div style="text-align: center; margin-bottom: 30px;">
         <h1 class="gold-text" style="font-size: 2.2rem;">🚗 Лизинг автомобилей</h1>
         <p>Новые автомобили импортного производства</p>
-        <p style="font-size: 0.9rem; color: #aaa;">Ставка 15% годовых. Курс: 1 у.е. = 12 800 UZS</p>
+        <p style="font-size: 0.9rem; color: #aaa;">Ставка: 23% годовых (UZS) / 13.8% годовых (MYB) — льгота 40%</p>
     </div>
 
     <div style="display: flex; justify-content: center;">
         <div class="currency-switch">
-            <button class="currency-btn active" data-currency="uzs">🇺🇿 UZS (сум)</button>
-            <button class="currency-btn" data-currency="cue">💵 у.е. (USD)</button>
+            <button class="currency-btn active" data-currency="uzs">🇺🇿 UZS (сум) — 23%</button>
+            <button class="currency-btn" data-currency="myb">💎 MYB — 13.8% (льгота 40%)</button>
         </div>
     </div>
 
@@ -73,19 +75,19 @@
             <h3 class="gold-text">Toyota Camry</h3>
             <p>Япония / 2025 г. / 2.5 л, 200 л.с.</p>
             <div class="price-display">💰 350 000 000 UZS</div>
-            <div class="leasing-calc"><div><label>Взнос (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong></div></div>
+            <div class="leasing-calc"><div><label>Взнос (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div>
         </div>
         <div class="spec-card" data-price-uzs="250000000">
             <h3 class="gold-text">Hyundai Santa Fe</h3>
             <p>Южная Корея / 2025 г. / 2.2 л дизель, 202 л.с.</p>
             <div class="price-display">💰 250 000 000 UZS</div>
-            <div class="leasing-calc"><div><label>Взнос (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong></div></div>
+            <div class="leasing-calc"><div><label>Взнос (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div>
         </div>
         <div class="spec-card" data-price-uzs="600000000">
             <h3 class="gold-text">BMW X5</h3>
             <p>Германия / 2025 г. / 3.0 л дизель, 249 л.с.</p>
             <div class="price-display">💰 600 000 000 UZS</div>
-            <div class="leasing-calc"><div><label>Взнос (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong></div></div>
+            <div class="leasing-calc"><div><label>Взнос (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div>
         </div>
     </div>
 
@@ -96,18 +98,21 @@
 </main>
 
 <footer>
-    <p>© 2025 MIYBANK (MYB) — Лизинг автомобилей. Ставка 15% годовых.</p>
+    <p>© 2025 MIYBANK (MYB) — Лизинг автомобилей</p>
+    <p>Ставка 23% годовых при оплате в UZS. При оплате в MYB — ставка 13.8% (льгота 40%). 1 MYB ≈ 1 USD</p>
 </footer>
 
 <script>
     const EXCHANGE_RATE = 12800;
     let currentCurrency = 'uzs';
-    const ANNUAL_RATE = 0.15;
+    const ANNUAL_RATE_UZS = 0.23;
+    const ANNUAL_RATE_MYB = 0.138;
 
-    function calculatePayment(price, initPercent, months) {
+    function calculatePayment(price, initPercent, months, currency) {
         const initAmount = price * initPercent / 100;
         const loanAmount = price - initAmount;
-        const monthlyRate = ANNUAL_RATE / 12;
+        const annualRate = (currency === 'uzs') ? ANNUAL_RATE_UZS : ANNUAL_RATE_MYB;
+        const monthlyRate = annualRate / 12;
         if (loanAmount <= 0 || months <= 0) return 0;
         return loanAmount * monthlyRate * Math.pow(1 + monthlyRate, months) / (Math.pow(1 + monthlyRate, months) - 1);
     }
@@ -117,22 +122,27 @@
             const priceUzs = parseFloat(card.dataset.priceUzs);
             const priceDisplay = card.querySelector('.price-display');
             const monthlySpans = card.querySelectorAll('.monthly');
+            const rateNote = card.querySelector('.rate-note');
+            
             if (currentCurrency === 'uzs') {
                 if (priceDisplay) priceDisplay.innerHTML = `💰 ${priceUzs.toLocaleString()} UZS`;
                 monthlySpans.forEach(span => {
                     const init = parseFloat(card.querySelector('.init-range')?.value || 20);
                     const months = parseFloat(card.querySelector('.term-range')?.value || 36);
-                    span.textContent = Math.round(calculatePayment(priceUzs, init, months)).toLocaleString() + ' UZS';
+                    const payment = calculatePayment(priceUzs, init, months, 'uzs');
+                    span.textContent = Math.round(payment).toLocaleString() + ' UZS';
                 });
+                if (rateNote) rateNote.innerHTML = 'Ставка 23% годовых';
             } else {
-                const priceCue = priceUzs / EXCHANGE_RATE;
-                if (priceDisplay) priceDisplay.innerHTML = `💰 ${priceCue.toLocaleString()} у.е.`;
+                const priceMyb = priceUzs / EXCHANGE_RATE;
+                if (priceDisplay) priceDisplay.innerHTML = `💎 ${priceMyb.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})} MYB`;
                 monthlySpans.forEach(span => {
                     const init = parseFloat(card.querySelector('.init-range')?.value || 20);
                     const months = parseFloat(card.querySelector('.term-range')?.value || 36);
-                    const payment = calculatePayment(priceUzs, init, months) / EXCHANGE_RATE;
-                    span.textContent = payment.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2}) + ' у.е.';
+                    const payment = calculatePayment(priceUzs, init, months, 'myb');
+                    span.textContent = (payment / EXCHANGE_RATE).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2}) + ' MYB';
                 });
+                if (rateNote) rateNote.innerHTML = 'Ставка 13.8% годовых (льгота 40% за оплату в MYB)';
             }
         });
     }
@@ -144,6 +154,8 @@
         const termRange = card.querySelector('.term-range');
         const termInput = card.querySelector('.term-input');
         const monthlySpan = card.querySelector('.monthly');
+        const rateNote = card.querySelector('.rate-note');
+        
         const update = () => {
             let init = parseFloat(initRange.value);
             let term = parseFloat(termRange.value);
@@ -151,10 +163,18 @@
             if (isNaN(term)) term = 36;
             if (initInput) initInput.value = init;
             if (termInput) termInput.value = term;
-            let payment = calculatePayment(priceUzs, init, term);
-            if (currentCurrency === 'uzs') monthlySpan.textContent = Math.round(payment).toLocaleString() + ' UZS';
-            else monthlySpan.textContent = (payment / EXCHANGE_RATE).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2}) + ' у.е.';
+            
+            if (currentCurrency === 'uzs') {
+                const payment = calculatePayment(priceUzs, init, term, 'uzs');
+                monthlySpan.textContent = Math.round(payment).toLocaleString() + ' UZS';
+                if (rateNote) rateNote.innerHTML = 'Ставка 23% годовых';
+            } else {
+                const payment = calculatePayment(priceUzs, init, term, 'myb');
+                monthlySpan.textContent = (payment / EXCHANGE_RATE).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2}) + ' MYB';
+                if (rateNote) rateNote.innerHTML = 'Ставка 13.8% годовых (льгота 40% за оплату в MYB)';
+            }
         };
+        
         if (initRange) initRange.addEventListener('input', update);
         if (initInput) initInput.addEventListener('input', () => { let v = parseFloat(initInput.value); if (!isNaN(v)) { initRange.value = Math.min(50, Math.max(10, v)); update(); } });
         if (termRange) termRange.addEventListener('input', update);
