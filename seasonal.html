@@ -11,12 +11,11 @@
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, #0A1E3D 0%, #0A2A4A 100%); color: #fff; line-height: 1.6; }
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
         .gold-text { color: #FFD700; }
-        .bg-dark-card { background: rgba(255,255,255,0.05); backdrop-filter: blur(5px); border-radius: 24px; padding: 20px; border: 1px solid rgba(255,215,0,0.2); }
         .btn-primary { background: #FFD700; color: #0A1E3D; padding: 10px 20px; border-radius: 40px; font-weight: bold; text-decoration: none; display: inline-block; }
         .btn-outline { border: 2px solid #FFD700; color: #FFD700; background: transparent; padding: 10px 20px; border-radius: 40px; font-weight: bold; text-decoration: none; display: inline-block; }
         .nav-link { color: #fff; text-decoration: none; margin-right: 20px; display: inline-block; }
         .nav-link:hover, .active-nav { color: #FFD700; border-bottom: 2px solid #FFD700; }
-        .spec-card { background: rgba(255,255,255,0.05); border-radius: 20px; padding: 20px; transition: 0.3s; border: 1px solid rgba(255,215,0,0.2); height: 100%; display: flex; flex-direction: column; }
+        .spec-card { background: rgba(255,255,255,0.05); border-radius: 20px; padding: 20px; transition: 0.3s; border: 1px solid rgba(255,215,0,0.2); height: 100%; }
         .spec-card:hover { transform: translateY(-3px); background: rgba(255,215,0,0.08); border-color: #FFD700; }
         .price-display { font-size: 1.2rem; font-weight: bold; margin: 10px 0; }
         .category-title { font-size: 1.8rem; font-weight: bold; margin: 30px 0 20px; border-left: 4px solid #FFD700; padding-left: 15px; }
@@ -57,7 +56,7 @@
 <main class="container" style="padding: 30px 20px;">
     <div style="text-align: center; margin-bottom: 30px;">
         <h1 class="gold-text" style="font-size: 2.2rem;">🌾 Лизинг сезонной техники</h1>
-        <p>Комбайны, тракторы, опрыскиватели — импортного производства</p>
+        <p>Тракторы, комбайны — импортного производства</p>
         <p style="font-size: 0.9rem; color: #aaa;">Ставка 15% годовых. Курс: 1 у.е. = 12 800 UZS</p>
     </div>
 
@@ -131,12 +130,12 @@
                 });
             } else {
                 const priceCue = priceUzs / EXCHANGE_RATE;
-                if (priceDisplay) priceDisplay.innerHTML = `💰 ${priceCue.toFixed(2)} у.е.`;
+                if (priceDisplay) priceDisplay.innerHTML = `💰 ${priceCue.toLocaleString()} у.е.`;
                 monthlySpans.forEach(span => {
                     const init = parseFloat(card.querySelector('.init-range')?.value || 20);
                     const months = parseFloat(card.querySelector('.term-range')?.value || 36);
                     const payment = calculatePayment(priceUzs, init, months) / EXCHANGE_RATE;
-                    span.textContent = payment.toFixed(2) + ' у.е.';
+                    span.textContent = payment.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2}) + ' у.е.';
                 });
             }
         });
@@ -158,7 +157,7 @@
             if (termInput) termInput.value = term;
             let payment = calculatePayment(priceUzs, init, term);
             if (currentCurrency === 'uzs') monthlySpan.textContent = Math.round(payment).toLocaleString() + ' UZS';
-            else monthlySpan.textContent = (payment / EXCHANGE_RATE).toFixed(2) + ' у.е.';
+            else monthlySpan.textContent = (payment / EXCHANGE_RATE).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2}) + ' у.е.';
         };
         if (initRange) initRange.addEventListener('input', update);
         if (initInput) initInput.addEventListener('input', () => { let v = parseFloat(initInput.value); if (!isNaN(v)) { initRange.value = Math.min(50, Math.max(10, v)); update(); } });
