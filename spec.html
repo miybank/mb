@@ -2,251 +2,208 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>MIYBANK — Лизинг спецтехники | Цены в UZS и у.е.</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MIYBANK — Лизинг спецтехники | 15% годовых</title>
     <link rel="icon" href="favicon.ico">
-    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-        body { font-family: 'Inter', sans-serif; background: linear-gradient(135deg, #0A1E3D 0%, #0A2A4A 100%); color: #fff; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, #0A1E3D 0%, #0A2A4A 100%); color: #fff; line-height: 1.6; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
         .gold-text { color: #FFD700; }
-        .bg-dark-card { background: rgba(255,255,255,0.05); backdrop-filter: blur(5px); border: 1px solid rgba(255,255,255,0.1); }
-        .btn-primary { background: #FFD700; color: #0A1E3D; padding: 12px 24px; border-radius: 40px; font-weight: bold; transition: 0.3s; display: inline-block; }
-        .btn-primary:hover { background: #FFA500; transform: translateY(-2px); }
-        .btn-outline { border: 2px solid #FFD700; color: #FFD700; background: transparent; padding: 12px 24px; border-radius: 40px; font-weight: bold; transition: 0.3s; display: inline-block; }
-        .btn-outline:hover { background: #FFD700; color: #0A1E3D; }
-        .nav-link { color: #fff; transition: 0.3s; padding-bottom: 4px; text-decoration: none; margin-right: 16px; display: inline-block; }
-        .nav-link:hover { color: #FFD700; border-bottom: 2px solid #FFD700; }
-        .active-nav { color: #FFD700; border-bottom: 2px solid #FFD700; font-weight: 600; }
-        .spec-card { background: rgba(255,255,255,0.05); border-radius: 20px; padding: 20px; transition: 0.3s; border: 1px solid rgba(255,215,0,0.2); height: 100%; }
+        .bg-dark-card { background: rgba(255,255,255,0.05); backdrop-filter: blur(5px); border-radius: 24px; padding: 20px; border: 1px solid rgba(255,215,0,0.2); }
+        .btn-primary { background: #FFD700; color: #0A1E3D; padding: 10px 20px; border-radius: 40px; font-weight: bold; text-decoration: none; display: inline-block; }
+        .btn-outline { border: 2px solid #FFD700; color: #FFD700; background: transparent; padding: 10px 20px; border-radius: 40px; font-weight: bold; text-decoration: none; display: inline-block; }
+        .nav-link { color: #fff; text-decoration: none; margin-right: 20px; display: inline-block; }
+        .nav-link:hover, .active-nav { color: #FFD700; border-bottom: 2px solid #FFD700; }
+        .spec-card { background: rgba(255,255,255,0.05); border-radius: 20px; padding: 20px; transition: 0.3s; border: 1px solid rgba(255,215,0,0.2); height: 100%; display: flex; flex-direction: column; }
         .spec-card:hover { transform: translateY(-3px); background: rgba(255,215,0,0.08); border-color: #FFD700; }
-        .calc-input { background: rgba(0,0,0,0.4); border: 1px solid rgba(255,215,0,0.3); border-radius: 12px; padding: 8px 12px; color: #fff; width: 100%; }
-        .calc-result { background: linear-gradient(135deg, rgba(255,215,0,0.1), rgba(0,0,0,0.3)); border-radius: 16px; padding: 12px; margin-top: 12px; }
-        .category-title { font-size: 1.8rem; font-weight: bold; margin-top: 2rem; margin-bottom: 1rem; border-left: 5px solid #FFD700; padding-left: 1rem; }
+        .price-display { font-size: 1.2rem; font-weight: bold; margin: 10px 0; }
+        .category-title { font-size: 1.8rem; font-weight: bold; margin: 30px 0 20px; border-left: 4px solid #FFD700; padding-left: 15px; }
+        .calc-input { background: rgba(0,0,0,0.4); border: 1px solid rgba(255,215,0,0.3); border-radius: 12px; padding: 8px; color: #fff; width: 80px; }
+        .calc-result { background: rgba(0,0,0,0.3); border-radius: 16px; padding: 12px; margin-top: 15px; text-align: center; }
         .currency-switch { display: inline-flex; background: rgba(0,0,0,0.4); border-radius: 40px; padding: 4px; margin-bottom: 20px; }
-        .currency-btn { padding: 8px 24px; border-radius: 40px; cursor: pointer; transition: 0.3s; font-weight: bold; background: transparent; color: #fff; border: none; }
+        .currency-btn { padding: 8px 20px; border-radius: 40px; cursor: pointer; background: transparent; color: #fff; border: none; }
         .currency-btn.active { background: #FFD700; color: #0A1E3D; }
+        header { background: rgba(10,30,61,0.9); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 50; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        footer { border-top: 1px solid rgba(255,255,255,0.1); margin-top: 40px; padding: 20px; text-align: center; font-size: 0.8rem; color: #aaa; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }
+        @media (max-width: 768px) { .grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
 
-<header class="bg-[#0A1E3D]/90 backdrop-blur-md shadow-lg sticky top-0 z-50 border-b border-white/10">
-    <div class="container mx-auto px-4 py-3 flex flex-wrap justify-between items-center gap-3">
-        <div class="flex items-center space-x-3">
-            <img src="logo.png" class="h-10" onerror="this.src='https://placehold.co/200x60/0A1E3D/FFD700?text=MYB'">
-            <span class="text-xl font-bold gold-text">MIYBANK (MYB)</span>
+<header>
+    <div class="container" style="padding: 12px 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+        <div style="display: flex; align-items: center; gap: 10px;">
+            <img src="logo.png" style="height: 40px;" onerror="this.src='https://placehold.co/200x60/0A1E3D/FFD700?text=MYB'">
+            <span class="gold-text" style="font-weight: bold;">MIYBANK (MYB)</span>
         </div>
-        <div class="flex items-center gap-3">
-            <button id="wallet-btn" class="bg-white/10 backdrop-blur-sm border border-white/20 text-white px-4 py-2 rounded-full text-sm hover:bg-white/20 transition">
-                <i class="fas fa-wallet mr-2"></i><span>Connect Wallet</span>
-            </button>
-        </div>
+        <button id="wallet-btn" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 8px 16px; border-radius: 40px;"><i class="fas fa-wallet"></i> Connect Wallet</button>
     </div>
-    <div class="border-t border-white/10">
-        <div class="container mx-auto px-4 py-2 text-sm">
+    <div style="border-top: 1px solid rgba(255,255,255,0.1);">
+        <div class="container" style="padding: 10px 20px;">
             <a href="index.html" class="nav-link">🏠 Home</a>
             <a href="liquidity.html" class="nav-link">💧 Liquidity</a>
             <a href="assets.html" class="nav-link">🏭 Copper Assets</a>
             <a href="spec.html" class="nav-link active-nav">📦 Спецтехника</a>
+            <a href="cars.html" class="nav-link">🚗 Авто</a>
+            <a href="ev.html" class="nav-link">⚡ EV</a>
+            <a href="seasonal.html" class="nav-link">🌾 Сезонная</a>
         </div>
     </div>
 </header>
 
-<main class="container mx-auto px-4 py-8 max-w-7xl">
-    <div class="text-center mb-8">
-        <h1 class="text-3xl md:text-4xl font-bold gold-text mb-2">🏗️ Лизинг спецтехники</h1>
-        <p class="text-gray-300">Экскаваторы · Погрузчики · Автокраны · Еврофуры · Самосвалы · Бетономешалки</p>
-        <p class="text-gray-400 text-sm mt-2">Вся техника импортного производства. Лизинг от 6 до 60 месяцев.</p>
+<main class="container" style="padding: 30px 20px;">
+    <div style="text-align: center; margin-bottom: 30px;">
+        <h1 class="gold-text" style="font-size: 2.2rem;">🏗️ Лизинг спецтехники</h1>
+        <p>Экскаваторы · Погрузчики · Автокраны · Еврофуры · Самосвалы · Бетономешалки</p>
+        <p style="font-size: 0.9rem; color: #aaa;">Ставка 15% годовых. Курс: 1 у.е. = 12 800 UZS</p>
     </div>
 
-    <!-- Переключатель валют -->
-    <div class="flex justify-center mb-6">
+    <div style="display: flex; justify-content: center;">
         <div class="currency-switch">
             <button class="currency-btn active" data-currency="uzs">🇺🇿 UZS (сум)</button>
-            <button class="currency-btn" data-currency="cue">💵 у.е. (привязано к USD)</button>
+            <button class="currency-btn" data-currency="cue">💵 у.е. (USD)</button>
         </div>
     </div>
-    <p class="text-center text-sm text-gray-400 mb-6" id="rate-hint">1 у.е. = 12 800 UZS (курс Нацбанка Узбекистана)</p>
 
-    <!-- 1. Экскаваторы -->
-    <div class="category-title gold-text">🟡 Экскаваторы</div>
-    <div class="grid md:grid-cols-3 gap-6 mb-8">
-        <div class="spec-card" data-price-uzs="18500000" data-price-cue="1445">
-            <h3 class="text-xl font-bold gold-text">JCB JS200LC</h3>
-            <p class="text-sm text-gray-400 mb-2">Великобритания</p>
-            <p class="text-sm">Масса: 20 500 кг | 173 л.с. | Ковш: 1.0 м³</p>
-            <p class="text-lg font-bold mt-2 price-display">💰 18 500 000 UZS</p>
-            <div class="leasing-calc mt-4">
-                <div class="mb-2"><label class="text-xs text-gray-400">Взнос (%)</label><input type="range" class="w-full init-range" min="10" max="50" value="20"><input type="number" class="calc-input init-input w-20 inline-block ml-2 text-sm" value="20"></div>
-                <div class="mb-2"><label class="text-xs text-gray-400">Срок (мес)</label><input type="range" class="w-full term-range" min="6" max="60" value="36"><input type="number" class="calc-input term-input w-20 inline-block ml-2 text-sm" value="36"></div>
-                <div class="calc-result"><p class="text-xs text-gray-400">Ежемесячный платёж</p><p class="text-xl font-bold gold-text monthly">0 UZS</p><p class="text-xs text-gray-500 rate-note">Ставка 3.5% годовых</p></div>
+    <!-- Погрузчики -->
+    <div class="category-title gold-text">🟡 Фронтальные погрузчики</div>
+    <div class="grid">
+        <div class="spec-card" data-price-uzs="794000000">
+            <h3 class="gold-text">LiuGong CLG856H</h3>
+            <p>Новый / 2026 г. / Грузоподъемность 5 т, ковш 3.3 м³, 220 л.с.</p>
+            <div class="price-display">💰 794 000 000 UZS</div>
+            <div class="leasing-calc">
+                <div><label>Взнос (%): </label><input type="range" class="init-range" min="10" max="50" value="20" style="width: 60%;"><input type="number" class="init-input" value="20" style="width: 60px;"></div>
+                <div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36" style="width: 60%;"><input type="number" class="term-input" value="36" style="width: 60px;"></div>
+                <div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><br><span class="rate-note" style="font-size: 0.7rem;">/ месяц, ставка 15% годовых</span></div>
             </div>
         </div>
-        <div class="spec-card" data-price-uzs="21000000" data-price-cue="1641">
-            <h3 class="text-xl font-bold gold-text">Hyundai R220LC-9S</h3>
-            <p class="text-sm text-gray-400 mb-2">Южная Корея</p>
-            <p class="text-sm">Масса: 22 100 кг | 148 л.с. | Ковш: 1.05 м³</p>
-            <p class="text-lg font-bold mt-2 price-display">💰 21 000 000 UZS</p>
-            <div class="leasing-calc mt-4"><div class="mb-2"><label class="text-xs text-gray-400">Взнос (%)</label><input type="range" class="w-full init-range" min="10" max="50" value="20"><input type="number" class="calc-input init-input w-20 inline-block ml-2 text-sm" value="20"></div><div class="mb-2"><label class="text-xs text-gray-400">Срок (мес)</label><input type="range" class="w-full term-range" min="6" max="60" value="36"><input type="number" class="calc-input term-input w-20 inline-block ml-2 text-sm" value="36"></div><div class="calc-result"><p class="text-xs text-gray-400">Ежемесячный платёж</p><p class="text-xl font-bold gold-text monthly">0 UZS</p></div></div>
+        <div class="spec-card" data-price-uzs="180000000">
+            <h3 class="gold-text">SDLG LG958L</h3>
+            <p>Новый / Китай / Грузоподъемность 5.5 т, ковш 3.0 м³</p>
+            <div class="price-display">💰 180 000 000 UZS</div>
+            <div class="leasing-calc">
+                <div><label>Взнос (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div>
+                <div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div>
+                <div class="calc-result"><strong class="gold-text monthly">0 UZS</strong></div>
+            </div>
         </div>
-        <div class="spec-card" data-price-uzs="22500000" data-price-cue="1758">
-            <h3 class="text-xl font-bold gold-text">Caterpillar 320</h3>
-            <p class="text-sm text-gray-400 mb-2">США</p>
-            <p class="text-sm">Масса: 20 500 кг | 168 л.с. | Ковш: 1.2 м³</p>
-            <p class="text-lg font-bold mt-2 price-display">💰 22 500 000 UZS</p>
-            <div class="leasing-calc mt-4"><div class="mb-2"><label class="text-xs text-gray-400">Взнос (%)</label><input type="range" class="w-full init-range" min="10" max="50" value="20"><input type="number" class="calc-input init-input w-20 inline-block ml-2 text-sm" value="20"></div><div class="mb-2"><label class="text-xs text-gray-400">Срок (мес)</label><input type="range" class="w-full term-range" min="6" max="60" value="36"><input type="number" class="calc-input term-input w-20 inline-block ml-2 text-sm" value="36"></div><div class="calc-result"><p class="text-xs text-gray-400">Ежемесячный платёж</p><p class="text-xl font-bold gold-text monthly">0 UZS</p></div></div>
+        <div class="spec-card" data-price-uzs="165000000">
+            <h3 class="gold-text">XCMG LW500KN</h3>
+            <p>Новый / Китай / Грузоподъемность 5 т, ковш 3.0 м³</p>
+            <div class="price-display">💰 165 000 000 UZS</div>
+            <div class="leasing-calc">
+                <div><label>Взнос (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div>
+                <div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div>
+                <div class="calc-result"><strong class="gold-text monthly">0 UZS</strong></div>
+            </div>
         </div>
     </div>
 
-    <!-- 2. Фронтальные погрузчики -->
-    <div class="category-title gold-text">🟡 Фронтальные погрузчики</div>
-    <div class="grid md:grid-cols-3 gap-6 mb-8">
-        <div class="spec-card" data-price-uzs="19500000" data-price-cue="1523"><h3 class="text-xl font-bold gold-text">LiuGong CLG856H</h3><p class="text-sm">Грузоподъёмность: 5 т | 162 л.с.</p><p class="text-lg font-bold mt-2 price-display">💰 19 500 000 UZS</p><div class="leasing-calc mt-4"><div class="mb-2"><label class="text-xs text-gray-400">Взнос (%)</label><input type="range" class="w-full init-range" min="10" max="50" value="20"><input type="number" class="calc-input init-input w-20 inline-block ml-2 text-sm" value="20"></div><div class="mb-2"><label class="text-xs text-gray-400">Срок (мес)</label><input type="range" class="w-full term-range" min="6" max="60" value="36"><input type="number" class="calc-input term-input w-20 inline-block ml-2 text-sm" value="36"></div><div class="calc-result"><p class="text-xs text-gray-400">Ежемесячный платёж</p><p class="text-xl font-bold gold-text monthly">0 UZS</p></div></div></div>
-        <div class="spec-card" data-price-uzs="17800000" data-price-cue="1391"><h3 class="text-xl font-bold gold-text">SDLG LG958L</h3><p class="text-sm">Грузоподъёмность: 5.5 т | 162 л.с.</p><p class="text-lg font-bold mt-2 price-display">💰 17 800 000 UZS</p><div class="leasing-calc mt-4"><div class="mb-2"><label class="text-xs text-gray-400">Взнос (%)</label><input type="range" class="w-full init-range" min="10" max="50" value="20"><input type="number" class="calc-input init-input w-20 inline-block ml-2 text-sm" value="20"></div><div class="mb-2"><label class="text-xs text-gray-400">Срок (мес)</label><input type="range" class="w-full term-range" min="6" max="60" value="36"><input type="number" class="calc-input term-input w-20 inline-block ml-2 text-sm" value="36"></div><div class="calc-result"><p class="text-xs text-gray-400">Ежемесячный платёж</p><p class="text-xl font-bold gold-text monthly">0 UZS</p></div></div></div>
-        <div class="spec-card" data-price-uzs="18200000" data-price-cue="1422"><h3 class="text-xl font-bold gold-text">XCMG LW500KN</h3><p class="text-sm">Грузоподъёмность: 5 т | 162 л.с.</p><p class="text-lg font-bold mt-2 price-display">💰 18 200 000 UZS</p><div class="leasing-calc mt-4"><div class="mb-2"><label class="text-xs text-gray-400">Взнос (%)</label><input type="range" class="w-full init-range" min="10" max="50" value="20"><input type="number" class="calc-input init-input w-20 inline-block ml-2 text-sm" value="20"></div><div class="mb-2"><label class="text-xs text-gray-400">Срок (мес)</label><input type="range" class="w-full term-range" min="6" max="60" value="36"><input type="number" class="calc-input term-input w-20 inline-block ml-2 text-sm" value="36"></div><div class="calc-result"><p class="text-xs text-gray-400">Ежемесячный платёж</p><p class="text-xl font-bold gold-text monthly">0 UZS</p></div></div></div>
+    <!-- Экскаваторы -->
+    <div class="category-title gold-text">🟡 Экскаваторы</div>
+    <div class="grid">
+        <div class="spec-card" data-price-uzs="350000000">
+            <h3 class="gold-text">JCB JS200LC</h3>
+            <p>Великобритания / Масса 20.5 т, ковш 1.0 м³</p>
+            <div class="price-display">💰 350 000 000 UZS</div>
+            <div class="leasing-calc"><div><label>Взнос (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong></div></div>
+        </div>
+        <div class="spec-card" data-price-uzs="420000000">
+            <h3 class="gold-text">Hyundai R220LC-9S</h3>
+            <p>Южная Корея / Масса 22.1 т, ковш 1.05 м³</p>
+            <div class="price-display">💰 420 000 000 UZS</div>
+            <div class="leasing-calc"><div><label>Взнос (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong></div></div>
+        </div>
     </div>
 
-    <!-- 3. Автокраны -->
-    <div class="category-title gold-text">🟡 Автокраны</div>
-    <div class="grid md:grid-cols-3 gap-6 mb-8">
-        <div class="spec-card" data-price-uzs="32000000" data-price-cue="2500"><h3 class="text-xl font-bold gold-text">XCMG QY25K5</h3><p class="text-sm">25 т | Высота подъёма: 32 м</p><p class="text-lg font-bold mt-2 price-display">💰 32 000 000 UZS</p><div class="leasing-calc mt-4"><div class="mb-2"><label class="text-xs text-gray-400">Взнос (%)</label><input type="range" class="w-full init-range" min="10" max="50" value="20"><input type="number" class="calc-input init-input w-20 inline-block ml-2 text-sm" value="20"></div><div class="mb-2"><label class="text-xs text-gray-400">Срок (мес)</label><input type="range" class="w-full term-range" min="6" max="60" value="36"><input type="number" class="calc-input term-input w-20 inline-block ml-2 text-sm" value="36"></div><div class="calc-result"><p class="text-xs text-gray-400">Ежемесячный платёж</p><p class="text-xl font-bold gold-text monthly">0 UZS</p></div></div></div>
-        <div class="spec-card" data-price-uzs="31500000" data-price-cue="2461"><h3 class="text-xl font-bold gold-text">Zoomlion ZTC250V</h3><p class="text-sm">25 т | Высота подъёма: 33 м</p><p class="text-lg font-bold mt-2 price-display">💰 31 500 000 UZS</p><div class="leasing-calc mt-4"><div class="mb-2"><label class="text-xs text-gray-400">Взнос (%)</label><input type="range" class="w-full init-range" min="10" max="50" value="20"><input type="number" class="calc-input init-input w-20 inline-block ml-2 text-sm" value="20"></div><div class="mb-2"><label class="text-xs text-gray-400">Срок (мес)</label><input type="range" class="w-full term-range" min="6" max="60" value="36"><input type="number" class="calc-input term-input w-20 inline-block ml-2 text-sm" value="36"></div><div class="calc-result"><p class="text-xs text-gray-400">Ежемесячный платёж</p><p class="text-xl font-bold gold-text monthly">0 UZS</p></div></div></div>
-        <div class="spec-card" data-price-uzs="58000000" data-price-cue="4531"><h3 class="text-xl font-bold gold-text">XCMG QY50K</h3><p class="text-sm">50 т | Высота подъёма: 42 м</p><p class="text-lg font-bold mt-2 price-display">💰 58 000 000 UZS</p><div class="leasing-calc mt-4"><div class="mb-2"><label class="text-xs text-gray-400">Взнос (%)</label><input type="range" class="w-full init-range" min="10" max="50" value="20"><input type="number" class="calc-input init-input w-20 inline-block ml-2 text-sm" value="20"></div><div class="mb-2"><label class="text-xs text-gray-400">Срок (мес)</label><input type="range" class="w-full term-range" min="6" max="60" value="36"><input type="number" class="calc-input term-input w-20 inline-block ml-2 text-sm" value="36"></div><div class="calc-result"><p class="text-xs text-gray-400">Ежемесячный платёж</p><p class="text-xl font-bold gold-text monthly">0 UZS</p></div></div></div>
-    </div>
-
-    <!-- 4. Еврофуры -->
-    <div class="category-title gold-text">🚛 Еврофуры (тягачи)</div>
-    <div class="grid md:grid-cols-3 gap-6 mb-8">
-        <div class="spec-card" data-price-uzs="28000000" data-price-cue="2188"><h3 class="text-xl font-bold gold-text">Scania R450</h3><p class="text-sm">450 л.с. | Швеция</p><p class="text-lg font-bold mt-2 price-display">💰 28 000 000 UZS</p><div class="leasing-calc mt-4"><div class="mb-2"><label class="text-xs text-gray-400">Взнос (%)</label><input type="range" class="w-full init-range" min="10" max="50" value="20"><input type="number" class="calc-input init-input w-20 inline-block ml-2 text-sm" value="20"></div><div class="mb-2"><label class="text-xs text-gray-400">Срок (мес)</label><input type="range" class="w-full term-range" min="6" max="60" value="36"><input type="number" class="calc-input term-input w-20 inline-block ml-2 text-sm" value="36"></div><div class="calc-result"><p class="text-xs text-gray-400">Ежемесячный платёж</p><p class="text-xl font-bold gold-text monthly">0 UZS</p></div></div></div>
-        <div class="spec-card" data-price-uzs="32000000" data-price-cue="2500"><h3 class="text-xl font-bold gold-text">Volvo FH 500</h3><p class="text-sm">500 л.с. | Швеция</p><p class="text-lg font-bold mt-2 price-display">💰 32 000 000 UZS</p><div class="leasing-calc mt-4"><div class="mb-2"><label class="text-xs text-gray-400">Взнос (%)</label><input type="range" class="w-full init-range" min="10" max="50" value="20"><input type="number" class="calc-input init-input w-20 inline-block ml-2 text-sm" value="20"></div><div class="mb-2"><label class="text-xs text-gray-400">Срок (мес)</label><input type="range" class="w-full term-range" min="6" max="60" value="36"><input type="number" class="calc-input term-input w-20 inline-block ml-2 text-sm" value="36"></div><div class="calc-result"><p class="text-xs text-gray-400">Ежемесячный платёж</p><p class="text-xl font-bold gold-text monthly">0 UZS</p></div></div></div>
-        <div class="spec-card" data-price-uzs="29500000" data-price-cue="2305"><h3 class="text-xl font-bold gold-text">Mercedes Actros 1845</h3><p class="text-sm">450 л.с. | Германия</p><p class="text-lg font-bold mt-2 price-display">💰 29 500 000 UZS</p><div class="leasing-calc mt-4"><div class="mb-2"><label class="text-xs text-gray-400">Взнос (%)</label><input type="range" class="w-full init-range" min="10" max="50" value="20"><input type="number" class="calc-input init-input w-20 inline-block ml-2 text-sm" value="20"></div><div class="mb-2"><label class="text-xs text-gray-400">Срок (мес)</label><input type="range" class="w-full term-range" min="6" max="60" value="36"><input type="number" class="calc-input term-input w-20 inline-block ml-2 text-sm" value="36"></div><div class="calc-result"><p class="text-xs text-gray-400">Ежемесячный платёж</p><p class="text-xl font-bold gold-text monthly">0 UZS</p></div></div></div>
-    </div>
-
-    <!-- 5. Самосвалы -->
-    <div class="category-title gold-text">🟡 Самосвалы</div>
-    <div class="grid md:grid-cols-3 gap-6 mb-8">
-        <div class="spec-card" data-price-uzs="19500000" data-price-cue="1523"><h3 class="text-xl font-bold gold-text">HOWO ZZ3257</h3><p class="text-sm">Грузоподъёмность: 25 т | 375 л.с.</p><p class="text-lg font-bold mt-2 price-display">💰 19 500 000 UZS</p><div class="leasing-calc mt-4"><div class="mb-2"><label class="text-xs text-gray-400">Взнос (%)</label><input type="range" class="w-full init-range" min="10" max="50" value="20"><input type="number" class="calc-input init-input w-20 inline-block ml-2 text-sm" value="20"></div><div class="mb-2"><label class="text-xs text-gray-400">Срок (мес)</label><input type="range" class="w-full term-range" min="6" max="60" value="36"><input type="number" class="calc-input term-input w-20 inline-block ml-2 text-sm" value="36"></div><div class="calc-result"><p class="text-xs text-gray-400">Ежемесячный платёж</p><p class="text-xl font-bold gold-text monthly">0 UZS</p></div></div></div>
-        <div class="spec-card" data-price-uzs="22000000" data-price-cue="1719"><h3 class="text-xl font-bold gold-text">Shacman X3000</h3><p class="text-sm">Грузоподъёмность: 30 т | 430 л.с.</p><p class="text-lg font-bold mt-2 price-display">💰 22 000 000 UZS</p><div class="leasing-calc mt-4"><div class="mb-2"><label class="text-xs text-gray-400">Взнос (%)</label><input type="range" class="w-full init-range" min="10" max="50" value="20"><input type="number" class="calc-input init-input w-20 inline-block ml-2 text-sm" value="20"></div><div class="mb-2"><label class="text-xs text-gray-400">Срок (мес)</label><input type="range" class="w-full term-range" min="6" max="60" value="36"><input type="number" class="calc-input term-input w-20 inline-block ml-2 text-sm" value="36"></div><div class="calc-result"><p class="text-xs text-gray-400">Ежемесячный платёж</p><p class="text-xl font-bold gold-text monthly">0 UZS</p></div></div></div>
-        <div class="spec-card" data-price-uzs="17800000" data-price-cue="1391"><h3 class="text-xl font-bold gold-text">Dongfeng DFH3250</h3><p class="text-sm">Грузоподъёмность: 25 т | 350 л.с.</p><p class="text-lg font-bold mt-2 price-display">💰 17 800 000 UZS</p><div class="leasing-calc mt-4"><div class="mb-2"><label class="text-xs text-gray-400">Взнос (%)</label><input type="range" class="w-full init-range" min="10" max="50" value="20"><input type="number" class="calc-input init-input w-20 inline-block ml-2 text-sm" value="20"></div><div class="mb-2"><label class="text-xs text-gray-400">Срок (мес)</label><input type="range" class="w-full term-range" min="6" max="60" value="36"><input type="number" class="calc-input term-input w-20 inline-block ml-2 text-sm" value="36"></div><div class="calc-result"><p class="text-xs text-gray-400">Ежемесячный платёж</p><p class="text-xl font-bold gold-text monthly">0 UZS</p></div></div></div>
-    </div>
-
-    <!-- 6. Бетономешалки -->
-    <div class="category-title gold-text">🟡 Бетономешалки (миксеры)</div>
-    <div class="grid md:grid-cols-3 gap-6 mb-8">
-        <div class="spec-card" data-price-uzs="18000000" data-price-cue="1406"><h3 class="text-xl font-bold gold-text">SANY SY412C</h3><p class="text-sm">Объём: 10 м³ | 340 л.с.</p><p class="text-lg font-bold mt-2 price-display">💰 18 000 000 UZS</p><div class="leasing-calc mt-4"><div class="mb-2"><label class="text-xs text-gray-400">Взнос (%)</label><input type="range" class="w-full init-range" min="10" max="50" value="20"><input type="number" class="calc-input init-input w-20 inline-block ml-2 text-sm" value="20"></div><div class="mb-2"><label class="text-xs text-gray-400">Срок (мес)</label><input type="range" class="w-full term-range" min="6" max="60" value="36"><input type="number" class="calc-input term-input w-20 inline-block ml-2 text-sm" value="36"></div><div class="calc-result"><p class="text-xs text-gray-400">Ежемесячный платёж</p><p class="text-xl font-bold gold-text monthly">0 UZS</p></div></div></div>
-        <div class="spec-card" data-price-uzs="21000000" data-price-cue="1641"><h3 class="text-xl font-bold gold-text">Howo 8x4</h3><p class="text-sm">Объём: 12 м³ | 375 л.с.</p><p class="text-lg font-bold mt-2 price-display">💰 21 000 000 UZS</p><div class="leasing-calc mt-4"><div class="mb-2"><label class="text-xs text-gray-400">Взнос (%)</label><input type="range" class="w-full init-range" min="10" max="50" value="20"><input type="number" class="calc-input init-input w-20 inline-block ml-2 text-sm" value="20"></div><div class="mb-2"><label class="text-xs text-gray-400">Срок (мес)</label><input type="range" class="w-full term-range" min="6" max="60" value="36"><input type="number" class="calc-input term-input w-20 inline-block ml-2 text-sm" value="36"></div><div class="calc-result"><p class="text-xs text-gray-400">Ежемесячный платёж</p><p class="text-xl font-bold gold-text monthly">0 UZS</p></div></div></div>
-        <div class="spec-card" data-price-uzs="17500000" data-price-cue="1367"><h3 class="text-xl font-bold gold-text">Shacman F3000</h3><p class="text-sm">Объём: 10 м³ | 350 л.с.</p><p class="text-lg font-bold mt-2 price-display">💰 17 500 000 UZS</p><div class="leasing-calc mt-4"><div class="mb-2"><label class="text-xs text-gray-400">Взнос (%)</label><input type="range" class="w-full init-range" min="10" max="50" value="20"><input type="number" class="calc-input init-input w-20 inline-block ml-2 text-sm" value="20"></div><div class="mb-2"><label class="text-xs text-gray-400">Срок (мес)</label><input type="range" class="w-full term-range" min="6" max="60" value="36"><input type="number" class="calc-input term-input w-20 inline-block ml-2 text-sm" value="36"></div><div class="calc-result"><p class="text-xs text-gray-400">Ежемесячный платёж</p><p class="text-xl font-bold gold-text monthly">0 UZS</p></div></div></div>
-    </div>
-
-    <div class="text-center mt-8">
-        <a href="#" class="btn-primary"><i class="fas fa-file-signature mr-2"></i>Оставить заявку на лизинг</a>
-        <a href="index.html" class="btn-outline ml-4"><i class="fas fa-arrow-left mr-2"></i>На главную</a>
+    <div style="text-align: center; margin-top: 30px;">
+        <a href="#" class="btn-primary"><i class="fas fa-file-signature"></i> Оставить заявку</a>
+        <a href="index.html" class="btn-outline" style="margin-left: 15px;">← На главную</a>
     </div>
 </main>
 
-<footer class="border-t border-white/10 mt-16 py-6 text-center text-gray-400 text-sm">
-    <p>© 2025 MIYBANK (MYB) — Personal Bank Token of Miyanmalikov Family</p>
-    <p class="mt-2">Цены указаны в UZS и у.е. (1 у.е. = 12 800 UZS по курсу Нацбанка Узбекистана). Лизинг на импортную технику.</p>
+<footer>
+    <p>© 2025 MIYBANK (MYB) — Лизинг спецтехники. Ставка 15% годовых.</p>
 </footer>
 
 <script>
-    // Курс: 1 у.е. = 12 800 UZS
-    const exchangeRate = 12800;
+    const EXCHANGE_RATE = 12800;
     let currentCurrency = 'uzs';
+    const ANNUAL_RATE = 0.15; // 15% годовых
 
     function calculatePayment(price, initPercent, months) {
         const initAmount = price * initPercent / 100;
         const loanAmount = price - initAmount;
-        const annualRate = 0.035;
-        const monthlyRate = annualRate / 12;
+        const monthlyRate = ANNUAL_RATE / 12;
         if (loanAmount <= 0 || months <= 0) return 0;
-        if (monthlyRate === 0) return loanAmount / months;
         return loanAmount * monthlyRate * Math.pow(1 + monthlyRate, months) / (Math.pow(1 + monthlyRate, months) - 1);
     }
 
-    function updateAllPrices() {
-        const cards = document.querySelectorAll('.spec-card');
-        cards.forEach(card => {
+    function updateAll() {
+        document.querySelectorAll('.spec-card').forEach(card => {
             const priceUzs = parseFloat(card.dataset.priceUzs);
-            const priceCue = parseFloat(card.dataset.priceCue);
             const priceDisplay = card.querySelector('.price-display');
             const monthlySpans = card.querySelectorAll('.monthly');
-            const rateNote = card.querySelector('.rate-note');
-            
-            let displayPrice, displayMonthly;
             if (currentCurrency === 'uzs') {
-                displayPrice = priceUzs.toLocaleString() + ' UZS';
+                if (priceDisplay) priceDisplay.innerHTML = `💰 ${priceUzs.toLocaleString()} UZS`;
                 monthlySpans.forEach(span => {
-                    const initPercent = parseFloat(card.querySelector('.init-range')?.value || 20);
+                    const init = parseFloat(card.querySelector('.init-range')?.value || 20);
                     const months = parseFloat(card.querySelector('.term-range')?.value || 36);
-                    const payment = calculatePayment(priceUzs, initPercent, months);
-                    span.textContent = Math.round(payment).toLocaleString() + ' UZS';
+                    span.textContent = Math.round(calculatePayment(priceUzs, init, months)).toLocaleString() + ' UZS';
                 });
-                if (rateNote) rateNote.textContent = 'Ставка 3.5% годовых';
             } else {
-                displayPrice = priceCue.toFixed(2) + ' у.е.';
+                const priceCue = priceUzs / EXCHANGE_RATE;
+                if (priceDisplay) priceDisplay.innerHTML = `💰 ${priceCue.toFixed(2)} у.е.`;
                 monthlySpans.forEach(span => {
-                    const initPercent = parseFloat(card.querySelector('.init-range')?.value || 20);
+                    const init = parseFloat(card.querySelector('.init-range')?.value || 20);
                     const months = parseFloat(card.querySelector('.term-range')?.value || 36);
-                    const paymentUzs = calculatePayment(priceUzs, initPercent, months);
-                    const paymentCue = paymentUzs / exchangeRate;
-                    span.textContent = paymentCue.toFixed(2) + ' у.е.';
+                    const payment = calculatePayment(priceUzs, init, months) / EXCHANGE_RATE;
+                    span.textContent = payment.toFixed(2) + ' у.е.';
                 });
-                if (rateNote) rateNote.textContent = 'Ставка 3.5% годовых (привязано к USD)';
             }
-            if (priceDisplay) priceDisplay.innerHTML = `💰 ${displayPrice}`;
         });
     }
 
-    function setupCalculators() {
-        const cards = document.querySelectorAll('.spec-card');
-        cards.forEach(card => {
-            const priceUzs = parseFloat(card.dataset.priceUzs);
-            const initRange = card.querySelector('.init-range');
-            const initInput = card.querySelector('.init-input');
-            const termRange = card.querySelector('.term-range');
-            const termInput = card.querySelector('.term-input');
-            const monthlySpans = card.querySelectorAll('.monthly');
-            
-            const updateCard = () => {
-                let init = parseFloat(initRange.value);
-                let term = parseFloat(termRange.value);
-                if (isNaN(init)) init = 20;
-                if (isNaN(term)) term = 36;
-                if (initInput) initInput.value = init;
-                if (termInput) termInput.value = term;
-                
-                if (currentCurrency === 'uzs') {
-                    const payment = calculatePayment(priceUzs, init, term);
-                    monthlySpans.forEach(span => span.textContent = Math.round(payment).toLocaleString() + ' UZS');
-                } else {
-                    const paymentUzs = calculatePayment(priceUzs, init, term);
-                    const paymentCue = paymentUzs / exchangeRate;
-                    monthlySpans.forEach(span => span.textContent = paymentCue.toFixed(2) + ' у.е.');
-                }
-            };
-            if (initRange) initRange.addEventListener('input', updateCard);
-            if (initInput) initInput.addEventListener('input', () => { let v = parseFloat(initInput.value); if (!isNaN(v)) { initRange.value = Math.min(50, Math.max(10, v)); updateCard(); } });
-            if (termRange) termRange.addEventListener('input', updateCard);
-            if (termInput) termInput.addEventListener('input', () => { let v = parseFloat(termInput.value); if (!isNaN(v)) { termRange.value = Math.min(60, Math.max(6, v)); updateCard(); } });
-            updateCard();
-        });
+    function setupCard(card) {
+        const priceUzs = parseFloat(card.dataset.priceUzs);
+        const initRange = card.querySelector('.init-range');
+        const initInput = card.querySelector('.init-input');
+        const termRange = card.querySelector('.term-range');
+        const termInput = card.querySelector('.term-input');
+        const monthlySpan = card.querySelector('.monthly');
+        const update = () => {
+            let init = parseFloat(initRange.value);
+            let term = parseFloat(termRange.value);
+            if (isNaN(init)) init = 20;
+            if (isNaN(term)) term = 36;
+            if (initInput) initInput.value = init;
+            if (termInput) termInput.value = term;
+            let payment = calculatePayment(priceUzs, init, term);
+            if (currentCurrency === 'uzs') monthlySpan.textContent = Math.round(payment).toLocaleString() + ' UZS';
+            else monthlySpan.textContent = (payment / EXCHANGE_RATE).toFixed(2) + ' у.е.';
+        };
+        if (initRange) initRange.addEventListener('input', update);
+        if (initInput) initInput.addEventListener('input', () => { let v = parseFloat(initInput.value); if (!isNaN(v)) { initRange.value = Math.min(50, Math.max(10, v)); update(); } });
+        if (termRange) termRange.addEventListener('input', update);
+        if (termInput) termInput.addEventListener('input', () => { let v = parseFloat(termInput.value); if (!isNaN(v)) { termRange.value = Math.min(60, Math.max(6, v)); update(); } });
+        update();
     }
 
-    // Переключатель валют
+    document.querySelectorAll('.spec-card').forEach(setupCard);
     document.querySelectorAll('.currency-btn').forEach(btn => {
         btn.addEventListener('click', () => {
             document.querySelectorAll('.currency-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
             currentCurrency = btn.dataset.currency;
-            updateAllPrices();
-            setupCalculators(); // пересчитать калькуляторы
+            updateAll();
+            document.querySelectorAll('.spec-card').forEach(setupCard);
         });
     });
-
-    setupCalculators();
-    document.getElementById('wallet-btn')?.addEventListener('click', () => alert('Wallet connection coming soon.'));
+    document.getElementById('wallet-btn')?.addEventListener('click', () => alert('Connect wallet soon.'));
 </script>
 </body>
 </html>
