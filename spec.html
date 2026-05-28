@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MIYBANK — Лизинг спецтехники | 8 категорий, 24 модели | Ставка 23% (UZS) / 13.8% (MYB)</title>
+    <title>MIYBANK — Лизинг спецтехники | Ставка от аванса: 10–50% → льгота 20–40%</title>
     <link rel="icon" href="favicon.ico">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
@@ -29,6 +29,10 @@
         .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }
         @media (max-width: 768px) { .grid { grid-template-columns: 1fr; } }
         .rate-note { font-size: 0.7rem; margin-top: 5px; }
+        .discount-table { background: rgba(0,0,0,0.3); border-radius: 16px; padding: 15px; margin-bottom: 20px; font-size: 0.8rem; }
+        .discount-table table { width: 100%; border-collapse: collapse; }
+        .discount-table th, .discount-table td { padding: 6px; text-align: center; border-bottom: 1px solid rgba(255,215,0,0.2); }
+        .discount-table th { color: #FFD700; }
     </style>
 </head>
 <body>
@@ -59,78 +63,93 @@
     <div style="text-align: center; margin-bottom: 30px;">
         <h1 class="gold-text" style="font-size: 2.2rem;">🏗️ Лизинг спецтехники</h1>
         <p>Экскаваторы · Погрузчики · Автокраны · Бетономешалки · Асфальтоукладчики · Трубоукладчики · Самосвалы · Тягачи</p>
-        <p style="font-size: 0.9rem; color: #aaa;">Ставка: 23% годовых (UZS) / 13.8% годовых (MYB) — льгота 40%</p>
+        <p style="font-size: 0.9rem; color: #aaa;">Ставка зависит от аванса (чем больше аванс, тем ниже ставка)</p>
+    </div>
+
+    <!-- Таблица скидок -->
+    <div class="discount-table">
+        <table>
+            <thead><tr><th>Аванс</th><th>Льгота</th><th>Ставка (UZS)</th><th>Ставка (MYB)</th></tr></thead>
+            <tbody>
+                <tr><td>≥ 50%</td><td>40%</td><td>13.8%</td><td>8.28%</td></tr>
+                <tr><td>≥ 40%</td><td>35%</td><td>14.95%</td><td>8.97%</td></tr>
+                <tr><td>≥ 30%</td><td>30%</td><td>16.1%</td><td>9.66%</td></tr>
+                <tr><td>≥ 20%</td><td>25%</td><td>17.25%</td><td>10.35%</td></tr>
+                <tr><td>≥ 10%</td><td>20%</td><td>18.4%</td><td>11.04%</td></tr>
+            </tbody>
+        </table>
+        <p style="text-align: center; margin-top: 8px;"><i class="fas fa-info-circle"></i> Базовая ставка 23% (UZS) / 13.8% (MYB). Льгота применяется к базовой ставке.</p>
     </div>
 
     <div style="display: flex; justify-content: center;">
         <div class="currency-switch">
-            <button class="currency-btn active" data-currency="uzs">🇺🇿 UZS (сум) — 23%</button>
-            <button class="currency-btn" data-currency="myb">💎 MYB — 13.8% (льгота 40%)</button>
+            <button class="currency-btn active" data-currency="uzs">🇺🇿 UZS (сум)</button>
+            <button class="currency-btn" data-currency="myb">💎 MYB</button>
         </div>
     </div>
 
     <!-- 1. ЭКСКАВАТОРЫ (3 шт) -->
     <div class="category-title gold-text">🟡 Экскаваторы</div>
     <div class="grid">
-        <div class="spec-card" data-price-uzs="650000000"><h3 class="gold-text">JCB JS200LC</h3><p>Б/у / Масса 20.5 т, 173 л.с., ковш 1.0 м³</p><div class="price-display">💰 650 000 000 UZS</div><div class="leasing-calc"><div><label>Взнос (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
-        <div class="spec-card" data-price-uzs="1800000000"><h3 class="gold-text">JCB JS200LC (новый)</h3><p>Великобритания / Новый</p><div class="price-display">💰 1 800 000 000 UZS</div><div class="leasing-calc"><div><label>Взнос (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
-        <div class="spec-card" data-price-uzs="2100000000"><h3 class="gold-text">Hyundai R220LC-9S</h3><p>Южная Корея / Новый / 22.1 т, 148 л.с.</p><div class="price-display">💰 2 100 000 000 UZS</div><div class="leasing-calc"><div><label>Взнос (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
+        <div class="spec-card" data-price-uzs="650000000"><h3 class="gold-text">JCB JS200LC</h3><p>Б/у / Масса 20.5 т, 173 л.с., ковш 1.0 м³</p><div class="price-display">💰 650 000 000 UZS</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
+        <div class="spec-card" data-price-uzs="1800000000"><h3 class="gold-text">JCB JS200LC (новый)</h3><p>Великобритания / Новый</p><div class="price-display">💰 1 800 000 000 UZS</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
+        <div class="spec-card" data-price-uzs="2100000000"><h3 class="gold-text">Hyundai R220LC-9S</h3><p>Южная Корея / Новый / 22.1 т, 148 л.с.</p><div class="price-display">💰 2 100 000 000 UZS</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
     </div>
 
     <!-- 2. ФРОНТАЛЬНЫЕ ПОГРУЗЧИКИ (3 шт) -->
     <div class="category-title gold-text">🟡 Фронтальные погрузчики</div>
     <div class="grid">
-        <div class="spec-card" data-price-uzs="794000000"><h3 class="gold-text">LiuGong CLG856H</h3><p>Новый / 5 т, ковш 3.3 м³, 220 л.с.</p><div class="price-display">💰 794 000 000 UZS</div><div class="leasing-calc"><div><label>Взнос (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
-        <div class="spec-card" data-price-uzs="180000000"><h3 class="gold-text">SDLG LG958L</h3><p>Новый / 5.5 т, ковш 3.0 м³</p><div class="price-display">💰 180 000 000 UZS</div><div class="leasing-calc"><div><label>Взнос (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
-        <div class="spec-card" data-price-uzs="165000000"><h3 class="gold-text">XCMG LW500KN</h3><p>Новый / 5 т, ковш 3.0 м³</p><div class="price-display">💰 165 000 000 UZS</div><div class="leasing-calc"><div><label>Взнос (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
+        <div class="spec-card" data-price-uzs="794000000"><h3 class="gold-text">LiuGong CLG856H</h3><p>Новый / 5 т, ковш 3.3 м³, 220 л.с.</p><div class="price-display">💰 794 000 000 UZS</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
+        <div class="spec-card" data-price-uzs="180000000"><h3 class="gold-text">SDLG LG958L</h3><p>Новый / 5.5 т, ковш 3.0 м³</p><div class="price-display">💰 180 000 000 UZS</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
+        <div class="spec-card" data-price-uzs="165000000"><h3 class="gold-text">XCMG LW500KN</h3><p>Новый / 5 т, ковш 3.0 м³</p><div class="price-display">💰 165 000 000 UZS</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
     </div>
 
     <!-- 3. АВТОКРАНЫ (3 шт) -->
     <div class="category-title gold-text">🟡 Автокраны</div>
     <div class="grid">
-        <div class="spec-card" data-price-uzs="420000000"><h3 class="gold-text">XCMG QY25K5</h3><p>Китай / 25 т, высота подъёма 32 м</p><div class="price-display">💰 420 000 000 UZS</div><div class="leasing-calc"><div><label>Взнос (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
-        <div class="spec-card" data-price-uzs="400000000"><h3 class="gold-text">Zoomlion ZTC250V</h3><p>Китай / 25 т, высота подъёма 33 м</p><div class="price-display">💰 400 000 000 UZS</div><div class="leasing-calc"><div><label>Взнос (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
-        <div class="spec-card" data-price-uzs="780000000"><h3 class="gold-text">XCMG QY50K</h3><p>Китай / 50 т, высота подъёма 42 м</p><div class="price-display">💰 780 000 000 UZS</div><div class="leasing-calc"><div><label>Взнос (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
+        <div class="spec-card" data-price-uzs="420000000"><h3 class="gold-text">XCMG QY25K5</h3><p>Китай / 25 т, высота подъёма 32 м</p><div class="price-display">💰 420 000 000 UZS</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
+        <div class="spec-card" data-price-uzs="400000000"><h3 class="gold-text">Zoomlion ZTC250V</h3><p>Китай / 25 т, высота подъёма 33 м</p><div class="price-display">💰 400 000 000 UZS</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
+        <div class="spec-card" data-price-uzs="780000000"><h3 class="gold-text">XCMG QY50K</h3><p>Китай / 50 т, высота подъёма 42 м</p><div class="price-display">💰 780 000 000 UZS</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
     </div>
 
-    <!-- 4. БЕТОНОМЕШАЛКИ (МИКСЕРЫ) (3 шт) -->
-    <div class="category-title gold-text">🟡 Бетономешалки (автобетоносмесители)</div>
+    <!-- 4. БЕТОНОМЕШАЛКИ (3 шт) -->
+    <div class="category-title gold-text">🟡 Бетономешалки (миксеры)</div>
     <div class="grid">
-        <div class="spec-card" data-price-uzs="250000000"><h3 class="gold-text">SANY SY412C</h3><p>10 м³ / Китай</p><div class="price-display">💰 250 000 000 UZS</div><div class="leasing-calc"><div><label>Взнос (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
-        <div class="spec-card" data-price-uzs="280000000"><h3 class="gold-text">Howo 8x4</h3><p>12 м³ / Китай</p><div class="price-display">💰 280 000 000 UZS</div><div class="leasing-calc"><div><label>Взнос (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
-        <div class="spec-card" data-price-uzs="230000000"><h3 class="gold-text">Shacman F3000</h3><p>10 м³ / Китай</p><div class="price-display">💰 230 000 000 UZS</div><div class="leasing-calc"><div><label>Взнос (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
+        <div class="spec-card" data-price-uzs="250000000"><h3 class="gold-text">SANY SY412C</h3><p>10 м³ / Китай</p><div class="price-display">💰 250 000 000 UZS</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
+        <div class="spec-card" data-price-uzs="280000000"><h3 class="gold-text">Howo 8x4</h3><p>12 м³ / Китай</p><div class="price-display">💰 280 000 000 UZS</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
+        <div class="spec-card" data-price-uzs="230000000"><h3 class="gold-text">Shacman F3000</h3><p>10 м³ / Китай</p><div class="price-display">💰 230 000 000 UZS</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
     </div>
 
     <!-- 5. АСФАЛЬТОУКЛАДЧИКИ (3 шт) -->
     <div class="category-title gold-text">🟡 Асфальтоукладчики</div>
     <div class="grid">
-        <div class="spec-card" data-price-uzs="350000000"><h3 class="gold-text">Volvo P6820C</h3><p>Швеция / Ширина укладки до 6.5 м</p><div class="price-display">💰 350 000 000 UZS</div><div class="leasing-calc"><div><label>Взнос (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
-        <div class="spec-card" data-price-uzs="320000000"><h3 class="gold-text">XCMG RP903</h3><p>Китай / Ширина укладки до 9 м</p><div class="price-display">💰 320 000 000 UZS</div><div class="leasing-calc"><div><label>Взнос (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
-        <div class="spec-card" data-price-uzs="380000000"><h3 class="gold-text">Caterpillar AP655F</h3><p>США / Ширина укладки до 6.7 м</p><div class="price-display">💰 380 000 000 UZS</div><div class="leasing-calc"><div><label>Взнос (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
+        <div class="spec-card" data-price-uzs="350000000"><h3 class="gold-text">Volvo P6820C</h3><p>Швеция / Ширина укладки до 6.5 м</p><div class="price-display">💰 350 000 000 UZS</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
+        <div class="spec-card" data-price-uzs="320000000"><h3 class="gold-text">XCMG RP903</h3><p>Китай / Ширина укладки до 9 м</p><div class="price-display">💰 320 000 000 UZS</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
+        <div class="spec-card" data-price-uzs="380000000"><h3 class="gold-text">Caterpillar AP655F</h3><p>США / Ширина укладки до 6.7 м</p><div class="price-display">💰 380 000 000 UZS</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
     </div>
 
     <!-- 6. ТРУБОУКЛАДЧИКИ (3 шт) -->
     <div class="category-title gold-text">🟡 Трубоукладчики</div>
     <div class="grid">
-        <div class="spec-card" data-price-uzs="450000000"><h3 class="gold-text">Caterpillar 583T</h3><p>США / Грузоподъёмность 108 т</p><div class="price-display">💰 450 000 000 UZS</div><div class="leasing-calc"><div><label>Взнос (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
-        <div class="spec-card" data-price-uzs="400000000"><h3 class="gold-text">Komatsu D355C</h3><p>Япония / Грузоподъёмность 90 т</p><div class="price-display">💰 400 000 000 UZS</div><div class="leasing-calc"><div><label>Взнос (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
-        <div class="spec-card" data-price-uzs="380000000"><h3 class="gold-text">XCMG ZY65</h3><p>Китай / Грузоподъёмность 65 т</p><div class="price-display">💰 380 000 000 UZS</div><div class="leasing-calc"><div><label>Взнос (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
+        <div class="spec-card" data-price-uzs="450000000"><h3 class="gold-text">Caterpillar 583T</h3><p>США / Грузоподъёмность 108 т</p><div class="price-display">💰 450 000 000 UZS</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
+        <div class="spec-card" data-price-uzs="400000000"><h3 class="gold-text">Komatsu D355C</h3><p>Япония / Грузоподъёмность 90 т</p><div class="price-display">💰 400 000 000 UZS</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
+        <div class="spec-card" data-price-uzs="380000000"><h3 class="gold-text">XCMG ZY65</h3><p>Китай / Грузоподъёмность 65 т</p><div class="price-display">💰 380 000 000 UZS</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
     </div>
 
     <!-- 7. САМОСВАЛЫ SHACMAN / HOWO (3 шт) -->
     <div class="category-title gold-text">🟡 Самосвалы SHACMAN / HOWO</div>
     <div class="grid">
-        <div class="spec-card" data-price-uzs="250000000"><h3 class="gold-text">HOWO ZZ3257</h3><p>Китай / 25 т, 375 л.с.</p><div class="price-display">💰 250 000 000 UZS</div><div class="leasing-calc"><div><label>Взнос (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
-        <div class="spec-card" data-price-uzs="280000000"><h3 class="gold-text">Shacman X3000</h3><p>Китай / 30 т, 430 л.с.</p><div class="price-display">💰 280 000 000 UZS</div><div class="leasing-calc"><div><label>Взнос (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
-        <div class="spec-card" data-price-uzs="220000000"><h3 class="gold-text">Dongfeng DFH3250</h3><p>Китай / 25 т, 350 л.с.</p><div class="price-display">💰 220 000 000 UZS</div><div class="leasing-calc"><div><label>Взнос (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
+        <div class="spec-card" data-price-uzs="250000000"><h3 class="gold-text">HOWO ZZ3257</h3><p>Китай / 25 т, 375 л.с.</p><div class="price-display">💰 250 000 000 UZS</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
+        <div class="spec-card" data-price-uzs="280000000"><h3 class="gold-text">Shacman X3000</h3><p>Китай / 30 т, 430 л.с.</p><div class="price-display">💰 280 000 000 UZS</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
+        <div class="spec-card" data-price-uzs="220000000"><h3 class="gold-text">Dongfeng DFH3250</h3><p>Китай / 25 т, 350 л.с.</p><div class="price-display">💰 220 000 000 UZS</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
     </div>
 
     <!-- 8. ТЯГАЧИ С ПОЛУПРИЦЕПАМИ (3 шт) -->
     <div class="category-title gold-text">🚛 Тягачи с полуприцепами</div>
     <div class="grid">
-        <div class="spec-card" data-price-uzs="350000000"><h3 class="gold-text">Scania R450 + полуприцеп</h3><p>Швеция / 450 л.с., 20 т грузоподъёмность</p><div class="price-display">💰 350 000 000 UZS</div><div class="leasing-calc"><div><label>Взнос (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
-        <div class="spec-card" data-price-uzs="380000000"><h3 class="gold-text">Volvo FH 500 + полуприцеп</h3><p>Швеция / 500 л.с., 22 т грузоподъёмность</p><div class="price-display">💰 380 000 000 UZS</div><div class="leasing-calc"><div><label>Взнос (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
-        <div class="spec-card" data-price-uzs="370000000"><h3 class="gold-text">Mercedes Actros 1845 + полуприцеп</h3><p>Германия / 450 л.с., 20 т грузоподъёмность</p><div class="price-display">💰 370 000 000 UZS</div><div class="leasing-calc"><div><label>Взнос (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
+        <div class="spec-card" data-price-uzs="350000000"><h3 class="gold-text">Scania R450 + полуприцеп</h3><p>Швеция / 450 л.с., 20 т</p><div class="price-display">💰 350 000 000 UZS</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
+        <div class="spec-card" data-price-uzs="380000000"><h3 class="gold-text">Volvo FH 500 + полуприцеп</h3><p>Швеция / 500 л.с., 22 т</p><div class="price-display">💰 380 000 000 UZS</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
+        <div class="spec-card" data-price-uzs="370000000"><h3 class="gold-text">Mercedes Actros 1845 + полуприцеп</h3><p>Германия / 450 л.с., 20 т</p><div class="price-display">💰 370 000 000 UZS</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
     </div>
 
     <div style="text-align: center; margin-top: 40px;">
@@ -141,19 +160,37 @@
 
 <footer>
     <p>© 2025 MIYBANK (MYB) — Лизинг спецтехники | 8 категорий, 24 модели</p>
-    <p>Ставка 23% годовых при оплате в UZS. При оплате в MYB — ставка 13.8% (льгота 40%). 1 MYB ≈ 1 USD</p>
+    <p>Ставка зависит от аванса: 50% → 13.8% (UZS) / 8.28% (MYB). 1 MYB ≈ 1 USD</p>
 </footer>
 
 <script>
     const EXCHANGE_RATE = 12800;
     let currentCurrency = 'uzs';
-    const ANNUAL_RATE_UZS = 0.23;
-    const ANNUAL_RATE_MYB = 0.138;
+    
+    // Базовая ставка
+    const BASE_RATE_UZS = 0.23;
+    const BASE_RATE_MYB = 0.138;
+    
+    // Льготы в зависимости от аванса
+    function getDiscountRate(initPercent, currency) {
+        let discount = 0;
+        if (initPercent >= 50) discount = 0.40;
+        else if (initPercent >= 40) discount = 0.35;
+        else if (initPercent >= 30) discount = 0.30;
+        else if (initPercent >= 20) discount = 0.25;
+        else discount = 0.20;
+        
+        if (currency === 'uzs') {
+            return BASE_RATE_UZS * (1 - discount);
+        } else {
+            return BASE_RATE_MYB * (1 - discount);
+        }
+    }
 
     function calculatePayment(price, initPercent, months, currency) {
         const initAmount = price * initPercent / 100;
         const loanAmount = price - initAmount;
-        const annualRate = (currency === 'uzs') ? ANNUAL_RATE_UZS : ANNUAL_RATE_MYB;
+        const annualRate = getDiscountRate(initPercent, currency);
         const monthlyRate = annualRate / 12;
         if (loanAmount <= 0 || months <= 0) return 0;
         return loanAmount * monthlyRate * Math.pow(1 + monthlyRate, months) / (Math.pow(1 + monthlyRate, months) - 1);
@@ -165,6 +202,7 @@
             const priceDisplay = card.querySelector('.price-display');
             const monthlySpans = card.querySelectorAll('.monthly');
             const rateNote = card.querySelector('.rate-note');
+            const initValue = parseFloat(card.querySelector('.init-range')?.value || 20);
             
             if (currentCurrency === 'uzs') {
                 if (priceDisplay) priceDisplay.innerHTML = `💰 ${priceUzs.toLocaleString()} UZS`;
@@ -174,7 +212,8 @@
                     const payment = calculatePayment(priceUzs, init, months, 'uzs');
                     span.textContent = Math.round(payment).toLocaleString() + ' UZS';
                 });
-                if (rateNote) rateNote.innerHTML = 'Ставка 23% годовых';
+                const rate = getDiscountRate(initValue, 'uzs');
+                if (rateNote) rateNote.innerHTML = `Ставка ${(rate * 100).toFixed(1)}% годовых (аванс ${initValue}%)`;
             } else {
                 const priceMyb = priceUzs / EXCHANGE_RATE;
                 if (priceDisplay) priceDisplay.innerHTML = `💎 ${priceMyb.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})} MYB`;
@@ -184,7 +223,8 @@
                     const payment = calculatePayment(priceUzs, init, months, 'myb');
                     span.textContent = (payment / EXCHANGE_RATE).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2}) + ' MYB';
                 });
-                if (rateNote) rateNote.innerHTML = 'Ставка 13.8% годовых (льгота 40% за оплату в MYB)';
+                const rate = getDiscountRate(initValue, 'myb');
+                if (rateNote) rateNote.innerHTML = `Ставка ${(rate * 100).toFixed(1)}% годовых (аванс ${initValue}%, льгота за MYB)`;
             }
         });
     }
@@ -209,11 +249,13 @@
             if (currentCurrency === 'uzs') {
                 const payment = calculatePayment(priceUzs, init, term, 'uzs');
                 monthlySpan.textContent = Math.round(payment).toLocaleString() + ' UZS';
-                if (rateNote) rateNote.innerHTML = 'Ставка 23% годовых';
+                const rate = getDiscountRate(init, 'uzs');
+                if (rateNote) rateNote.innerHTML = `Ставка ${(rate * 100).toFixed(1)}% годовых (аванс ${init}%)`;
             } else {
                 const payment = calculatePayment(priceUzs, init, term, 'myb');
                 monthlySpan.textContent = (payment / EXCHANGE_RATE).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2}) + ' MYB';
-                if (rateNote) rateNote.innerHTML = 'Ставка 13.8% годовых (льгота 40% за оплату в MYB)';
+                const rate = getDiscountRate(init, 'myb');
+                if (rateNote) rateNote.innerHTML = `Ставка ${(rate * 100).toFixed(1)}% годовых (аванс ${init}%, льгота за MYB)`;
             }
         };
         
