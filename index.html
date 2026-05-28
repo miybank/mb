@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>MIYBANK (MYB) — Персональный банковский токен | Лизинг 15%</title>
+    <title>MIYBANK (MYB) — Первый семейный банковский токен | Лизинг 15%</title>
     <link rel="icon" href="favicon.ico">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, #0A1E3D 0%, #0A2A4A 100%); color: #fff; line-height: 1.6; }
@@ -25,6 +26,8 @@
         .token-address { background: rgba(0,0,0,0.4); padding: 12px; border-radius: 12px; font-family: monospace; word-break: break-all; font-size: 0.8rem; }
         header { background: rgba(10,30,61,0.9); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 50; border-bottom: 1px solid rgba(255,255,255,0.1); }
         footer { border-top: 1px solid rgba(255,255,255,0.1); margin-top: 40px; padding: 20px; text-align: center; font-size: 0.8rem; color: #aaa; }
+        .price-ticker { font-size: 2rem; font-weight: bold; font-family: monospace; background: rgba(0,0,0,0.5); display: inline-block; padding: 8px 20px; border-radius: 60px; margin: 10px 0; }
+        .dexscreener-embed { iframe { width: 100%; height: 450px; border: none; border-radius: 20px; } }
         @media (max-width: 768px) { .container { padding: 0 15px; } .btn-primary, .btn-outline { padding: 8px 16px; font-size: 0.8rem; } }
     </style>
 </head>
@@ -52,14 +55,24 @@
 </header>
 
 <main class="container" style="padding: 30px 20px;">
+    <!-- Hero Token Section -->
     <div class="bg-dark-card" style="text-align: center;">
         <div style="display: inline-block; background: rgba(255,215,0,0.2); padding: 4px 12px; border-radius: 40px; font-size: 0.8rem; margin-bottom: 15px;">✦ Token-2022 on Solana</div>
         <h1 style="font-size: 2.5rem;" class="gold-text">MIYBANK (MYB)</h1>
-        <p style="font-size: 1.2rem; margin: 15px 0;">Первый персональный банковский токен семьи Миянмаликовых с лизинговой экосистемой</p>
+        <p style="font-size: 1.2rem; margin: 15px 0;"><strong>Первый семейный банковский токен с лизинговой экосистемой</strong></p>
         <div class="token-address" style="text-align: left;">
             <p style="font-size: 0.8rem; color: #aaa;">📍 Контракт токена (Mint Address):</p>
             <code style="font-size: 0.7rem;">4EG8Uc78EDxpDnRr1BdaA6t5ceWhDddiX6Zbb1zHu11k</code>
         </div>
+        
+        <!-- Цена токена в реальном времени (DexScreener виджет) -->
+        <div style="margin: 20px 0;">
+            <h3 class="gold-text" style="margin-bottom: 10px;">💰 Текущая цена MYB</h3>
+            <div class="dexscreener-embed">
+                <iframe src="https://dexscreener.com/solana/Euz7efcdGYFZxvuVXE3spbr3dY3JpsTjzDEcg4vqnrSF?embed=1&theme=dark&trades=0&info=0" width="100%" height="400" style="border-radius: 20px; border: 1px solid rgba(255,215,0,0.3);"></iframe>
+            </div>
+        </div>
+        
         <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; margin-top: 20px;">
             <a href="https://www.geckoterminal.com/solana/pools/Euz7efcdGYFZxvuVXE3spbr3dY3JpsTjzDEcg4vqnrSF" class="btn-primary" target="_blank"><i class="fas fa-chart-line"></i> Купить на GeckoTerminal</a>
             <a href="https://jup.ag/swap/SOL-MYB" class="btn-primary" target="_blank"><i class="fas fa-exchange-alt"></i> Купить на Jupiter</a>
@@ -67,9 +80,26 @@
         </div>
     </div>
 
+    <!-- Диаграмма распределения токенов (Tokenomics) -->
+    <div class="bg-dark-card">
+        <h2 class="gold-text" style="text-align: center; margin-bottom: 20px;">📊 Tokenomics — Распределение MYB</h2>
+        <div style="max-width: 500px; margin: 0 auto;">
+            <canvas id="tokenomicsChart" width="400" height="400" style="max-width: 100%; height: auto; background: rgba(0,0,0,0.3); border-radius: 24px;"></canvas>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; margin-top: 20px;">
+            <div><span style="background: #FFD700; display: inline-block; width: 12px; height: 12px; border-radius: 50%;"></span> Лизинговая казна — 40%</div>
+            <div><span style="background: #FFA500; display: inline-block; width: 12px; height: 12px; border-radius: 50%;"></span> Пул ликвидности — 30%</div>
+            <div><span style="background: #FF6347; display: inline-block; width: 12px; height: 12px; border-radius: 50%;"></span> Команда и развитие — 15%</div>
+            <div><span style="background: #00CED1; display: inline-block; width: 12px; height: 12px; border-radius: 50%;"></span> Маркетинг — 10%</div>
+            <div><span style="background: #9370DB; display: inline-block; width: 12px; height: 12px; border-radius: 50%;"></span> Резерв — 5%</div>
+        </div>
+        <p style="text-align: center; margin-top: 15px; font-size: 0.8rem;">* Transfer fee 0.01% автоматически пополняет лизинговую казну</p>
+    </div>
+
+    <!-- About Token -->
     <div class="bg-dark-card">
         <h2 class="gold-text">📌 О токене MIYBANK</h2>
-        <p><strong>MIYBANK (MYB)</strong> — дефляционный банковский токен на Solana (Token-2022), созданный семьёй Миянмаликовых. Transfer fee 0.01% автоматически пополняет лизинговую казну. Держатели MYB получают доступ к экосистеме лизинга, скидкам и DAO-управлению.</p>
+        <p><strong>MIYBANK (MYB)</strong> — дефляционный семейный банковский токен на Solana (Token-2022). Transfer fee 0.01% автоматически пополняет лизинговую казну. Держатели MYB получают доступ к экосистеме лизинга, скидкам и DAO-управлению.</p>
         <p style="margin-top: 10px;"><strong>Расшифровка MYB:</strong> Miyanmalikov's Your Bank / Miyanmalikov Yield Bank.</p>
         <p style="margin-top: 10px;">🔗 <strong>Активный пул:</strong> MYB/USDT на Meteora (TVL ~$998M)</p>
     </div>
@@ -90,23 +120,35 @@
         <p style="margin: 15px 0;">Подготовка лизинговых договоров, консультации, налоговый консалтинг.</p>
         <a href="#" class="btn-primary">Записаться на консультацию</a>
     </div>
-
-    <div class="bg-dark-card">
-        <h2 class="gold-text">💧 Ликвидность и пулы</h2>
-        <p>🔁 Активный пул: <strong>MYB / USDT</strong> на Meteora DAMM V2 (TVL ~$998.6M)</p>
-        <div style="display: flex; gap: 15px; margin-top: 15px; flex-wrap: wrap;">
-            <a href="https://www.geckoterminal.com/solana/pools/Euz7efcdGYFZxvuVXE3spbr3dY3JpsTjzDEcg4vqnrSF" class="btn-outline" target="_blank">Посмотреть на GeckoTerminal</a>
-            <a href="https://app.meteora.ag/pool/Euz7efcdGYFZxvuVXE3spbr3dY3JpsTjzDEcg4vqnrSF" class="btn-outline" target="_blank">Добавить ликвидность</a>
-        </div>
-    </div>
 </main>
 
 <footer>
-    <p>© 2025 MIYBANK (MYB) — Personal Bank Token of Miyanmalikov Family</p>
+    <p>© 2025 MIYBANK (MYB) — Первый семейный банковский токен с лизинговой экосистемой</p>
     <p>Лизинговая ставка: 15% годовых. Курс: 1 у.е. = 12 800 UZS</p>
 </footer>
 
 <script>
+    // Токеномика диаграмма
+    const ctx = document.getElementById('tokenomicsChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: ['Лизинговая казна (40%)', 'Пул ликвидности (30%)', 'Команда и развитие (15%)', 'Маркетинг (10%)', 'Резерв (5%)'],
+            datasets: [{
+                data: [40, 30, 15, 10, 5],
+                backgroundColor: ['#FFD700', '#FFA500', '#FF6347', '#00CED1', '#9370DB'],
+                borderColor: '#0A1E3D',
+                borderWidth: 2
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: { position: 'bottom', labels: { color: '#fff', font: { size: 10 } } },
+                tooltip: { callbacks: { label: (ctx) => `${ctx.label}: ${ctx.raw}%` } }
+            }
+        }
+    });
     document.getElementById('wallet-btn')?.addEventListener('click', () => alert('Wallet connection coming soon. Use Phantom or Backpack.'));
 </script>
 </body>
