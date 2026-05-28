@@ -16,17 +16,17 @@
         .btn-primary:hover { background: #FFA500; transform: translateY(-2px); }
         .btn-outline { border: 2px solid #FFD700; color: #FFD700; background: transparent; padding: 12px 24px; border-radius: 40px; font-weight: bold; transition: 0.3s; display: inline-block; }
         .btn-outline:hover { background: #FFD700; color: #0A1E3D; }
-        .nav-link { color: #fff; transition: 0.3s; padding-bottom: 4px; }
+        .nav-link { color: #fff; transition: 0.3s; padding-bottom: 4px; text-decoration: none; margin-right: 16px; display: inline-block; }
         .nav-link:hover { color: #FFD700; border-bottom: 2px solid #FFD700; }
         .active-nav { color: #FFD700; border-bottom: 2px solid #FFD700; font-weight: 600; }
         .leasing-card { background: rgba(255,255,255,0.05); border-radius: 20px; padding: 20px; transition: 0.3s; border: 1px solid rgba(255,215,0,0.2); height: 100%; }
         .leasing-card:hover { transform: translateY(-5px); background: rgba(255,215,0,0.1); border-color: #FFD700; }
         .service-card { background: linear-gradient(135deg, rgba(255,215,0,0.1), rgba(0,0,0,0.3)); border-radius: 24px; padding: 24px; border: 1px solid rgba(255,215,0,0.3); }
+        .token-address { background: rgba(0,0,0,0.4); padding: 12px; border-radius: 12px; font-family: monospace; word-break: break-all; font-size: 0.8rem; }
     </style>
 </head>
 <body>
 
-<!-- Header -->
 <header class="bg-[#0A1E3D]/90 backdrop-blur-md shadow-lg sticky top-0 z-50 border-b border-white/10">
     <div class="container mx-auto px-4 py-3 flex flex-wrap justify-between items-center gap-3">
         <div class="flex items-center space-x-3">
@@ -35,28 +35,27 @@
         </div>
         <div class="flex items-center gap-3">
             <button id="wallet-btn" class="bg-white/10 backdrop-blur-sm border border-white/20 text-white px-4 py-2 rounded-full text-sm hover:bg-white/20 transition">
-                <i class="fas fa-wallet mr-2"></i><span id="wallet-address">Connect Wallet</span>
+                <i class="fas fa-wallet mr-2"></i><span>Connect Wallet</span>
             </button>
         </div>
     </div>
     <div class="border-t border-white/10">
-        <div class="container mx-auto px-4 flex flex-wrap gap-4 py-2 text-sm">
+        <div class="container mx-auto px-4 py-2 text-sm">
             <a href="index.html" class="nav-link active-nav">🏠 Home</a>
             <a href="liquidity.html" class="nav-link">💧 Liquidity</a>
             <a href="assets.html" class="nav-link">🏭 Copper Assets</a>
-            <a href="leasing/index.html" class="nav-link">📦 Leasing</a>
-            <a href="whitepaper.html" class="nav-link">📄 Whitepaper</a>
+            <a href="spec.html" class="nav-link">📦 Спецтехника</a>
         </div>
     </div>
 </header>
 
 <main class="container mx-auto px-4 py-8 max-w-6xl">
     <!-- Hero Token Section -->
-    <div class="bg-dark-card rounded-2xl p-6 md:p-8 mb-12 text-center border border-gold/20">
-        <div class="badge bg-gold/20 text-gold-400 inline-block px-4 py-1 rounded-full text-sm mb-4">✦ Token-2022 on Solana</div>
+    <div class="bg-dark-card rounded-2xl p-6 md:p-8 mb-12 text-center">
+        <div class="inline-block bg-gold/20 text-gold-400 px-4 py-1 rounded-full text-sm mb-4">✦ Token-2022 on Solana</div>
         <h1 class="text-4xl md:text-5xl font-bold gold-text mb-2">MIYBANK (MYB)</h1>
         <p class="text-xl text-gray-300 mb-6">Первый персональный банковский токен семьи Миянмаликовых с лизинговой экосистемой</p>
-        <div class="bg-black/30 p-4 rounded-xl mb-6 text-left">
+        <div class="token-address mb-6 text-left">
             <p class="text-sm text-gray-400 mb-1">📍 Контракт токена (Mint Address):</p>
             <code class="text-sm break-all">4EG8Uc78EDxpDnRr1BdaA6t5ceWhDddiX6Zbb1zHu11k</code>
         </div>
@@ -72,25 +71,25 @@
         <h2 class="text-2xl font-semibold mb-3 gold-text">📌 О токене MIYBANK</h2>
         <p class="text-gray-300 leading-relaxed"><strong>MIYBANK (MYB)</strong> — дефляционный банковский токен на Solana (Token-2022), созданный семьёй Миянмаликовых. Transfer fee 0.01% автоматически пополняет лизинговую казну. Держатели MYB получают доступ к экосистеме лизинга, скидкам и DAO-управлению.</p>
         <p class="text-gray-300 mt-2"><strong>Расшифровка MYB:</strong> Miyanmalikov's Your Bank / Miyanmalikov Yield Bank.</p>
-        <p class="text-gray-300 mt-2">🔗 <strong>Активный пул:</strong> MYB/USDT на Meteora (TVL ~$1M)</p>
+        <p class="text-gray-300 mt-2">🔗 <strong>Активный пул:</strong> MYB/USDT на Meteora (TVL ~$998M)</p>
     </div>
 
     <!-- Leasing Ecosystem -->
     <h2 class="text-2xl md:text-3xl font-bold mb-6 border-l-4 border-gold-500 pl-4">🏗️ Лизинговая экосистема MIYBANK</h2>
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-        <div class="leasing-card"><h3 class="text-xl font-semibold gold-text mb-2">🏗️ Спецтехника</h3><p class="text-gray-400 text-sm">Экскаваторы, бульдозеры, краны — лизинг от 6 месяцев.</p><a href="leasing/special.html" class="text-gold-400 text-sm hover:underline mt-2 inline-block">Подробнее →</a></div>
-        <div class="leasing-card"><h3 class="text-xl font-semibold gold-text mb-2">🌾 Сезонная техника</h3><p class="text-gray-400 text-sm">Комбайны, тракторы, опрыскиватели на посевной сезон.</p><a href="leasing/seasonal.html" class="text-gold-400 text-sm hover:underline mt-2 inline-block">Подробнее →</a></div>
-        <div class="leasing-card"><h3 class="text-xl font-semibold gold-text mb-2">⚡ Электромобили</h3><p class="text-gray-400 text-sm">EV-каршеринг и личный лизинг Tesla, BYD, Zeekr.</p><a href="leasing/ev.html" class="text-gold-400 text-sm hover:underline mt-2 inline-block">Подробнее →</a></div>
-        <div class="leasing-card"><h3 class="text-xl font-semibold gold-text mb-2">🚗 Автомобили</h3><p class="text-gray-400 text-sm">Легковые и коммерческие авто любой марки.</p><a href="leasing/cars.html" class="text-gold-400 text-sm hover:underline mt-2 inline-block">Подробнее →</a></div>
-        <div class="leasing-card"><h3 class="text-xl font-semibold gold-text mb-2">🏗️ Строительная техника</h3><p class="text-gray-400 text-sm">Бетономешалки, подъёмники, виброплиты.</p><a href="leasing/construction.html" class="text-gold-400 text-sm hover:underline mt-2 inline-block">Подробнее →</a></div>
-        <div class="leasing-card"><h3 class="text-xl font-semibold gold-text mb-2">🏭 Промышленное оборудование</h3><p class="text-gray-400 text-sm">Конвейеры, компрессоры, вентиляция.</p><a href="leasing/industrial.html" class="text-gold-400 text-sm hover:underline mt-2 inline-block">Подробнее →</a></div>
-        <div class="leasing-card"><h3 class="text-xl font-semibold gold-text mb-2">⚙️ Станки и стройматериалы</h3><p class="text-gray-400 text-sm">ЧПУ, фрезерные, производство блоков.</p><a href="leasing/machinery.html" class="text-gold-400 text-sm hover:underline mt-2 inline-block">Подробнее →</a></div>
-        <div class="leasing-card"><h3 class="text-xl font-semibold gold-text mb-2">🍔 Оборудование для пищевых продуктов</h3><p class="text-gray-400 text-sm">Линии розлива, упаковки, холодильники.</p><a href="leasing/food.html" class="text-gold-400 text-sm hover:underline mt-2 inline-block">Подробнее →</a></div>
-        <div class="leasing-card"><h3 class="text-xl font-semibold gold-text mb-2">💱 Лизинг финансовых инструментов</h3><p class="text-gray-400 text-sm">SBLC / Bank Guarantee от 10M евро.</p><a href="leasing/financial.html" class="text-gold-400 text-sm hover:underline mt-2 inline-block">Подробнее →</a></div>
-        <div class="leasing-card"><h3 class="text-xl font-semibold gold-text mb-2">💰 Кредит токенами</h3><p class="text-gray-400 text-sm">Залог MYB → получи USDT или SOL на развитие.</p><a href="leasing/credit.html" class="text-gold-400 text-sm hover:underline mt-2 inline-block">Подробнее →</a></div>
+        <div class="leasing-card"><h3 class="text-xl font-semibold gold-text mb-2">🏗️ Спецтехника</h3><p class="text-gray-400 text-sm">Экскаваторы, погрузчики, автокраны, самосвалы.</p><a href="spec.html" class="text-gold-400 text-sm hover:underline mt-2 inline-block">Подробнее →</a></div>
+        <div class="leasing-card"><h3 class="text-xl font-semibold gold-text mb-2">🌾 Сезонная техника</h3><p class="text-gray-400 text-sm">Комбайны, тракторы, опрыскиватели.</p><a href="seasonal.html" class="text-gold-400 text-sm hover:underline mt-2 inline-block">Подробнее →</a></div>
+        <div class="leasing-card"><h3 class="text-xl font-semibold gold-text mb-2">⚡ Электромобили</h3><p class="text-gray-400 text-sm">Tesla, BYD, Zeekr — лизинг EV.</p><a href="ev.html" class="text-gold-400 text-sm hover:underline mt-2 inline-block">Подробнее →</a></div>
+        <div class="leasing-card"><h3 class="text-xl font-semibold gold-text mb-2">🚗 Автомобили</h3><p class="text-gray-400 text-sm">Toyota, Hyundai, BMW, Mercedes.</p><a href="cars.html" class="text-gold-400 text-sm hover:underline mt-2 inline-block">Подробнее →</a></div>
+        <div class="leasing-card"><h3 class="text-xl font-semibold gold-text mb-2">🏗️ Строительная техника</h3><p class="text-gray-400 text-sm">Бетономешалки, подъёмники.</p><a href="construction.html" class="text-gold-400 text-sm hover:underline mt-2 inline-block">Подробнее →</a></div>
+        <div class="leasing-card"><h3 class="text-xl font-semibold gold-text mb-2">🏭 Промышленное оборудование</h3><p class="text-gray-400 text-sm">Конвейеры, компрессоры.</p><a href="industrial.html" class="text-gold-400 text-sm hover:underline mt-2 inline-block">Подробнее →</a></div>
+        <div class="leasing-card"><h3 class="text-xl font-semibold gold-text mb-2">⚙️ Станки и стройматериалы</h3><p class="text-gray-400 text-sm">ЧПУ, фрезерные.</p><a href="machinery.html" class="text-gold-400 text-sm hover:underline mt-2 inline-block">Подробнее →</a></div>
+        <div class="leasing-card"><h3 class="text-xl font-semibold gold-text mb-2">🍔 Оборудование для пищевых продуктов</h3><p class="text-gray-400 text-sm">Линии розлива, упаковки.</p><a href="food.html" class="text-gold-400 text-sm hover:underline mt-2 inline-block">Подробнее →</a></div>
+        <div class="leasing-card"><h3 class="text-xl font-semibold gold-text mb-2">💱 Лизинг финансовых инструментов</h3><p class="text-gray-400 text-sm">SBLC / Bank Guarantee.</p><a href="financial.html" class="text-gold-400 text-sm hover:underline mt-2 inline-block">Подробнее →</a></div>
+        <div class="leasing-card"><h3 class="text-xl font-semibold gold-text mb-2">💰 Кредит токенами</h3><p class="text-gray-400 text-sm">Залог MYB → получи USDT или SOL.</p><a href="credit.html" class="text-gold-400 text-sm hover:underline mt-2 inline-block">Подробнее →</a></div>
     </div>
 
-    <!-- NEW: Legal & Consulting Services -->
+    <!-- Legal & Consulting Services -->
     <div class="service-card mb-12">
         <div class="flex items-center gap-3 mb-4"><i class="fas fa-file-signature text-3xl gold-text"></i><h2 class="text-2xl font-bold gold-text">Юридическое сопровождение лизинга</h2></div>
         <p class="text-gray-300 mb-6">MIYBANK предоставляет полный спектр услуг по подготовке лизинговых договоров и консультациям для физических и юридических лиц.</p>
@@ -98,10 +97,10 @@
             <div class="bg-black/30 p-5 rounded-xl"><i class="fas fa-gavel gold-text text-2xl mb-2 block"></i><h3 class="font-semibold text-lg mb-1">📑 Подготовка пакета документов</h3><p class="text-sm text-gray-400">Договор лизинга, график платежей, акты приёма-передачи, страховые документы, нотариальное заверение.</p></div>
             <div class="bg-black/30 p-5 rounded-xl"><i class="fas fa-chalkboard-user gold-text text-2xl mb-2 block"></i><h3 class="font-semibold text-lg mb-1">🎓 Консультации</h3><p class="text-sm text-gray-400">Анализ сделки, налоговая оптимизация, выбор правильной лизинговой схемы, защита интересов.</p></div>
         </div>
-        <div class="text-center"><a href="contact.html" class="btn-primary"><i class="fas fa-calendar-check mr-2"></i>Записаться на консультацию</a></div>
+        <div class="text-center"><a href="#" class="btn-primary"><i class="fas fa-calendar-check mr-2"></i>Записаться на консультацию</a></div>
     </div>
 
-    <!-- Liquidity & Pools (Gecko link) -->
+    <!-- Liquidity & Pools -->
     <div class="bg-dark-card rounded-2xl p-6 mb-12">
         <h2 class="text-2xl font-semibold mb-4 gold-text">💧 Ликвидность и пулы</h2>
         <p class="text-gray-300 mb-3">🔁 Активный пул: <strong>MYB / USDT</strong> на Meteora DAMM V2</p>
@@ -112,7 +111,6 @@
         </div>
     </div>
 
-    <!-- CTA Footer -->
     <div class="text-center py-6"><p class="text-gray-400">Станьте частью будущего децентрализованного лизинга с MIYBANK.</p></div>
 </main>
 
@@ -122,8 +120,7 @@
 </footer>
 
 <script>
-    // Wallet placeholder
-    document.getElementById('wallet-btn').addEventListener('click', () => { alert('Wallet connection will be available after official launch. Use Phantom or Backpack.'); });
+    document.getElementById('wallet-btn')?.addEventListener('click', () => alert('Wallet connection will be available after official launch. Use Phantom or Backpack.'));
 </script>
 </body>
 </html>
