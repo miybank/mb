@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Whitepaper — MIYBANK (MYB) | Первый семейный банковский токен</title>
+    <link rel="icon" href="favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, #0A1E3D 0%, #0A2A4A 100%); color: #e0e0e0; line-height: 1.6; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
+        .gold-text { color: #FFD700; }
+        .bg-dark-card { background: rgba(255,255,255,0.05); backdrop-filter: blur(5px); border-radius: 24px; padding: 24px; margin-bottom: 30px; border: 1px solid rgba(255,215,0,0.2); }
+        .btn-primary { background: #FFD700; color: #0A1E3D; padding: 12px 24px; border-radius: 40px; font-weight: bold; transition: 0.3s; display: inline-block; text-decoration: none; border: none; cursor: pointer; }
+        .btn-primary:hover { background: #FFA500; transform: translateY(-2px); }
+        .btn-outline { border: 2px solid #FFD700; color: #FFD700; background: transparent; padding: 12px 24px; border-radius: 40px; font-weight: bold; transition: 0.3s; display: inline-block; text-decoration: none; }
+        .btn-outline:hover { background: #FFD700; color: #0A1E3D; }
+        .nav-link { color: #fff; text-decoration: none; transition: 0.3s; padding-bottom: 4px; margin-right: 20px; display: inline-block; }
+        .nav-link:hover, .active-nav { color: #FFD700; border-bottom: 2px solid #FFD700; }
+        header { background: rgba(10,30,61,0.9); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 50; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        footer { border-top: 1px solid rgba(255,255,255,0.1); margin-top: 40px; padding: 20px; text-align: center; font-size: 0.8rem; color: #aaa; }
+        h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
+        h2 { font-size: 1.8rem; margin-top: 1.5rem; margin-bottom: 1rem; border-left: 4px solid #FFD700; padding-left: 15px; }
+        h3 { font-size: 1.3rem; margin-top: 1.2rem; margin-bottom: 0.5rem; color: #FFD700; }
+        .wp-meta { display: flex; justify-content: space-between; flex-wrap: wrap; border-bottom: 1px solid rgba(255,215,0,0.3); padding-bottom: 15px; margin-bottom: 25px; font-size: 0.9rem; color: #aaa; }
+        @media (max-width: 768px) { .container { padding: 0 15px; } h1 { font-size: 1.8rem; } h2 { font-size: 1.4rem; } }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container" style="padding: 12px 20px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px;">
+        <div style="display: flex; align-items: center; gap: 10px;">
+            <img src="logo.png" style="height: 40px;" onerror="this.src='https://placehold.co/200x60/0A1E3D/FFD700?text=MYB'">
+            <span style="font-size: 1.2rem; font-weight: bold;" class="gold-text">MIYBANK (MYB)</span>
+        </div>
+        <button id="wallet-btn" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 8px 16px; border-radius: 40px; cursor: pointer;"><i class="fas fa-wallet"></i> Connect Wallet</button>
+    </div>
+    <div style="border-top: 1px solid rgba(255,255,255,0.1);">
+        <div class="container" style="padding: 10px 20px; display: flex; flex-wrap: wrap; gap: 15px;">
+            <a href="index.html" class="nav-link">🏠 Home</a>
+            <a href="liquidity.html" class="nav-link">💧 Liquidity</a>
+            <a href="assets.html" class="nav-link">🏭 Copper Assets</a>
+            <a href="spec.html" class="nav-link">📦 Спецтехника</a>
+            <a href="whitepaper.html" class="nav-link active-nav">📄 Whitepaper</a>
+        </div>
+    </div>
+</header>
+
+<main class="container" style="padding: 30px 20px;">
+    <div class="bg-dark-card">
+        <div class="wp-meta">
+            <span>Версия: 1.0</span>
+            <span>Дата: Май 2025</span>
+            <span>© MIYBANK Foundation</span>
+        </div>
+        
+        <h1 class="gold-text">MIYBANK (MYB)</h1>
+        <p style="font-size: 1.2rem; margin-bottom: 30px;">Первый семейный банковский токен с лизинговой экосистемой на Solana</p>
+        
+        <h2>1. Введение</h2>
+        <p><strong>MIYBANK (MYB)</strong> — это дефляционный утилити-токен на блокчейне Solana (стандарт Token-2022), созданный для финансирования и обслуживания лизинговой экосистемы. Токен объединяет реальный сектор экономики (лизинг спецтехники, авто, оборудования) и криптофинансы.</p>
+        <p>В отличие от мемкоинов, MYB обеспечен реальными активами (медные слитки, лизинговый портфель) и генерирует доход через лизинговые операции.</p>
+        
+        <h2>2. Проблема и решение</h2>
+        <p><strong>Проблема:</strong> Банковский лизинг недоступен малому бизнесу, требует идеальной кредитной истории и залога.</p>
+        <p><strong>Решение:</strong> MIYBANK предоставляет лизинг техники под залог токенов MYB, используя децентрализованную систему платежей и авансов. Клиенты могут оплачивать лизинг токенами MYB со скидкой, а держатели токенов получают приоритетное обслуживание.</p>
+        
+        <h2>3. Токеномика</h2>
+        <h3>3.1. Параметры выпуска</h3>
+        <ul style="margin-left: 20px; margin-bottom: 15px;">
+            <li><strong>Название:</strong> MIYBANK</li>
+            <li><strong>Символ:</strong> MYB</li>
+            <li><strong>Стандарт:</strong> Solana Token-2022</li>
+            <li><strong>Общая эмиссия:</strong> 10 000 000 000 MYB</li>
+            <li><strong>Десятичные знаки:</strong> 9</li>
+            <li><strong>Transfer fee:</strong> 0.01% (0.005% сжигание, 0.005% лизинговая казна)</li>
+        </ul>
+        <h3>3.2. Распределение</h3>
+        <ul style="margin-left: 20px; margin-bottom: 15px;">
+            <li><strong>Лизинговая казна:</strong> 40% (4 000 000 000 MYB) — фонд для выкупа и сжигания</li>
+            <li><strong>Пул ликвидности:</strong> 30% (3 000 000 000 MYB) — обеспечение торгов на DEX</li>
+            <li><strong>Команда и развитие:</strong> 15% (1 500 000 000 MYB) — вестинг 36 месяцев</li>
+            <li><strong>Маркетинг:</strong> 10% (1 000 000 000 MYB)</li>
+            <li><strong>Резерв:</strong> 5% (500 000 000 MYB)</li>
+        </ul>
+        
+        <h2>4. Лизинговая экосистема</h2>
+        <p>MIYBANK предоставляет лизинг на импортную технику и оборудование:</p>
+        <ul style="margin-left: 20px; margin-bottom: 15px;">
+            <li>Спецтехника (экскаваторы, погрузчики, автокраны)</li>
+            <li>Сельхозтехника (тракторы, комбайны)</li>
+            <li>Автомобили и электромобили</li>
+            <li>Промышленное оборудование</li>
+            <li>Финансовые инструменты (SBLC, банковские гарантии)</li>
+        </ul>
+        <p><strong>Условия лизинга:</strong> срок 6–60 месяцев, ставка 15% годовых, аванс от 10% (для держателей MYB — сниженный аванс до 10%).</p>
+        
+        <h2>5. Финансовая модель</h2>
+        <p>Бизнес строится исключительно на авансах клиентов — кредиты не привлекаются. Средний аванс 20% покрывает закупку техники. Ежемесячные лизинговые платежи направляются на операционные расходы и выкуп MYB с рынка.</p>
+        <p><strong>Целевой ежемесячный оборот:</strong> $10 млн (поступления от лизинговых платежей и авансов).</p>
+        <p><strong>Точка окупаемости одной единицы техники:</strong> 24–25 месяцев. Рентабельность за 36 месяцев — 40%.</p>
+        
+        <h2>6. Реальные активы — медный резерв</h2>
+        <p>Экосистема MIYBANK обеспечена физическими медными слитками (4N purity, 100 000 тонн), хранящимися в лицензированных складах ОАЭ и СНГ. Стоимость резерва — $850M–$1B. Медь служит стратегическим активом, поддерживающим долгосрочную стабильность токена.</p>
+        
+        <h2>7. Использование токена MYB</h2>
+        <ul style="margin-left: 20px; margin-bottom: 15px;">
+            <li><strong>Оплата лизинга:</strong> ежемесячные платежи и аванс в MYB (скидка 3%)</li>
+            <li><strong>Залог для снижения аванса:</strong> блокировка MYB снижает первоначальный взнос до 10%</li>
+            <li><strong>Приоритетная очередь:</strong> держатели MYB получают технику вне очереди</li>
+            <li><strong>DAO-голосование:</strong> распределение лизинговой казны</li>
+            <li><strong>Стейкинг:</strong> 5% годовых за блокировку MYB</li>
+        </ul>
+        
+        <h2>8. Дефляционный механизм</h2>
+        <p>Каждый перевод MYB облагается комиссией 0.01%. Половина этой суммы (0.005%) сжигается навсегда. Вторая половина поступает в лизинговую казну, которая периодически проводит buyback и сжигание MYB. Это создаёт постоянное дефляционное давление.</p>
+        
+        <h2>9. Безопасность и аудит</h2>
+        <ul style="margin-left: 20px; margin-bottom: 15px;">
+            <li>Mint authority отозван — дополнительные токены выпустить нельзя</li>
+            <li>Freeze authority отключён</li>
+            <li>Transfer fee настроена и проверена</li>
+            <li>Планируется аудит от OtterSec и CertiK (в процессе)</li>
+        </ul>
+        
+        <h2>10. Дорожная карта</h2>
+        <ul style="margin-left: 20px; margin-bottom: 15px;">
+            <li><strong>Q2 2025:</strong> Запуск токена, листинг на Raydium / Meteora, старт лизинга спецтехники</li>
+            <li><strong>Q3 2025:</strong> Добавление лизинга автомобилей и EV, первая программа стейкинга</li>
+            <li><strong>Q4 2025:</strong> Запуск DAO, интеграция с Jupiter, токенизация медного резерва</li>
+            <li><strong>2026:</strong> Выход на оборот $10M/месяц, листинг на централизованные биржи</li>
+        </ul>
+        
+        <h2>11. Юридическая информация</h2>
+        <p>MIYBANK не является ценной бумагой. Токен предоставляет утилити в рамках экосистемы и не даёт прав на получение прибыли от операционной деятельности (кроме стейкинга и DAO-решений). Пользователи обязаны соблюдать законодательство своей страны.</p>
+        
+        <div style="text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(255,215,0,0.3);">
+            <a href="index.html" class="btn-outline">← На главную</a>
+            <a href="#" class="btn-primary" style="margin-left: 15px;">Скачать PDF (скоро)</a>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <p>© 2025 MIYBANK (MYB) — Первый семейный банковский токен с лизинговой экосистемой</p>
+    <p>Данный документ носит информационный характер и не является инвестиционной консультацией.</p>
+</footer>
+
+<script>
+    document.getElementById('wallet-btn')?.addEventListener('click', () => alert('Connect wallet soon.'));
+</script>
+</body>
+</html>
