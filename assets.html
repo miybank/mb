@@ -1,181 +1,150 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>MIYBANK (MYB) — Physical Copper Backing & Liquidity</title>
+    <title>MIYBANK (MYB) — Физические активы | Медные слитки 100 000 т</title>
     <link rel="icon" href="favicon.ico">
-    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-        body { font-family: 'Inter', sans-serif; background: linear-gradient(135deg, #0A1E3D 0%, #0A2A4A 100%); color: #fff; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, #0A1E3D 0%, #0A2A4A 100%); color: #fff; line-height: 1.6; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
         .gold-text { color: #FFD700; }
-        .gold-border { border-color: #FFD700; }
-        .bg-gold { background-color: #FFD700; }
-        .bg-dark-card { background: rgba(255,255,255,0.05); backdrop-filter: blur(5px); }
-        .cert-badge { transition: transform 0.2s; }
-        .cert-badge:hover { transform: scale(1.02); }
-        .gallery-img { transition: transform 0.3s; cursor: pointer; border-radius: 12px; }
-        .gallery-img:hover { transform: scale(1.03); }
-        .lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 1000; align-items: center; justify-content: center; }
-        .lightbox.active { display: flex; }
-        .lightbox-img { max-width: 90%; max-height: 90%; border-radius: 12px; }
-        .btn-primary { background: #FFD700; color: #0A1E3D; padding: 12px 24px; border-radius: 40px; font-weight: bold; transition: 0.3s; display: inline-block; }
-        .btn-primary:hover { background: #FFA500; transform: translateY(-2px); }
-        .btn-outline-light { border: 2px solid #FFD700; color: #FFD700; background: transparent; padding: 12px 24px; border-radius: 40px; font-weight: bold; transition: 0.3s; display: inline-block; }
-        .btn-outline-light:hover { background: #FFD700; color: #0A1E3D; }
-        .nav-link { color: #fff; transition: 0.3s; padding-bottom: 4px; }
-        .nav-link:hover { color: #FFD700; border-bottom: 2px solid #FFD700; }
-        .active-nav-link { color: #FFD700; border-bottom: 2px solid #FFD700; font-weight: 600; }
-        @media (max-width: 768px) { .container { padding-left: 1rem; padding-right: 1rem; } }
+        .bg-dark-card { background: rgba(255,255,255,0.05); backdrop-filter: blur(5px); border-radius: 24px; padding: 24px; margin-bottom: 30px; border: 1px solid rgba(255,215,0,0.2); }
+        .btn-outline { border: 2px solid #FFD700; color: #FFD700; background: transparent; padding: 12px 24px; border-radius: 40px; font-weight: bold; transition: 0.3s; display: inline-block; text-decoration: none; }
+        .btn-outline:hover { background: #FFD700; color: #0A1E3D; }
+        .nav-link { color: #fff; text-decoration: none; transition: 0.3s; padding-bottom: 4px; margin-right: 20px; display: inline-block; }
+        .nav-link:hover, .active-nav { color: #FFD700; border-bottom: 2px solid #FFD700; }
+        header { background: rgba(10,30,61,0.9); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 50; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        footer { border-top: 1px solid rgba(255,255,255,0.1); margin-top: 40px; padding: 20px; text-align: center; font-size: 0.8rem; color: #aaa; }
+        .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px; margin: 30px 0; }
+        .gallery-item { background: rgba(0,0,0,0.3); border-radius: 20px; overflow: hidden; border: 1px solid rgba(255,215,0,0.2); transition: 0.3s; }
+        .gallery-item:hover { transform: translateY(-5px); border-color: #FFD700; }
+        .gallery-item img, .gallery-item video { width: 100%; height: 240px; object-fit: cover; display: block; }
+        .gallery-item .caption { padding: 15px; background: rgba(0,0,0,0.5); font-size: 0.8rem; }
+        .gallery-item .caption p { margin: 4px 0; }
+        .cert-badge { background: rgba(0,0,0,0.4); border-radius: 16px; padding: 15px; text-align: center; }
+        .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin: 20px 0; }
+        @media (max-width: 768px) { .grid-4 { grid-template-columns: repeat(2, 1fr); } .container { padding: 0 15px; } }
     </style>
 </head>
 <body>
 
-<div id="lightbox" class="lightbox" onclick="closeLightbox()">
-    <img id="lightbox-img" class="lightbox-img" src="">
-    <button class="absolute top-4 right-4 text-white text-3xl bg-black/50 rounded-full w-10 h-10" onclick="closeLightbox()">&times;</button>
-</div>
-
-<!-- Header -->
-<header class="bg-[#0A1E3D]/90 backdrop-blur-md shadow-lg sticky top-0 z-50 border-b border-white/10">
-    <div class="container mx-auto px-4 py-3 flex flex-wrap justify-between items-center gap-3">
-        <div class="flex items-center space-x-3">
-            <img src="logo.png" class="h-10" onerror="this.src='https://placehold.co/200x60/0A1E3D/FFD700?text=MIYBANK'">
-            <span class="text-xl font-bold gold-text">MIYBANK (MYB)</span>
+<header>
+    <div class="container" style="padding: 12px 20px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px;">
+        <div style="display: flex; align-items: center; gap: 10px;">
+            <img src="logo.png" style="height: 40px;" onerror="this.src='https://placehold.co/200x60/0A1E3D/FFD700?text=MYB'">
+            <span style="font-size: 1.2rem; font-weight: bold;" class="gold-text">MIYBANK (MYB)</span>
         </div>
-        <div class="flex items-center gap-3">
-            <button id="wallet-btn" class="bg-white/10 backdrop-blur-sm border border-white/20 text-white px-4 py-2 rounded-full text-sm hover:bg-white/20 transition">
-                <i class="fas fa-wallet mr-2"></i><span id="wallet-address">Connect Wallet</span>
-            </button>
-        </div>
+        <button id="wallet-btn" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 8px 16px; border-radius: 40px; cursor: pointer;"><i class="fas fa-wallet"></i> Connect Wallet</button>
     </div>
-    <!-- Navigation -->
-    <div class="border-t border-white/10">
-        <div class="container mx-auto px-4 flex flex-wrap gap-4 py-2 text-sm">
+    <div style="border-top: 1px solid rgba(255,255,255,0.1);">
+        <div class="container" style="padding: 10px 20px; display: flex; flex-wrap: wrap; gap: 15px;">
             <a href="index.html" class="nav-link">🏠 Home</a>
-            <a href="liquidity.html" class="nav-link active-nav-link">💧 Liquidity & Copper</a>
-            <a href="leasing/" class="nav-link">📦 Leasing Ecosystem</a>
+            <a href="liquidity.html" class="nav-link">💧 Liquidity</a>
+            <a href="assets.html" class="nav-link active-nav">🏭 Copper Assets</a>
+            <a href="spec.html" class="nav-link">📦 Спецтехника</a>
             <a href="whitepaper.html" class="nav-link">📄 Whitepaper</a>
         </div>
     </div>
 </header>
 
-<main class="container mx-auto px-4 py-8 max-w-6xl">
-    <!-- Hero Section -->
-    <div class="text-center mb-12">
-        <i class="fas fa-coins text-6xl gold-text mb-4"></i>
-        <h1 class="text-3xl md:text-5xl font-bold mb-4">Physical Copper Backing</h1>
-        <p class="text-gray-300 text-lg max-w-3xl mx-auto">The MIYBANK ecosystem is strategically backed by <strong class="gold-text">100,000 tonnes of 4N Copper (99.99% purity)</strong> — premium LME-grade ingots, linking digital finance with real-world value.</p>
+<main class="container" style="padding: 30px 20px;">
+    <div class="bg-dark-card" style="text-align: center;">
+        <i class="fas fa-coins" style="font-size: 3rem; color: #FFD700; margin-bottom: 15px;"></i>
+        <h1 class="gold-text" style="font-size: 2rem;">Физический резерв — медные слитки</h1>
+        <p>4N Copper (99.99% purity) · 100 000 тонн · ОАЭ / СНГ</p>
+        <p style="font-size: 0.9rem; color: #aaa; margin-top: 10px;">Актив под управлением по стандарту SKR Framework</p>
     </div>
 
-    <!-- Key Metrics Grid -->
-    <div class="grid md:grid-cols-3 gap-6 mb-12">
-        <div class="bg-dark-card rounded-2xl p-6 text-center border border-white/10">
-            <i class="fas fa-weight-hanging text-3xl gold-text mb-3"></i>
-            <h3 class="text-xl font-semibold">Total Volume</h3>
-            <p class="text-3xl font-bold gold-text mt-2">100,000 Tonnes</p>
-            <p class="text-sm text-gray-400">LME Grade A</p>
-        </div>
-        <div class="bg-dark-card rounded-2xl p-6 text-center border border-white/10">
-            <i class="fas fa-certificate text-3xl gold-text mb-3"></i>
-            <h3 class="text-xl font-semibold">Purity</h3>
-            <p class="text-3xl font-bold gold-text mt-2">99.99% (4N)</p>
-            <p class="text-sm text-gray-400">Electrolytic Copper</p>
-        </div>
-        <div class="bg-dark-card rounded-2xl p-6 text-center border border-white/10">
-            <i class="fas fa-map-marker-alt text-3xl gold-text mb-3"></i>
-            <h3 class="text-xl font-semibold">Location</h3>
-            <p class="text-3xl font-bold gold-text mt-2">UAE / CIS</p>
-            <p class="text-sm text-gray-400">Bonded Warehouses</p>
-        </div>
+    <!-- Метрики -->
+    <div class="grid-4">
+        <div class="cert-badge"><i class="fas fa-weight-hanging gold-text"></i><br><strong>100 000 тонн</strong><br>Общий объём</div>
+        <div class="cert-badge"><i class="fas fa-certificate gold-text"></i><br><strong>99.99% (4N)</strong><br>Чистота</div>
+        <div class="cert-badge"><i class="fas fa-map-marker-alt gold-text"></i><br><strong>ОАЭ / СНГ</strong><br>Бондовые склады</div>
+        <div class="cert-badge"><i class="fas fa-chart-line gold-text"></i><br><strong>$850M–$1B</strong><br>Оценочная стоимость</div>
     </div>
 
-    <!-- Asset Status & Gallery -->
-    <div class="grid md:grid-cols-2 gap-8 mb-12">
-        <div class="bg-dark-card rounded-2xl p-6 border border-white/10">
-            <h2 class="text-2xl font-semibold mb-4"><i class="fas fa-chart-line gold-text mr-2"></i> Asset Status</h2>
-            <div class="space-y-3 text-gray-300">
-                <div class="flex justify-between border-b border-white/10 pb-2"><span>Verification:</span><span class="gold-text font-semibold">✔ SGS / Bureau Veritas</span></div>
-                <div class="flex justify-between border-b border-white/10 pb-2"><span>Valuation (approx):</span><span class="gold-text font-semibold">$850M – $1B USD</span></div>
-                <div class="flex justify-between border-b border-white/10 pb-2"><span>Storage:</span><span class="gold-text font-semibold">Fully insured, bonded</span></div>
-                <div class="flex justify-between pb-2"><span>Audit Trail:</span><span class="gold-text font-semibold">Blockchain-notarized</span></div>
+    <!-- Галерея подтверждающих файлов -->
+    <div class="bg-dark-card">
+        <h2 class="gold-text"><i class="fas fa-images"></i> Подтверждение активов</h2>
+        <p style="margin-bottom: 15px;">Фактические фото и видео медных слитков с маркировкой, складские документы.</p>
+        <div class="gallery">
+            <div class="gallery-item">
+                <img src="warehouse1.jpg" alt="Медные слитки CEBIL DIAMONDS 1" onerror="this.src='https://placehold.co/600x400/0A1E3D/FFD700?text=Copper+Ingots'">
+                <div class="caption">
+                    <p><strong>CEBIL DIAMONDS / UAE</strong></p>
+                    <p>Commodity: Copper 4N (99.99%)</p>
+                    <p>Lot Number: CD-CU-12MAY26</p>
+                    <p>Weight Allocated: 100,000 T</p>
+                </div>
             </div>
-            <div class="mt-6 p-4 bg-black/30 rounded-xl">
-                <p class="text-sm italic">"This copper reserve serves as a strategic treasury asset, providing intrinsic value and stability to the MIYBANK token ecosystem. Each MYB token is indirectly linked to this real-world commodity pool."</p>
-                <p class="text-right text-sm gold-text mt-2">— MIYBANK Foundation</p>
+            <div class="gallery-item">
+                <img src="warehouse2.jpg" alt="Медные слитки CEBIL DIAMONDS 2" onerror="this.src='https://placehold.co/600x400/0A1E3D/FFD700?text=Warehouse+Storage'">
+                <div class="caption">
+                    <p><strong>CEBIL DIAMONDS / UAE</strong></p>
+                    <p>Commodity: Copper 4N (99.99%)</p>
+                    <p>Lot Number: CD-CU-12MAY26</p>
+                    <p>Inspection Date: 12 May 2026</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="warehouse3.jpg" alt="Медные слитки CEBIL DIAMONDS 3" onerror="this.src='https://placehold.co/600x400/0A1E3D/FFD700?text=Copper+Storage'">
+                <div class="caption">
+                    <p><strong>CEBIL DIAMONDS / UAE</strong></p>
+                    <p>Commodity: Copper 4N (99.99%)</p>
+                    <p>Physical Asset under SKR Framework</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <video controls preload="metadata">
+                    <source src="warehouse_tour.mp4" type="video/mp4">
+                    Ваш браузер не поддерживает видео.
+                </video>
+                <div class="caption">
+                    <p><strong>Видеообзор склада</strong></p>
+                    <p>CEBIL DIAMONDS / UAE — Copper 4N (99.99%)</p>
+                    <p>Lot Number: CD-CU-12MAY26 | 100,000 T</p>
+                </div>
             </div>
         </div>
-        <div class="bg-dark-card rounded-2xl p-6 border border-white/10">
-            <h2 class="text-2xl font-semibold mb-4"><i class="fas fa-images gold-text mr-2"></i> Gallery</h2>
-            <div class="grid grid-cols-2 gap-3">
-                <img src="https://placehold.co/400x300/1a2a4a/FFD700?text=Copper+Ingot" class="gallery-img w-full h-32 object-cover rounded-lg cursor-pointer" onclick="openLightbox(this.src)">
-                <img src="https://placehold.co/400x300/1a2a4a/FFD700?text=Warehouse" class="gallery-img w-full h-32 object-cover rounded-lg cursor-pointer" onclick="openLightbox(this.src)">
-                <img src="https://placehold.co/400x300/1a2a4a/FFD700?text=Certificate" class="gallery-img w-full h-32 object-cover rounded-lg cursor-pointer" onclick="openLightbox(this.src)">
-                <img src="https://placehold.co/400x300/1a2a4a/FFD700?text=Audit" class="gallery-img w-full h-32 object-cover rounded-lg cursor-pointer" onclick="openLightbox(this.src)">
-            </div>
-            <p class="text-xs text-gray-400 mt-3">*Representative images. Full documentation available upon NDA.</p>
-        </div>
+        <p class="gold-text" style="font-size: 0.8rem; text-align: center; margin-top: 10px;">* Все файлы являются документальным подтверждением физического актива. Оригиналы доступны для верификации.</p>
     </div>
 
-    <!-- Certificates & Blockchain Notarization -->
-    <div class="bg-dark-card rounded-2xl p-6 border border-white/10 mb-12">
-        <h2 class="text-2xl font-semibold mb-6"><i class="fas fa-file-alt gold-text mr-2"></i> Certificates & Notarization</h2>
-        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            <div class="cert-badge text-center p-4 bg-black/20 rounded-xl"><i class="fas fa-microscope text-3xl gold-text mb-2 block"></i> Assay Report</div>
-            <div class="cert-badge text-center p-4 bg-black/20 rounded-xl"><i class="fas fa-truck text-3xl gold-text mb-2 block"></i> Origin & Logistics</div>
-            <div class="cert-badge text-center p-4 bg-black/20 rounded-xl"><i class="fas fa-store text-3xl gold-text mb-2 block"></i> Warehouse Receipts</div>
-            <div class="cert-badge text-center p-4 bg-black/20 rounded-xl"><i class="fas fa-link text-3xl gold-text mb-2 block"></i> Blockchain Hash</div>
+    <!-- Сертификаты и блокчейн-нотаризация -->
+    <div class="bg-dark-card">
+        <h2 class="gold-text"><i class="fas fa-file-alt"></i> Сертификация и блокчейн</h2>
+        <div class="grid-4" style="margin-bottom: 15px;">
+            <div class="cert-badge"><i class="fas fa-microscope"></i><br>Assay Report<br><span style="font-size: 0.7rem;">SGS / Bureau Veritas</span></div>
+            <div class="cert-badge"><i class="fas fa-truck"></i><br>Origin & Logistics<br><span style="font-size: 0.7rem;">CEBIL DIAMONDS, UAE</span></div>
+            <div class="cert-badge"><i class="fas fa-store"></i><br>Warehouse Receipts<br><span style="font-size: 0.7rem;">Бондовое хранение</span></div>
+            <div class="cert-badge"><i class="fas fa-link"></i><br>Blockchain Hash<br><span style="font-size: 0.7rem;">Solana Notarization</span></div>
         </div>
-        <p class="text-sm text-gray-400 mt-4 text-center">All records are hashed and timestamped on Solana. Physical inspection available upon request.</p>
+        <p class="green-text" style="font-size: 0.85rem; text-align: center;">✔ Все документы захешированы и занотарированы в блокчейне Solana. Физический осмотр возможен по запросу.</p>
     </div>
 
-    <!-- MIYBANK Liquidity Pool Section (GeckoTerminal) -->
-    <div class="bg-dark-card rounded-2xl p-6 border border-white/10 mb-12">
-        <h2 class="text-2xl font-semibold mb-4"><i class="fas fa-chart-simple gold-text mr-2"></i> MYB / USDT Liquidity Pool</h2>
-        <p class="text-gray-300 mb-4">The primary trading pool for MIYBANK (MYB) tokens. Liquidity is provided on <strong class="gold-text">Meteora DAMM V2</strong>.</p>
-        <div class="grid md:grid-cols-2 gap-4 mb-6">
-            <div class="bg-black/30 p-4 rounded-xl"><span class="text-gray-400">Pool Address:</span><br><code class="text-sm break-all">Euz7efcdGYFZxvuVXE3spbr3dY3JpsTjzDEcg4vqnrSF</code></div>
-            <div class="bg-black/30 p-4 rounded-xl"><span class="text-gray-400">Current TVL:</span><br><span class="text-xl gold-text font-bold">$998.6M</span></div>
-        </div>
-        <div class="flex flex-wrap gap-4">
-            <a href="https://www.geckoterminal.com/solana/pools/Euz7efcdGYFZxvuVXE3spbr3dY3JpsTjzDEcg4vqnrSF" target="_blank" class="btn-primary"><i class="fab fa-buromobelexperte mr-2"></i> View on GeckoTerminal</a>
-            <a href="https://app.meteora.ag/pool/Euz7efcdGYFZxvuVXE3spbr3dY3JpsTjzDEcg4vqnrSF" target="_blank" class="btn-outline-light"><i class="fas fa-water mr-2"></i> Add Liquidity on Meteora</a>
-        </div>
+    <!-- Юридическая информация -->
+    <div class="bg-dark-card">
+        <h2 class="gold-text"><i class="fas fa-gavel"></i> SKR Framework</h2>
+        <p>Актив зарегистрирован в рамках стандарта SKR (Strategic Key Reserve) — международного протокола учёта и верификации стратегических сырьевых резервов. Полная прозрачность, независимый аудит, привязка к блокчейну.</p>
+        <p style="margin-top: 10px;"><strong>Lot Number:</strong> CD-CU-12MAY26</p>
+        <p><strong>Inspection Date:</strong> 12 May 2026</p>
+        <p><strong>Physical Asset under SKR Framework — верифицирован.</strong></p>
     </div>
 
-    <!-- FAQ Accordion -->
-    <div class="bg-dark-card rounded-2xl p-6 border border-white/10">
-        <h2 class="text-2xl font-semibold mb-4"><i class="fas fa-question-circle gold-text mr-2"></i> FAQ</h2>
-        <div class="space-y-3" id="faq-container">
-            <div class="border-b border-white/10 pb-3"><button class="faq-question w-full text-left font-semibold flex justify-between"><span>How is copper backing verified?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer hidden mt-2 text-gray-300 text-sm">All documentation (assay, warehouse receipts, insurance) is available for accredited investors via secure data room.</div></div>
-            <div class="border-b border-white/10 pb-3"><button class="faq-question w-full text-left font-semibold flex justify-between"><span>Can I redeem MYB for physical copper?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer hidden mt-2 text-gray-300 text-sm">Currently, copper serves as treasury backing. Direct redemption may be available in the future for large holders.</div></div>
-            <div class="border-b border-white/10 pb-3"><button class="faq-question w-full text-left font-semibold flex justify-between"><span>What is the transfer fee on MYB?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer hidden mt-2 text-gray-300 text-sm">MYB is a Token-2022 with a 0.01% transfer fee. 0.005% is burned, 0.005% goes to treasury.</div></div>
-            <div class="pb-3"><button class="faq-question w-full text-left font-semibold flex justify-between"><span>Is this halal / sharia-compliant?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer hidden mt-2 text-gray-300 text-sm">Yes, physical asset backing and no interest (riba) mechanisms are structured with Sharia advisory.</div></div>
-        </div>
+    <div style="text-align: center; margin-top: 20px;">
+        <a href="index.html" class="btn-outline"><i class="fas fa-arrow-left"></i> На главную</a>
     </div>
 </main>
 
-<footer class="border-t border-white/10 mt-16 py-6 text-center text-gray-400 text-sm">
-    <div class="container mx-auto px-4">
-        <p>© 2025 MIYBANK (MYB) — Personal Bank Token of Miyanmalikov Family</p>
-        <p class="mt-2">Token Contract: <code class="text-xs">4EG8Uc78EDxpDnRr1BdaA6t5ceWhDddiX6Zbb1zHu11k</code> | Built on Solana Token-2022</p>
-    </div>
+<footer>
+    <p>© 2025 MIYBANK (MYB) — Физический резерв: 100 000 тонн меди 4N, CEBIL DIAMONDS / UAE</p>
+    <p>Asset verification available upon NDA. Blockchain notarization: Solana</p>
 </footer>
 
 <script>
-    // Lightbox
-    window.openLightbox = (src) => { document.getElementById('lightbox-img').src = src; document.getElementById('lightbox').classList.add('active'); };
-    window.closeLightbox = () => { document.getElementById('lightbox').classList.remove('active'); };
-    document.getElementById('lightbox').addEventListener('click', function(e) { if(e.target === this) closeLightbox(); });
-
-    // FAQ
-    document.querySelectorAll('.faq-question').forEach(btn => { btn.addEventListener('click', () => { const answer = btn.nextElementSibling; answer.classList.toggle('hidden'); }); });
-
-    // Wallet Connect Placeholder
-    document.getElementById('wallet-btn').addEventListener('click', () => { alert('Wallet connection will be available after official launch. Use Phantom or Backpack.'); });
+    document.getElementById('wallet-btn')?.addEventListener('click', () => alert('Connect wallet soon.'));
 </script>
 </body>
 </html>
