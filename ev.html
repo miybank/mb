@@ -11,12 +11,11 @@
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, #0A1E3D 0%, #0A2A4A 100%); color: #fff; line-height: 1.6; }
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
         .gold-text { color: #FFD700; }
-        .bg-dark-card { background: rgba(255,255,255,0.05); backdrop-filter: blur(5px); border-radius: 24px; padding: 20px; border: 1px solid rgba(255,215,0,0.2); }
         .btn-primary { background: #FFD700; color: #0A1E3D; padding: 10px 20px; border-radius: 40px; font-weight: bold; text-decoration: none; display: inline-block; }
         .btn-outline { border: 2px solid #FFD700; color: #FFD700; background: transparent; padding: 10px 20px; border-radius: 40px; font-weight: bold; text-decoration: none; display: inline-block; }
         .nav-link { color: #fff; text-decoration: none; margin-right: 20px; display: inline-block; }
         .nav-link:hover, .active-nav { color: #FFD700; border-bottom: 2px solid #FFD700; }
-        .spec-card { background: rgba(255,255,255,0.05); border-radius: 20px; padding: 20px; transition: 0.3s; border: 1px solid rgba(255,215,0,0.2); height: 100%; display: flex; flex-direction: column; }
+        .spec-card { background: rgba(255,255,255,0.05); border-radius: 20px; padding: 20px; transition: 0.3s; border: 1px solid rgba(255,215,0,0.2); height: 100%; }
         .spec-card:hover { transform: translateY(-3px); background: rgba(255,215,0,0.08); border-color: #FFD700; }
         .price-display { font-size: 1.2rem; font-weight: bold; margin: 10px 0; }
         .category-title { font-size: 1.8rem; font-weight: bold; margin: 30px 0 20px; border-left: 4px solid #FFD700; padding-left: 15px; }
@@ -70,22 +69,22 @@
 
     <div class="category-title gold-text">🔋 Электромобили</div>
     <div class="grid">
-        <div class="spec-card" data-price-uzs="380000000">
+        <div class="spec-card" data-price-uzs="480000000">
             <h3 class="gold-text">Tesla Model Y</h3>
             <p>США / Запас хода 533 км, 351 л.с.</p>
-            <div class="price-display">💰 380 000 000 UZS</div>
+            <div class="price-display">💰 480 000 000 UZS</div>
             <div class="leasing-calc"><div><label>Взнос (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong></div></div>
         </div>
-        <div class="spec-card" data-price-uzs="320000000">
+        <div class="spec-card" data-price-uzs="420000000">
             <h3 class="gold-text">BYD Han</h3>
             <p>Китай / Запас хода 521 км, 517 л.с.</p>
-            <div class="price-display">💰 320 000 000 UZS</div>
+            <div class="price-display">💰 420 000 000 UZS</div>
             <div class="leasing-calc"><div><label>Взнос (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong></div></div>
         </div>
-        <div class="spec-card" data-price-uzs="350000000">
+        <div class="spec-card" data-price-uzs="450000000">
             <h3 class="gold-text">Zeekr 001</h3>
             <p>Китай / Запас хода 620 км, 544 л.с.</p>
-            <div class="price-display">💰 350 000 000 UZS</div>
+            <div class="price-display">💰 450 000 000 UZS</div>
             <div class="leasing-calc"><div><label>Взнос (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong></div></div>
         </div>
     </div>
@@ -127,12 +126,12 @@
                 });
             } else {
                 const priceCue = priceUzs / EXCHANGE_RATE;
-                if (priceDisplay) priceDisplay.innerHTML = `💰 ${priceCue.toFixed(2)} у.е.`;
+                if (priceDisplay) priceDisplay.innerHTML = `💰 ${priceCue.toLocaleString()} у.е.`;
                 monthlySpans.forEach(span => {
                     const init = parseFloat(card.querySelector('.init-range')?.value || 20);
                     const months = parseFloat(card.querySelector('.term-range')?.value || 36);
                     const payment = calculatePayment(priceUzs, init, months) / EXCHANGE_RATE;
-                    span.textContent = payment.toFixed(2) + ' у.е.';
+                    span.textContent = payment.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2}) + ' у.е.';
                 });
             }
         });
@@ -154,7 +153,7 @@
             if (termInput) termInput.value = term;
             let payment = calculatePayment(priceUzs, init, term);
             if (currentCurrency === 'uzs') monthlySpan.textContent = Math.round(payment).toLocaleString() + ' UZS';
-            else monthlySpan.textContent = (payment / EXCHANGE_RATE).toFixed(2) + ' у.е.';
+            else monthlySpan.textContent = (payment / EXCHANGE_RATE).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2}) + ' у.е.';
         };
         if (initRange) initRange.addEventListener('input', update);
         if (initInput) initInput.addEventListener('input', () => { let v = parseFloat(initInput.value); if (!isNaN(v)) { initRange.value = Math.min(50, Math.max(10, v)); update(); } });
