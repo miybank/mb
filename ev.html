@@ -1,4 +1,151 @@
-    const FIXED_RATE_UZS = 0.23;
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MIYBANK — Лизинг электромобилей | 20 моделей | UZS 23% / MYB от аванса</title>
+    <link rel="icon" href="favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, #0A1E3D 0%, #0A2A4A 100%); color: #fff; line-height: 1.6; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .gold-text { color: #FFD700; }
+        .btn-primary { background: #FFD700; color: #0A1E3D; padding: 10px 20px; border-radius: 40px; font-weight: bold; text-decoration: none; display: inline-block; }
+        .btn-outline { border: 2px solid #FFD700; color: #FFD700; background: transparent; padding: 10px 20px; border-radius: 40px; font-weight: bold; text-decoration: none; display: inline-block; }
+        .nav-link { color: #fff; text-decoration: none; margin-right: 20px; display: inline-block; }
+        .nav-link:hover, .active-nav { color: #FFD700; border-bottom: 2px solid #FFD700; }
+        .spec-card { background: rgba(255,255,255,0.05); border-radius: 20px; padding: 20px; transition: 0.3s; border: 1px solid rgba(255,215,0,0.2); height: 100%; }
+        .spec-card:hover { transform: translateY(-3px); background: rgba(255,215,0,0.08); border-color: #FFD700; }
+        .price-display { font-size: 1.2rem; font-weight: bold; margin: 10px 0; }
+        .category-title { font-size: 1.6rem; font-weight: bold; margin: 30px 0 20px; border-left: 4px solid #FFD700; padding-left: 15px; }
+        .calc-input { background: rgba(0,0,0,0.4); border: 1px solid rgba(255,215,0,0.3); border-radius: 12px; padding: 8px; color: #fff; width: 80px; }
+        .calc-result { background: rgba(0,0,0,0.3); border-radius: 16px; padding: 12px; margin-top: 15px; text-align: center; }
+        .currency-switch { display: inline-flex; background: rgba(0,0,0,0.4); border-radius: 40px; padding: 4px; margin-bottom: 20px; }
+        .currency-btn { padding: 8px 20px; border-radius: 40px; cursor: pointer; background: transparent; color: #fff; border: none; }
+        .currency-btn.active { background: #FFD700; color: #0A1E3D; }
+        header { background: rgba(10,30,61,0.9); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 50; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        footer { border-top: 1px solid rgba(255,255,255,0.1); margin-top: 40px; padding: 20px; text-align: center; font-size: 0.8rem; color: #aaa; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }
+        @media (max-width: 768px) { .grid { grid-template-columns: 1fr; } }
+        .rate-note { font-size: 0.7rem; margin-top: 5px; }
+        .discount-table { background: rgba(0,0,0,0.3); border-radius: 16px; padding: 15px; margin-bottom: 20px; font-size: 0.8rem; }
+        .discount-table table { width: 100%; border-collapse: collapse; }
+        .discount-table th, .discount-table td { padding: 6px; text-align: center; border-bottom: 1px solid rgba(255,215,0,0.2); }
+        .discount-table th { color: #FFD700; }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container" style="padding: 12px 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+        <div style="display: flex; align-items: center; gap: 10px;">
+            <img src="logo.png" style="height: 40px;" onerror="this.src='https://placehold.co/200x60/0A1E3D/FFD700?text=MYB'">
+            <span class="gold-text" style="font-weight: bold;">MIYBANK (MYB)</span>
+        </div>
+        <button id="wallet-btn" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 8px 16px; border-radius: 40px;"><i class="fas fa-wallet"></i> Connect Wallet</button>
+    </div>
+    <div style="border-top: 1px solid rgba(255,255,255,0.1);">
+        <div class="container" style="padding: 10px 20px;">
+            <a href="index.html" class="nav-link">🏠 Home</a>
+            <a href="liquidity.html" class="nav-link">💧 Liquidity</a>
+            <a href="assets.html" class="nav-link">🏭 Copper Assets</a>
+            <a href="spec.html" class="nav-link">📦 Спецтехника</a>
+            <a href="cars.html" class="nav-link">🚗 Авто</a>
+            <a href="ev.html" class="nav-link active-nav">⚡ EV</a>
+            <a href="seasonal.html" class="nav-link">🌾 Сезонная</a>
+            <a href="halal-leasing.html" class="nav-link">☪️ Халяльный</a>
+        </div>
+    </div>
+</header>
+
+<main class="container" style="padding: 30px 20px;">
+    <div style="text-align: center; margin-bottom: 30px;">
+        <h1 class="gold-text" style="font-size: 2.2rem;">⚡ Лизинг электромобилей</h1>
+        <p>Седаны · Кроссоверы · Пикапы · Фургоны · Премиум | 20 моделей</p>
+        <p style="font-size: 0.9rem; color: #aaa;">UZS — 23% фиксированная | MYB — льгота от аванса (до 40%)</p>
+    </div>
+
+    <div class="discount-table">
+        <table>
+            <thead><tr><th>Аванс</th><th>Льгота</th><th>Ставка UZS (фикс)</th><th>Ставка MYB</th></tr></thead>
+            <tbody>
+                <tr><td rowspan="5">≥ 50%</td><td>40%</td><td rowspan="5">23%</td><td>13.8%</td></tr>
+                <tr><td>≥ 40%</td><td>35%</td><td>14.95%</td></tr>
+                <tr><td>≥ 30%</td><td>30%</td><td>16.1%</td></tr>
+                <tr><td>≥ 20%</td><td>25%</td><td>17.25%</td></tr>
+                <tr><td>≥ 10%</td><td>20%</td><td>18.4%</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div style="display: flex; justify-content: center;">
+        <div class="currency-switch">
+            <button class="currency-btn active" data-currency="uzs">🇺🇿 UZS (сум) — 23%</button>
+            <button class="currency-btn" data-currency="myb">💎 MYB — льгота от аванса</button>
+        </div>
+    </div>
+
+    <!-- 1. СЕДАНЫ (4 шт) -->
+    <div class="category-title gold-text">🚘 Электроседаны</div>
+    <div class="grid">
+        <div class="spec-card" data-price-uzs="350000000"><h3 class="gold-text">Tesla Model 3</h3><p>США / 513 км, 283 л.с.</p><div class="price-display">💰 350 000 000 UZS</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
+        <div class="spec-card" data-price-uzs="320000000"><h3 class="gold-text">BYD Seal</h3><p>Китай / 650 км, 530 л.с.</p><div class="price-display">💰 320 000 000 UZS</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
+        <div class="spec-card" data-price-uzs="300000000"><h3 class="gold-text">XPeng P7</h3><p>Китай / 576 км, 267 л.с.</p><div class="price-display">💰 300 000 000 UZS</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
+        <div class="spec-card" data-price-uzs="340000000"><h3 class="gold-text">NIO ET7</h3><p>Китай / 700 км, 644 л.с.</p><div class="price-display">💰 340 000 000 UZS</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
+    </div>
+
+    <!-- 2. КРОССОВЕРЫ (4 шт) -->
+    <div class="category-title gold-text">🚙 Электрокроссоверы / SUV</div>
+    <div class="grid">
+        <div class="spec-card" data-price-uzs="480000000"><h3 class="gold-text">Tesla Model Y</h3><p>США / 533 км, 351 л.с.</p><div class="price-display">💰 480 000 000 UZS</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
+        <div class="spec-card" data-price-uzs="420000000"><h3 class="gold-text">BYD Atto 3</h3><p>Китай / 480 км, 204 л.с.</p><div class="price-display">💰 420 000 000 UZS</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
+        <div class="spec-card" data-price-uzs="450000000"><h3 class="gold-text">Zeekr 001</h3><p>Китай / 620 км, 544 л.с.</p><div class="price-display">💰 450 000 000 UZS</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
+        <div class="spec-card" data-price-uzs="500000000"><h3 class="gold-text">NIO ES8</h3><p>Китай / 580 км, 653 л.с.</p><div class="price-display">💰 500 000 000 UZS</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
+    </div>
+
+    <!-- 3. ЭЛЕКТРОПИКАПЫ (4 шт) -->
+    <div class="category-title gold-text">🛻 Электропикапы</div>
+    <div class="grid">
+        <div class="spec-card" data-price-uzs="600000000"><h3 class="gold-text">Tesla Cybertruck</h3><p>США / 547 км, 600 л.с.</p><div class="price-display">💰 600 000 000 UZS</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
+        <div class="spec-card" data-price-uzs="520000000"><h3 class="gold-text">BYD Shark</h3><p>Китай / 840 км, 435 л.с.</p><div class="price-display">💰 520 000 000 UZS</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
+        <div class="spec-card" data-price-uzs="550000000"><h3 class="gold-text">Rivian R1T</h3><p>США / 505 км, 835 л.с.</p><div class="price-display">💰 550 000 000 UZS</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
+        <div class="spec-card" data-price-uzs="580000000"><h3 class="gold-text">Ford F-150 Lightning</h3><p>США / 515 км, 580 л.с.</p><div class="price-display">💰 580 000 000 UZS</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
+    </div>
+
+    <!-- 4. ЭЛЕКТРОФУРГОНЫ (4 шт) -->
+    <div class="category-title gold-text">🚐 Электрофургоны (коммерческие)</div>
+    <div class="grid">
+        <div class="spec-card" data-price-uzs="400000000"><h3 class="gold-text">Ford E-Transit</h3><p>США / 317 км, 1.7 т</p><div class="price-display">💰 400 000 000 UZS</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
+        <div class="spec-card" data-price-uzs="380000000"><h3 class="gold-text">Maxus eDeliver 9</h3><p>Китай / 330 км, 11.9 м³</p><div class="price-display">💰 380 000 000 UZS</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
+        <div class="spec-card" data-price-uzs="420000000"><h3 class="gold-text">Mercedes eSprinter</h3><p>Германия / 400 км, 14 м³</p><div class="price-display">💰 420 000 000 UZS</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
+        <div class="spec-card" data-price-uzs="450000000"><h3 class="gold-text">Renault Master E-Tech</h3><p>Франция / 460 км, 20 м³</p><div class="price-display">💰 450 000 000 UZS</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
+    </div>
+
+    <!-- 5. ПРЕМИУМ / СПОРТ (4 шт) -->
+    <div class="category-title gold-text">🏎️ Премиум и спорт</div>
+    <div class="grid">
+        <div class="spec-card" data-price-uzs="650000000"><h3 class="gold-text">Tesla Model S Plaid</h3><p>США / 637 км, 1020 л.с.</p><div class="price-display">💰 650 000 000 UZS</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
+        <div class="spec-card" data-price-uzs="500000000"><h3 class="gold-text">Porsche Taycan</h3><p>Германия / 500 км, 408 л.с.</p><div class="price-display">💰 500 000 000 UZS</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
+        <div class="spec-card" data-price-uzs="480000000"><h3 class="gold-text">BMW i7</h3><p>Германия / 625 км, 544 л.с.</p><div class="price-display">💰 480 000 000 UZS</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
+        <div class="spec-card" data-price-uzs="550000000"><h3 class="gold-text">Lucid Air</h3><p>США / 830 км, 1111 л.с.</p><div class="price-display">💰 550 000 000 UZS</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
+    </div>
+
+    <div style="text-align: center; margin-top: 40px;">
+        <a href="#" class="btn-primary"><i class="fas fa-file-signature"></i> Оставить заявку</a>
+        <a href="index.html" class="btn-outline" style="margin-left: 15px;">← На главную</a>
+    </div>
+</main>
+
+<footer>
+    <p>© 2025 MIYBANK (MYB) — Лизинг электромобилей | 5 категорий, 20 моделей</p>
+    <p>UZS — 23% фиксированная | MYB — льгота от аванса (до 40%)</p>
+</footer>
+
+<script>
+    const EXCHANGE_RATE = 12800;
+    let currentCurrency = 'uzs';
+        const FIXED_RATE_UZS = 0.23;
     const BASE_RATE_MYB = 0.23;
     
     function getMybRate(initPercent) {
@@ -104,4 +251,4 @@
     document.getElementById('wallet-btn')?.addEventListener('click', () => alert('Connect wallet soon.'));
 </script>
 </body>
-        </html>
+</html>
