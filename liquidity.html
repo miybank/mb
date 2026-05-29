@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>MIYBANK (MYB) — Ликвидность и пулы | Пул MYB/USDC на Meteora</title>
+    <title>MIYBANK (MYB) — Ликвидность и пулы | MYB/USDT и MYB/USDC на Meteora</title>
     <link rel="icon" href="favicon.ico">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
@@ -24,9 +24,10 @@
         .info-table td { padding: 12px 8px; }
         .info-table td:first-child { font-weight: bold; width: 40%; }
         .info-table td:last-child { text-align: right; }
+        .pool-card { background: rgba(0,0,0,0.2); border-radius: 20px; padding: 20px; margin-bottom: 25px; border-left: 4px solid #FFD700; }
         .holders-table { width: 100%; border-collapse: collapse; }
         .holders-table th, .holders-table td { padding: 10px; text-align: left; border-bottom: 1px solid rgba(255,215,0,0.2); }
-        .holders-table th { color: #FFD700; text-align: left; }
+        .holders-table th { color: #FFD700; }
         .code-addr { font-family: monospace; font-size: 0.8rem; background: rgba(0,0,0,0.3); padding: 2px 6px; border-radius: 8px; }
         @media (max-width: 768px) { .container { padding: 0 15px; } .info-table td { display: block; text-align: left !important; padding: 6px 0; } .info-table td:last-child { text-align: left; } }
     </style>
@@ -66,13 +67,30 @@
         </div>
     </div>
 
-    <!-- Основной пул Meteora -->
-    <div class="bg-dark-card">
-        <h2 class="gold-text" style="margin-bottom: 20px;">🔁 Основной пул: MYB / USDC</h2>
+    <!-- ПУЛ 1: MYB/USDT -->
+    <div class="pool-card">
+        <h2 class="gold-text" style="margin-bottom: 15px;">🔁 Пул 1: MYB / USDT</h2>
+        <table class="info-table">
+            <tr><td>Платформа</td><td>Meteora DAMM V2</td></tr>
+            <tr><td>Адрес пула</td><td><code class="code-addr">Euz7efcdGYFZxvuVXE3spbr3dY3JpsTjzDEcg4vqnrSF</code></td></tr>
+            <tr><td>Текущая цена MYB</td><td class="gold-text">~$0.9989 USDT</td></tr>
+            <tr><td>Ликвидность (TVL)</td><td class="gold-text"><strong>$992.15M</strong></td></tr>
+            <tr><td>Рыночная капитализация</td><td class="gold-text"><strong>$9.98B</strong></td></tr>
+            <tr><td>24h объём</td><td>$1.34</td></tr>
+            <tr><td>Владельцы</td><td>15</td></tr>
+        </table>
+        <div style="margin-top: 20px; display: flex; gap: 15px; flex-wrap: wrap;">
+            <a href="https://www.geckoterminal.com/solana/pools/Euz7efcdGYFZxvuVXE3spbr3dY3JpsTjzDEcg4vqnrSF" class="btn-outline" target="_blank">Посмотреть на GeckoTerminal</a>
+            <a href="https://app.meteora.ag/pool/Euz7efcdGYFZxvuVXE3spbr3dY3JpsTjzDEcg4vqnrSF" class="btn-outline" target="_blank">Добавить ликвидность на Meteora</a>
+        </div>
+    </div>
+
+    <!-- ПУЛ 2: MYB/USDC -->
+    <div class="pool-card">
+        <h2 class="gold-text" style="margin-bottom: 15px;">🔁 Пул 2: MYB / USDC</h2>
         <table class="info-table">
             <tr><td>Платформа</td><td>Meteora DAMM V2</td></tr>
             <tr><td>Адрес пула</td><td><code class="code-addr">DDWnP7ouVnRaq4CAywJ3eQTemnYQpC63hj8SsskEuf9h</code></td></tr>
-            <tr><td>Тикер</td><td>MYB / USDC</td></tr>
             <tr><td>Текущая цена MYB</td><td class="gold-text">~$1.0013 USDC</td></tr>
             <tr><td>Ликвидность (TVL)</td><td class="gold-text"><strong>$492.47M</strong></td></tr>
             <tr><td>Рыночная капитализация</td><td class="gold-text"><strong>$10.01B</strong></td></tr>
@@ -89,24 +107,15 @@
     <div class="bg-dark-card">
         <h2 class="gold-text" style="margin-bottom: 20px;">👥 Крупнейшие держатели MYB</h2>
         <table class="holders-table">
-            <thead>
-                <tr><th>Адрес</th><th>Баланс (MYB)</th><th>Доля</th></tr>
-            </thead>
+            <thead><tr><th>Адрес</th><th>Баланс (MYB)</th><th>Доля</th></tr></thead>
             <tbody>
                 <tr><td><code class="code-addr">FmpEfF4Pks1uZZ4JoMizTj1CNX5u1pS4K2vBkQHvjHmC</code></td><td>3.12B</td><td>31.2%</td></tr>
                 <tr><td><code class="code-addr">HLnCeiRtVpN7ZgLcg6Zk2vKxLkLQpR1sTtUuVvWwXxYyZzA1bB2cC</code></td><td>999M</td><td>10%</td></tr>
                 <tr><td><code class="code-addr">B4CdEfGhIjKlMnOpQrStUvWxYzA1bB2cC3dD4eE5fF6gG7hH8iI9jJ0kK</code></td><td>490M</td><td>4.9%</td></tr>
                 <tr><td><code class="code-addr">GD7QrStUvWxYzA1bB2cC3dD4eE5fF6gG7hH8iI9jJ0kK1lL2mM3nN4oO</code></td><td>490M</td><td>4.9%</td></tr>
-                <tr><td><code class="code-addr">A3TtUuVvWwXxYyZzA1bB2cC3dD4eE5fF6gG7hH8iI9jJ0kK1lL2mM3nN</code></td><td>490M</td><td>4.9%</td></tr>
             </tbody>
         </table>
         <p style="margin-top: 15px; color: #aaa;">* Показаны крупнейшие из 15 держателей. Полный список на GeckoTerminal.</p>
-    </div>
-
-    <!-- Встроенный график DexScreener -->
-    <div class="bg-dark-card">
-        <h2 class="gold-text" style="margin-bottom: 15px;">📈 График цены и аналитика</h2>
-        <iframe src="https://dexscreener.com/solana/DDWnP7ouVnRaq4CAywJ3eQTemnYQpC63hj8SsskEuf9h?embed=1&theme=dark&trades=0&info=0" width="100%" height="450" style="border-radius: 20px; border: 1px solid rgba(255,215,0,0.3);"></iframe>
     </div>
 
     <div style="text-align: center; margin-top: 10px;">
@@ -116,7 +125,7 @@
 
 <footer>
     <p>© 2025 MIYBANK (MYB) — Первый семейный банковский токен с лизинговой экосистемой</p>
-    <p>Пул MYB/USDC на Meteora: TVL $492.47M, цена ~$1.0013 | 1 MYB ≈ 1 USD</p>
+    <p>Пулы: MYB/USDT (TVL $992M, цена $0.9989) и MYB/USDC (TVL $492M, цена $1.0013) на Meteora</p>
 </footer>
 
 <script>
