@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MIYBANK — Лизинг оборудования | 50+ видов | Ставки UZS / MYB</title>
+    <link rel="icon" href="favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, #0A1E3D 0%, #0A2A4A 100%); color: #fff; line-height: 1.6; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .gold-text { color: #FFD700; }
+        .green-text { color: #00FF88; }
+        .btn-primary { background: #FFD700; color: #0A1E3D; padding: 10px 20px; border-radius: 40px; font-weight: bold; text-decoration: none; display: inline-block; }
+        .btn-outline { border: 2px solid #FFD700; color: #FFD700; background: transparent; padding: 10px 20px; border-radius: 40px; font-weight: bold; text-decoration: none; display: inline-block; }
+        .nav-link { color: #fff; text-decoration: none; margin-right: 20px; display: inline-block; }
+        .nav-link:hover, .active-nav { color: #FFD700; border-bottom: 2px solid #FFD700; }
+        .spec-card { background: rgba(255,255,255,0.05); border-radius: 20px; padding: 20px; transition: 0.3s; border: 1px solid rgba(255,215,0,0.2); height: 100%; display: flex; flex-direction: column; }
+        .spec-card:hover { transform: translateY(-3px); background: rgba(255,215,0,0.08); border-color: #FFD700; }
+        .price-display { font-size: 1.2rem; font-weight: bold; margin: 10px 0; }
+        .category-title { font-size: 1.6rem; font-weight: bold; margin: 30px 0 20px; border-left: 4px solid #FFD700; padding-left: 15px; }
+        .calc-input { background: rgba(0,0,0,0.4); border: 1px solid rgba(255,215,0,0.3); border-radius: 12px; padding: 8px; color: #fff; width: 80px; }
+        .calc-result { background: rgba(0,0,0,0.3); border-radius: 16px; padding: 12px; margin-top: 15px; text-align: center; }
+        .currency-switch { display: inline-flex; background: rgba(0,0,0,0.4); border-radius: 40px; padding: 4px; margin-bottom: 20px; }
+        .currency-btn { padding: 8px 20px; border-radius: 40px; cursor: pointer; background: transparent; color: #fff; border: none; }
+        .currency-btn.active { background: #FFD700; color: #0A1E3D; }
+        header { background: rgba(10,30,61,0.9); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 50; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        footer { border-top: 1px solid rgba(255,255,255,0.1); margin-top: 40px; padding: 20px; text-align: center; font-size: 0.8rem; color: #aaa; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }
+        @media (max-width: 768px) { .grid { grid-template-columns: 1fr; } }
+        .rate-note { font-size: 0.7rem; margin-top: 5px; }
+        .collateral-note { background: rgba(0,136,255,0.1); border-left: 3px solid #FFD700; padding: 15px; margin: 15px 0; font-size: 0.85rem; }
+        .category-subtitle { font-size: 1.2rem; color: #aaa; margin-bottom: 15px; }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container" style="padding: 12px 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+        <div style="display: flex; align-items: center; gap: 10px;">
+            <img src="logo.png" style="height: 40px;" onerror="this.src='https://placehold.co/200x60/0A1E3D/FFD700?text=MYB'">
+            <span class="gold-text" style="font-weight: bold;">MIYBANK (MYB)</span>
+        </div>
+        <button id="wallet-btn" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 8px 16px; border-radius: 40px;"><i class="fas fa-wallet"></i> Connect Wallet</button>
+    </div>
+    <div style="border-top: 1px solid rgba(255,255,255,0.1);">
+        <div class="container" style="padding: 10px 20px;">
+            <a href="index.html" class="nav-link">🏠 Home</a>
+            <a href="liquidity.html" class="nav-link">💧 Liquidity</a>
+            <a href="assets.html" class="nav-link">🏭 Copper Assets</a>
+            <a href="spec.html" class="nav-link">📦 Спецтехника</a>
+            <a href="cars.html" class="nav-link">🚗 Авто</a>
+            <a href="ev.html" class="nav-link">⚡ EV</a>
+            <a href="seasonal.html" class="nav-link">🌾 Сезонная</a>
+            <a href="equipment.html" class="nav-link active-nav">🏭 Оборудование</a>
+            <a href="halal-leasing.html" class="nav-link">☪️ Халяльный</a>
+        </div>
+    </div>
+</header>
+
+<main class="container" style="padding: 30px 20px;">
+    <div style="text-align: center; margin-bottom: 30px;">
+        <h1 class="gold-text" style="font-size: 2.2rem;">🏭 Лизинг промышленного оборудования</h1>
+        <p>Более 50 видов оборудования для производства, энергетики, переработки и строительства</p>
+        <p style="font-size: 0.9rem; color: #aaa;">✅ Все цены указаны с учётом доставки до Узбекистана и растаможки</p>
+    </div>
+
+    <!-- Ставки и залог -->
+    <div class="collateral-note">
+        <i class="fas fa-percent gold-text"></i> <strong>Ставки UZS (от аванса):</strong> ≥50% → 22.5% | ≥30% → 23.0% | ≥10% → 23.5%<br>
+        <i class="fas fa-coins green-text"></i> <strong>Ставки MYB (льготные):</strong> ≥50% → 13.5% | ≥30% → 14.0% | ≥10% → 14.5%<br>
+        <i class="fas fa-shield-alt gold-text"></i> <strong>Залог для оборудования:</strong> при авансе 10% → 70% фиат / 45% MYB | 20% → 60% / 35% | 30% → 50% / 25%
+    </div>
+
+    <div style="display: flex; justify-content: center;">
+        <div class="currency-switch">
+            <button class="currency-btn active" data-currency="uzs">🇺🇿 UZS (сум)</button>
+            <button class="currency-btn" data-currency="myb">💎 MYB</button>
+        </div>
+    </div>
+
+    <!-- ==================== 1. ЭНЕРГЕТИКА (6 видов) ==================== -->
+    <div class="category-title gold-text">☀️ Энергетическое оборудование</div>
+    <div class="grid">
+        <div class="spec-card" data-price-uzs="250000000"><h3 class="gold-text">Солнечная станция OnGrid 10 кВт</h3><p>Китай / инвертор, панели 550 Вт × 18 шт</p><div class="price-display">💰 250 000 000 UZS</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
+        <div class="spec-card" data-price-uzs="450000000"><h3 class="gold-text">Солнечная станция OnGrid 30 кВт</h3><p>Китай / трёхфазный инвертор, 60 панелей</p><div class="price-display">💰 450 000 000 UZS</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
+        <div class="spec-card" data-price-uzs="800000000"><h3 class="gold-text">Солнечная станция OnGrid 100 кВт</h3><p>Китай / промышленная, 200 панелей</p><div class="price-display">💰 800 000 000 UZS</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
+        <div class="spec-card" data-price-uzs="300000000"><h3 class="gold-text">Ветрогенератор 5 кВт OnGrid</h3><p>Китай / вертикальный, для дома</p><div class="price-display">💰 300 000 000 UZS</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
+        <div class="spec-card" data-price-uzs="550000000"><h3 class="gold-text">Ветрогенератор 20 кВт OnGrid</h3><p>Китай / горизонтальный, 3 лопасти</p><div class="price-display">💰 550 000 000 UZS</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
+        <div class="spec-card" data-price-uzs="1500000000"><h3 class="gold-text">Ветро-солнечная станция 50 кВт</h3><p>Китай / гибридная, круглогодичная</p><div class="price-display">💰 1 500 000 000 UZS</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
+    </div>
+
+    <!-- ==================== 2. БИОТОПЛИВО (2 вида) ==================== -->
+    <div class="category-title gold-text">🛢️ Оборудование для производства биотоплива</div>
+    <div class="grid">
+        <div class="spec-card" data-price-uzs="350000000"><h3 class="gold-text">Линия переработки моторного масла в биодизель</h3><p>Китай / 500 л/час, фильтрация, этерификация</p><div class="price-display">💰 350 000 000 UZS</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
+        <div class="spec-card" data-price-uzs="280000000"><h3 class="gold-text">Линия переработки пищевого масла в биодизель</h3><p>Китай / 300 л/час, для ресторанов</p><div class="price-display">💰 280 000 000 UZS</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
+    </div>
+
+    <!-- ==================== 3. ИСКУССТВЕННЫЕ КАМНИ (2 вида) ==================== -->
+    <div class="category-title gold-text">💎 Оборудование для производства искусственных камней</div>
+    <div class="grid">
+        <div class="spec-card" data-price-uzs="500000000"><h3 class="gold-text">Линия CVD для алмазов</h3><p>Китай / 10 камер, 5 каратов в месяц</p><div class="price-display">💰 500 000 000 UZS</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
+        <div class="spec-card" data-price-uzs="450000000"><h3 class="gold-text">Пресс HPHT для алмазов</h3><p>Китай / 1000 тонн, 2 карата в день</p><div class="price-display">💰 450 000 000 UZS</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
+    </div>
+
+    <!-- ==================== 4. ТРУБЫ (2 вида) ==================== -->
+    <div class="category-title gold-text">🔧 Линии для производства труб</div>
+    <div class="grid">
+        <div class="spec-card" data-price-uzs="400000000"><h3 class="gold-text">Линия ПЭ труб (63-200 мм)</h3><p>Китай / экструдер, вакуумная калибровка</p><div class="price-display">💰 400 000 000 UZS</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
+        <div class="spec-card" data-price-uzs="500000000"><h3 class="gold-text">Линия стеклопластиковых труб</h3><p>Китай / намотка, диаметр до 1200 мм</p><div class="price-display">💰 500 000 000 UZS</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
+    </div>
+
+    <!-- ==================== 5. ПИЩЕВОЕ ПРОИЗВОДСТВО (2 вида) ==================== -->
+    <div class="category-title gold-text">🍟 Пищевое оборудование</div>
+    <div class="grid">
+        <div class="spec-card" data-price-uzs="180000000"><h3 class="gold-text">Линия производства чипсов</h3><p>Китай / мойка, резка, фритюр, упаковка 50 кг/час</p><div class="price-display">💰 180 000 000 UZS</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
+        <div class="spec-card" data-price-uzs="120000000"><h3 class="gold-text">Линия лапши быстрого приготовления</h3><p>Китай / замес, пароварка, фритюр, сушка</p><div class="price-display">💰 120 000 000 UZS</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
+    </div>
+
+    <!-- ==================== 6. СТРОИТЕЛЬНЫЕ МАТЕРИАЛЫ (2 вида) ==================== -->
+    <div class="category-title gold-text">🏗️ Производство стройматериалов</div>
+    <div class="grid">
+        <div class="spec-card" data-price-uzs="300000000"><h3 class="gold-text">Линия сэндвич-панелей</h3><p>Китай / минвата, ППУ, двухсторонняя облицовка</p><div class="price-display">💰 300 000 000 UZS</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
+        <div class="spec-card" data-price-uzs="250000000"><h3 class="gold-text">Линия ноу-хау гипсокартона</h3><p>Китай / формование, сушка, резка</p><div class="price-display">💰 250 000 000 UZS</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
+    </div>
+
+    <!-- ==================== 7. КОМПОЗИТНАЯ САНТЕХНИКА И КАФЕЛЬ (2 вида) ==================== -->
+    <div class="category-title gold-text">🛁 Композитная сантехника и кафель</div>
+    <div class="grid">
+        <div class="spec-card" data-price-uzs="350000000"><h3 class="gold-text">Линия композитных умывальников, ванн, унитазов</h3><p>Китай / пресс-формы, вакуумная инфузия</p><div class="price-display">💰 350 000 000 UZS</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
+        <div class="spec-card" data-price-uzs="200000000"><h3 class="gold-text">Линия композитного кафеля</h3><p>Китай / прессование, полировка</p><div class="price-display">💰 200 000 000 UZS</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
+    </div>
+
+    <!-- ==================== 8. ПЕРЕРАБОТКА ОТХОДОВ (1 вид) ==================== -->
+    <div class="category-title gold-text">♻️ Переработка отходов</div>
+    <div class="grid">
+        <div class="spec-card" data-price-uzs="400000000"><h3 class="gold-text">Линия производства резиновых покрышек из отходов</h3><p>Китай / девулканизация, вальцы, прессование</p><div class="price-display">💰 400 000 000 UZS</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
+    </div>
+
+    <!-- ==================== 9. МАСЛО И МЕТАЛЛУРГИЯ (2 вида) ==================== -->
+    <div class="category-title gold-text">🌻 Металлургия и масло</div>
+    <div class="grid">
+        <div class="spec-card" data-price-uzs="300000000"><h3 class="gold-text">Линия подсолнечного масла (холодный отжим)</h3><p>Китай / пресс, фильтрация, разлив 1 т/день</p><div class="price-display">💰 300 000 000 UZS</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
+        <div class="spec-card" data-price-uzs="600000000"><h3 class="gold-text">Линия медной фольги (35 мкм)</h3><p>Китай / гальваника, резка, 500 кг/день</p><div class="price-display">💰 600 000 000 UZS</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
+    </div>
+
+    <!-- ==================== 10. ВЫСОКИЕ ТЕХНОЛОГИИ (3 вида) ==================== -->
+    <div class="category-title gold-text">📱 Высокотехнологичное производство</div>
+    <div class="grid">
+        <div class="spec-card" data-price-uzs="800000000"><h3 class="gold-text">Линия сборки смартфонов</h3><p>Китай / SMT, тесты, упаковка, 1000 шт/день</p><div class="price-display">💰 800 000 000 UZS</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
+        <div class="spec-card" data-price-uzs="1500000000"><h3 class="gold-text">Линия сборки электромобилей (SKD)</h3><p>Китай / кузов, батарея, электродвигатель, тест</p><div class="price-display">💰 1 500 000 000 UZS</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
+        <div class="spec-card" data-price-uzs="500000000"><h3 class="gold-text">Линия 3D-печати металлом</h3><p>Германия / SLM 3D, титан, сталь, алюминий</p><div class="price-display">💰 500 000 000 UZS</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
+    </div>
+
+    <!-- ==================== 11. ДОПОЛНИТЕЛЬНЫЕ 50+ ВИДОВ (краткий список) ==================== -->
+    <div class="category-title gold-text">🔩 Дополнительное оборудование (50+ видов)</div>
+    <div class="grid">
+        <div class="spec-card" data-price-uzs="200000000"><h3>ЧПУ-фрезер 3 оси</h3><p>Китай / 1200×800 мм</p><div class="price-display">💰 200 000 000 UZS</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong></div></div></div>
+        <div class="spec-card" data-price-uzs="250000000"><h3>Станок лазерной резки 3 кВт</h3><p>Китай / 1500×3000 мм</p><div class="price-display">💰 250 000 000 UZS</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong></div></div></div>
+        <div class="spec-card" data-price-uzs="180000000"><h3>Линия розлива воды</h3><p>Китай / 2000 бут/час</p><div class="price-display">💰 180 000 000 UZS</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong></div></div></div>
+        <div class="spec-card" data-price-uzs="300000000"><h3>Бетонный завод HZS 60</h3><p>Китай / 60 м³/час</p><div class="price-display">💰 300 000 000 UZS</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong></div></div></div>
+        <div class="spec-card" data-price-uzs="150000000"><h3>Дробилка для пластика</h3><p>Китай / 500 кг/час</p><div class="price-display">💰 150 000 000 UZS</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong></div></div></div>
+        <div class="spec-card" data-price-uzs="400000000"><h3>Гранулятор для полимеров</h3><p>Китай / 300 кг/час</p><div class="price-display">💰 400 000 000 UZS</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong></div></div></div>
+    </div>
+
+    <div style="text-align: center; margin-top: 40px;">
+        <a href="#" class="btn-primary"><i class="fas fa-file-signature"></i> Оставить заявку</a>
+        <a href="index.html" class="btn-outline" style="margin-left: 15px;">← На главную</a>
+    </div>
+</main>
+
+<footer>
+    <p>© 2025 MIYBANK (MYB) — Лизинг оборудования | 50+ видов</p>
+    <p>Ставки UZS: 22.5–23.5% | MYB: 13.5–14.5% | Залог: 50–70% фиат / 25–45% MYB</p>
+</footer>
+
+<script>
+    const EXCHANGE_RATE = 12800;
+    let currentCurrency = 'uzs';
+    
+    function getRateUzs(initPercent) {
+        if (initPercent >= 50) return 0.225;
+        if (initPercent >= 30) return 0.23;
+        return 0.235;
+    }
+    
+    function getRateMyb(initPercent) {
+        if (initPercent >= 50) return 0.135;
+        if (initPercent >= 30) return 0.14;
+        return 0.145;
+    }
+
+    function calculatePayment(price, initPercent, months, currency) {
+        const initAmount = price * initPercent / 100;
+        const loanAmount = price - initAmount;
+        let annualRate;
+        if (currency === 'uzs') {
+            annualRate = getRateUzs(initPercent);
+        } else {
+            annualRate = getRateMyb(initPercent);
+        }
+        const monthlyRate = annualRate / 12;
+        if (loanAmount <= 0 || months <= 0) return 0;
+        return loanAmount * monthlyRate * Math.pow(1 + monthlyRate, months) / (Math.pow(1 + monthlyRate, months) - 1);
+    }
+
+    function updateAll() {
+        document.querySelectorAll('.spec-card').forEach(card => {
+            const priceUzs = parseFloat(card.dataset.priceUzs);
+            const priceDisplay = card.querySelector('.price-display');
+            const monthlySpans = card.querySelectorAll('.monthly');
+            const rateNote = card.querySelector('.rate-note');
+            const initValue = parseFloat(card.querySelector('.init-range')?.value || 20);
+            
+            if (currentCurrency === 'uzs') {
+                if (priceDisplay) priceDisplay.innerHTML = `💰 ${priceUzs.toLocaleString()} UZS`;
+                monthlySpans.forEach(span => {
+                    const init = parseFloat(card.querySelector('.init-range')?.value || 20);
+                    const months = parseFloat(card.querySelector('.term-range')?.value || 36);
+                    const payment = calculatePayment(priceUzs, init, months, 'uzs');
+                    span.textContent = Math.round(payment).toLocaleString() + ' UZS';
+                });
+                if (rateNote) rateNote.innerHTML = `Ставка ${(getRateUzs(initValue) * 100).toFixed(1)}% (UZS)`;
+            } else {
+                const priceMyb = priceUzs / EXCHANGE_RATE;
+                if (priceDisplay) priceDisplay.innerHTML = `💎 ${priceMyb.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})} MYB`;
+                monthlySpans.forEach(span => {
+                    const init = parseFloat(card.querySelector('.init-range')?.value || 20);
+                    const months = parseFloat(card.querySelector('.term-range')?.value || 36);
+                    const payment = calculatePayment(priceUzs, init, months, 'myb');
+                    span.textContent = (payment / EXCHANGE_RATE).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2}) + ' MYB';
+                });
+                if (rateNote) rateNote.innerHTML = `Ставка ${(getRateMyb(initValue) * 100).toFixed(1)}% (MYB)`;
+            }
+        });
+    }
+
+    function setupCard(card) {
+        const priceUzs = parseFloat(card.dataset.priceUzs);
+        const initRange = card.querySelector('.init-range');
+        const initInput = card.querySelector('.init-input');
+        const termRange = card.querySelector('.term-range');
+        const termInput = card.querySelector('.term-input');
+        const monthlySpan = card.querySelector('.monthly');
+        const rateNote = card.querySelector('.rate-note');
+        
+        const update = () => {
+            let init = parseFloat(initRange.value);
+            let term = parseFloat(termRange.value);
+            if (isNaN(init)) init = 20;
+            if (isNaN(term)) term = 36;
+            if (initInput) initInput.value = init;
+            if (termInput) termInput.value = term;
+            
+            if (currentCurrency === 'uzs') {
+                const payment = calculatePayment(priceUzs, init, term, 'uzs');
+                monthlySpan.textContent = Math.round(payment).toLocaleString() + ' UZS';
+                if (rateNote) rateNote.innerHTML = `Ставка ${(getRateUzs(init) * 100).toFixed(1)}% (UZS) при авансе ${init}%`;
+            } else {
+                const payment = calculatePayment(priceUzs, init, term, 'myb');
+                monthlySpan.textContent = (payment / EXCHANGE_RATE).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2}) + ' MYB';
+                if (rateNote) rateNote.innerHTML = `Ставка ${(getRateMyb(init) * 100).toFixed(1)}% (MYB) при авансе ${init}%`;
+            }
+        };
+        
+        if (initRange) initRange.addEventListener('input', update);
+        if (initInput) initInput.addEventListener('input', () => { let v = parseFloat(initInput.value); if (!isNaN(v)) { initRange.value = Math.min(50, Math.max(10, v)); update(); } });
+        if (termRange) termRange.addEventListener('input', update);
+        if (termInput) termInput.addEventListener('input', () => { let v = parseFloat(termInput.value); if (!isNaN(v)) { termRange.value = Math.min(60, Math.max(6, v)); update(); } });
+        update();
+    }
+
+    document.querySelectorAll('.spec-card').forEach(setupCard);
+    document.querySelectorAll('.currency-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.currency-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            currentCurrency = btn.dataset.currency;
+            updateAll();
+            document.querySelectorAll('.spec-card').forEach(setupCard);
+        });
+    });
+    document.getElementById('wallet-btn')?.addEventListener('click', () => alert('Connect wallet soon.'));
+</script>
+</body>
+</html>
