@@ -34,6 +34,17 @@
         .discount-table th, .discount-table td { padding: 6px; text-align: center; border-bottom: 1px solid rgba(255,215,0,0.2); }
         .discount-table th { color: #FFD700; }
         .price-note { font-size: 0.7rem; color: #aaa; margin-top: 5px; }
+        
+        /* Language Switcher */
+        .language-switcher { position: fixed; bottom: 20px; right: 20px; z-index: 1000; }
+        .lang-btn { background: #FFD700; color: #0A1E3D; border: none; border-radius: 50px; padding: 12px 18px; font-size: 1.2rem; font-weight: bold; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.3); transition: 0.3s; display: flex; align-items: center; gap: 8px; }
+        .lang-btn:hover { background: #FFA500; transform: scale(1.05); }
+        .lang-menu { position: absolute; bottom: 60px; right: 0; background: #0A1E3D; border: 1px solid #FFD700; border-radius: 16px; padding: 10px; display: none; flex-direction: column; gap: 8px; min-width: 180px; backdrop-filter: blur(10px); box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
+        .lang-menu.show { display: flex; }
+        .lang-option { background: transparent; border: none; color: #fff; padding: 8px 12px; text-align: left; cursor: pointer; border-radius: 8px; transition: 0.2s; font-size: 0.9rem; }
+        .lang-option:hover { background: #FFD700; color: #0A1E3D; }
+        .lang-option.active { background: #FFD700; color: #0A1E3D; font-weight: bold; }
+        @media (max-width: 768px) { .lang-btn { padding: 10px 14px; font-size: 1rem; } .lang-menu { min-width: 160px; } }
     </style>
 </head>
 <body>
@@ -44,101 +55,121 @@
             <img src="logo.png" style="height: 40px;" onerror="this.src='https://placehold.co/200x60/0A1E3D/FFD700?text=MYB'">
             <span class="gold-text" style="font-weight: bold;">MIYBANK (MYB)</span>
         </div>
-        <button id="wallet-btn" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 8px 16px; border-radius: 40px;"><i class="fas fa-wallet"></i> Connect Wallet</button>
+        <button id="wallet-btn" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 8px 16px; border-radius: 40px;"><i class="fas fa-wallet"></i> <span id="wallet-text">Connect Wallet</span></button>
     </div>
     <div style="border-top: 1px solid rgba(255,255,255,0.1);">
         <div class="container" style="padding: 10px 20px;">
-            <a href="index.html" class="nav-link">🏠 Home</a>
-            <a href="liquidity.html" class="nav-link">💧 Liquidity</a>
-            <a href="assets.html" class="nav-link">🏭 Copper Assets</a>
-            <a href="spec.html" class="nav-link">📦 Спецтехника</a>
-            <a href="cars.html" class="nav-link">🚗 Авто</a>
-            <a href="ev.html" class="nav-link">⚡ EV</a>
-            <a href="seasonal.html" class="nav-link active-nav">🌾 Сезонная</a>
-            <a href="equipment.html" class="nav-link">🏭 Оборудование</a>
-            <a href="halal-leasing.html" class="nav-link">☪️ Халяльный</a>
+            <a href="index.html" class="nav-link" id="nav-home">🏠 Home</a>
+            <a href="liquidity.html" class="nav-link" id="nav-liquidity">💧 Liquidity</a>
+            <a href="assets.html" class="nav-link" id="nav-assets">🏭 Copper Assets</a>
+            <a href="spec.html" class="nav-link" id="nav-spec">📦 Спецтехника</a>
+            <a href="cars.html" class="nav-link" id="nav-cars">🚗 Авто</a>
+            <a href="ev.html" class="nav-link" id="nav-ev">⚡ EV</a>
+            <a href="seasonal.html" class="nav-link active-nav" id="nav-seasonal">🌾 Сезонная</a>
+            <a href="equipment.html" class="nav-link" id="nav-equipment">🏭 Оборудование</a>
+            <a href="halal-leasing.html" class="nav-link" id="nav-halal">☪️ Халяльный</a>
+            <a href="financial-instruments.html" class="nav-link" id="nav-financial">💱 Fin Instruments</a>
+            <a href="contacts.html" class="nav-link" id="nav-contacts">📞 Контакты</a>
         </div>
     </div>
 </header>
 
 <main class="container" style="padding: 30px 20px;">
     <div style="text-align: center; margin-bottom: 30px;">
-        <h1 class="gold-text" style="font-size: 2.2rem;">🌾 Лизинг сезонной техники</h1>
-        <p>Тракторы колёсные · Тракторы гусеничные · Зерноуборочные · Кормоуборочные · Почвообработка | 18 моделей</p>
-        <p style="font-size: 0.9rem; color: #aaa;">✅ Все цены с доставкой и растаможкой</p>
+        <h1 class="gold-text" style="font-size: 2.2rem;" id="page-title">🌾 Лизинг сезонной техники</h1>
+        <p id="page-subtitle">Тракторы колёсные · Тракторы гусеничные · Зерноуборочные · Кормоуборочные · Почвообработка | 18 моделей</p>
+        <p style="font-size: 0.9rem; color: #aaa;" id="price-note-label">✅ Все цены с доставкой и растаможкой</p>
     </div>
 
     <div class="discount-table">
         <table>
-            <thead><tr><th>Аванс</th><th>Ставка UZS</th><th>Ставка MYB</th></tr></thead>
+            <thead><tr><th id="table-advance">Аванс</th><th id="table-rate-uzs">Ставка UZS</th><th id="table-rate-myb">Ставка MYB</th></tr></thead>
             <tbody>
                 <tr><td rowspan="3">≥ 50%<\/td><td>22.5%<\/td><td>13.5%<\/td><\/tr>
                 <tr><td rowspan="2">≥ 30%<\/td><td>23.0%<\/td><td>14.0%<\/td><\/tr>
-                <tr><td>≥ 10%<\/td><td>23.5%<\/td><td>14.5%<\/td><\/tr>
+                <tr><td rowspan="1">≥ 10%<\/td><td>23.5%<\/td><td>14.5%<\/td><\/tr>
             <\/tbody>
         </table>
     <\/div>
 
     <div style="display: flex; justify-content: center;">
         <div class="currency-switch">
-            <button class="currency-btn active" data-currency="uzs">🇺🇿 UZS (сум)</button>
-            <button class="currency-btn" data-currency="myb">💎 MYB</button>
+            <button class="currency-btn active" data-currency="uzs" id="btn-uzs">🇺🇿 UZS (сум)</button>
+            <button class="currency-btn" data-currency="myb" id="btn-myb">💎 MYB</button>
         </div>
     </div>
 
     <!-- 1. ТРАКТОРЫ КОЛЁСНЫЕ (4 шт) -->
-    <div class="category-title gold-text">🚜 Тракторы колёсные</div>
+    <div class="category-title gold-text" id="cat-wheel-tractors">🚜 Тракторы колёсные</div>
     <div class="grid">
-        <div class="spec-card" data-price-uzs="1300000000"><h3 class="gold-text">John Deere 8R 340</h3><p>340 л.с.</p><div class="price-display">💰 1 300 000 000 UZS</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
-        <div class="spec-card" data-price-uzs="950000000"><h3 class="gold-text">New Holland T7.270</h3><p>270 л.с.</p><div class="price-display">💰 950 000 000 UZS</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
-        <div class="spec-card" data-price-uzs="1050000000"><h3 class="gold-text">Massey Ferguson 8S.265</h3><p>265 л.с.</p><div class="price-display">💰 1 050 000 000 UZS</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
-        <div class="spec-card" data-price-uzs="1200000000"><h3 class="gold-text">CLAAS Axion 960</h3><p>445 л.с.</p><div class="price-display">💰 1 200 000 000 UZS</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
+        <div class="spec-card" data-price-uzs="1300000000"><h3 class="gold-text">John Deere 8R 340</h3><p>340 л.с.</p><div class="price-display">💰 1 300 000 000 UZS</div><div class="price-note">✅ Цена с доставкой и растаможкой</div><div class="leasing-calc"><div><label id="advance-label">Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label id="term-label">Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
+        <div class="spec-card" data-price-uzs="950000000"><h3 class="gold-text">New Holland T7.270</h3><p>270 л.с.</p><div class="price-display">💰 950 000 000 UZS</div><div class="price-note">✅ Цена с доставкой и растаможкой</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
+        <div class="spec-card" data-price-uzs="1050000000"><h3 class="gold-text">Massey Ferguson 8S.265</h3><p>265 л.с.</p><div class="price-display">💰 1 050 000 000 UZS</div><div class="price-note">✅ Цена с доставкой и растаможкой</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
+        <div class="spec-card" data-price-uzs="1200000000"><h3 class="gold-text">CLAAS Axion 960</h3><p>445 л.с.</p><div class="price-display">💰 1 200 000 000 UZS</div><div class="price-note">✅ Цена с доставкой и растаможкой</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
     </div>
 
     <!-- 2. ТРАКТОРЫ ГУСЕНИЧНЫЕ (4 шт) -->
-    <div class="category-title gold-text">🚜 Тракторы гусеничные</div>
+    <div class="category-title gold-text" id="cat-track-tractors">🚜 Тракторы гусеничные</div>
     <div class="grid">
-        <div class="spec-card" data-price-uzs="1600000000"><h3 class="gold-text">Caterpillar D8T</h3><p>354 л.с.</p><div class="price-display">💰 1 600 000 000 UZS</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
-        <div class="spec-card" data-price-uzs="1200000000"><h3 class="gold-text">Komatsu D65EX</h3><p>230 л.с.</p><div class="price-display">💰 1 200 000 000 UZS</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
-        <div class="spec-card" data-price-uzs="1400000000"><h3 class="gold-text">John Deere 9570RT</h3><p>570 л.с.</p><div class="price-display">💰 1 400 000 000 UZS</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
-        <div class="spec-card" data-price-uzs="1500000000"><h3 class="gold-text">New Holland T9.700</h3><p>682 л.с.</p><div class="price-display">💰 1 500 000 000 UZS</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
+        <div class="spec-card" data-price-uzs="1600000000"><h3 class="gold-text">Caterpillar D8T</h3><p>354 л.с.</p><div class="price-display">💰 1 600 000 000 UZS</div><div class="price-note">✅ Цена с доставкой и растаможкой</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
+        <div class="spec-card" data-price-uzs="1200000000"><h3 class="gold-text">Komatsu D65EX</h3><p>230 л.с.</p><div class="price-display">💰 1 200 000 000 UZS</div><div class="price-note">✅ Цена с доставкой и растаможкой</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
+        <div class="spec-card" data-price-uzs="1400000000"><h3 class="gold-text">John Deere 9570RT</h3><p>570 л.с.</p><div class="price-display">💰 1 400 000 000 UZS</div><div class="price-note">✅ Цена с доставкой и растаможкой</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
+        <div class="spec-card" data-price-uzs="1500000000"><h3 class="gold-text">New Holland T9.700</h3><p>682 л.с.</p><div class="price-display">💰 1 500 000 000 UZS</div><div class="price-note">✅ Цена с доставкой и растаможкой</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
     </div>
 
     <!-- 3. ЗЕРНОУБОРОЧНЫЕ КОМБАЙНЫ (4 шт) -->
-    <div class="category-title gold-text">🌽 Зерноуборочные комбайны</div>
+    <div class="category-title gold-text" id="cat-grain-harvesters">🌽 Зерноуборочные комбайны</div>
     <div class="grid">
-        <div class="spec-card" data-price-uzs="2200000000"><h3 class="gold-text">CLAAS Lexion 760</h3><p>462 л.с.</p><div class="price-display">💰 2 200 000 000 UZS</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
-        <div class="spec-card" data-price-uzs="2000000000"><h3 class="gold-text">John Deere S790</h3><p>590 л.с.</p><div class="price-display">💰 2 000 000 000 UZS</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
-        <div class="spec-card" data-price-uzs="1850000000"><h3 class="gold-text">New Holland CR10.90</h3><p>700 л.с.</p><div class="price-display">💰 1 850 000 000 UZS</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
-        <div class="spec-card" data-price-uzs="2100000000"><h3 class="gold-text">Massey Ferguson IDEAL 10</h3><p>790 л.с.</p><div class="price-display">💰 2 100 000 000 UZS</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
+        <div class="spec-card" data-price-uzs="2200000000"><h3 class="gold-text">CLAAS Lexion 760</h3><p>462 л.с.</p><div class="price-display">💰 2 200 000 000 UZS</div><div class="price-note">✅ Цена с доставкой и растаможкой</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
+        <div class="spec-card" data-price-uzs="2000000000"><h3 class="gold-text">John Deere S790</h3><p>590 л.с.</p><div class="price-display">💰 2 000 000 000 UZS</div><div class="price-note">✅ Цена с доставкой и растаможкой</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
+        <div class="spec-card" data-price-uzs="1850000000"><h3 class="gold-text">New Holland CR10.90</h3><p>700 л.с.</p><div class="price-display">💰 1 850 000 000 UZS</div><div class="price-note">✅ Цена с доставкой и растаможкой</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
+        <div class="spec-card" data-price-uzs="2100000000"><h3 class="gold-text">Massey Ferguson IDEAL 10</h3><p>790 л.с.</p><div class="price-display">💰 2 100 000 000 UZS</div><div class="price-note">✅ Цена с доставкой и растаможкой</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
     </div>
 
     <!-- 4. КОРМОУБОРОЧНЫЕ КОМБАЙНЫ (3 шт) -->
-    <div class="category-title gold-text">🌿 Кормоуборочные комбайны</div>
+    <div class="category-title gold-text" id="cat-forage-harvesters">🌿 Кормоуборочные комбайны</div>
     <div class="grid">
-        <div class="spec-card" data-price-uzs="1550000000"><h3 class="gold-text">CLAAS Jaguar 970</h3><p>790 л.с.</p><div class="price-display">💰 1 550 000 000 UZS</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
-        <div class="spec-card" data-price-uzs="1400000000"><h3 class="gold-text">John Deere 8600i</h3><p>650 л.с.</p><div class="price-display">💰 1 400 000 000 UZS</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
-        <div class="spec-card" data-price-uzs="1450000000"><h3 class="gold-text">New Holland FR780</h3><p>780 л.с.</p><div class="price-display">💰 1 450 000 000 UZS</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
+        <div class="spec-card" data-price-uzs="1550000000"><h3 class="gold-text">CLAAS Jaguar 970</h3><p>790 л.с.</p><div class="price-display">💰 1 550 000 000 UZS</div><div class="price-note">✅ Цена с доставкой и растаможкой</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
+        <div class="spec-card" data-price-uzs="1400000000"><h3 class="gold-text">John Deere 8600i</h3><p>650 л.с.</p><div class="price-display">💰 1 400 000 000 UZS</div><div class="price-note">✅ Цена с доставкой и растаможкой</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
+        <div class="spec-card" data-price-uzs="1450000000"><h3 class="gold-text">New Holland FR780</h3><p>780 л.с.</p><div class="price-display">💰 1 450 000 000 UZS</div><div class="price-note">✅ Цена с доставкой и растаможкой</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
     </div>
 
     <!-- 5. ПОЧВООБРАБАТЫВАЮЩАЯ ТЕХНИКА (3 шт) -->
-    <div class="category-title gold-text">🌾 Почвообрабатывающая техника</div>
+    <div class="category-title gold-text" id="cat-tillage">🌾 Почвообрабатывающая техника</div>
     <div class="grid">
-        <div class="spec-card" data-price-uzs="400000000"><h3 class="gold-text">Lemken Diamant 12 (плуг)</h3><p>12 корпусов</p><div class="price-display">💰 400 000 000 UZS</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
-        <div class="spec-card" data-price-uzs="330000000"><h3 class="gold-text">Horsch Tiger 10 MT</h3><p>культиватор 10 м</p><div class="price-display">💰 330 000 000 UZS</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
-        <div class="spec-card" data-price-uzs="270000000"><h3 class="gold-text">Great Plains Turbo Max</h3><p>борона 12 м</p><div class="price-display">💰 270 000 000 UZS</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
+        <div class="spec-card" data-price-uzs="400000000"><h3 class="gold-text">Lemken Diamant 12 (плуг)</h3><p>12 корпусов</p><div class="price-display">💰 400 000 000 UZS</div><div class="price-note">✅ Цена с доставкой и растаможкой</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
+        <div class="spec-card" data-price-uzs="330000000"><h3 class="gold-text">Horsch Tiger 10 MT</h3><p>культиватор 10 м</p><div class="price-display">💰 330 000 000 UZS</div><div class="price-note">✅ Цена с доставкой и растаможкой</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
+        <div class="spec-card" data-price-uzs="270000000"><h3 class="gold-text">Great Plains Turbo Max</h3><p>борона 12 м</p><div class="price-display">💰 270 000 000 UZS</div><div class="price-note">✅ Цена с доставкой и растаможкой</div><div class="leasing-calc"><div><label>Аванс (%): </label><input type="range" class="init-range" min="10" max="50" value="20"><input type="number" class="init-input" value="20" style="width: 60px;"></div><div><label>Срок (мес): </label><input type="range" class="term-range" min="6" max="60" value="36"><input type="number" class="term-input" value="36" style="width: 60px;"></div><div class="calc-result"><strong class="gold-text monthly">0 UZS</strong><div class="rate-note"></div></div></div></div>
     </div>
 
     <div style="text-align: center; margin-top: 40px;">
-        <a href="#" class="btn-primary"><i class="fas fa-file-signature"></i> Оставить заявку</a>
-        <a href="index.html" class="btn-outline" style="margin-left: 15px;">← На главную</a>
+        <a href="#" class="btn-primary" id="request-btn"><i class="fas fa-file-signature"></i> Оставить заявку</a>
+        <a href="index.html" class="btn-outline" id="back-home" style="margin-left: 15px;">← На главную</a>
     </div>
 </main>
 
 <footer>
-    <p>© 2025 MIYBANK (MYB) — Лизинг сезонной техники | 5 категорий, 18 моделей</p>
-    <p>Ставки UZS: 22.5–23.5% | MYB: 13.5–14.5%</p>
+    <p>© 2025 MIYBANK (MYB) — <span id="footer-text">Лизинг сезонной техники | 5 категорий, 18 моделей</span></p>
+    <p id="footer-rates">Ставки UZS: 22.5–23.5% | MYB: 13.5–14.5%</p>
 </footer>
+
+<!-- Language Switcher -->
+<div class="language-switcher">
+    <button class="lang-btn" id="langToggleBtn">🌐 <span id="currentLangLabel">Русский</span></button>
+    <div class="lang-menu" id="langMenu">
+        <button class="lang-option" data-lang="uz">🇺🇿 O‘zbekcha</button>
+        <button class="lang-option" data-lang="ru">🇷🇺 Русский</button>
+        <button class="lang-option" data-lang="kk">🇰🇿 Қазақша</button>
+        <button class="lang-option" data-lang="ky">🇰🇬 Кыргызча</button>
+        <button class="lang-option" data-lang="tg">🇹🇯 Тоҷикӣ</button>
+        <button class="lang-option" data-lang="zh">🇨🇳 中文</button>
+        <button class="lang-option" data-lang="en">🇬🇧 English</button>
+        <button class="lang-option" data-lang="ar">🇸🇦 العربية</button>
+        <button class="lang-option" data-lang="ar-eg">🇪🇬 العربية (مصري)</button>
+        <button class="lang-option" data-lang="fa">🇮🇷 فارسی</button>
+        <button class="lang-option" data-lang="prs">🇦🇫 دری</button>
+    </div>
+</div>
 
 <script>
     const EXCHANGE_RATE = 12800;
@@ -246,6 +277,32 @@
             document.querySelectorAll('.spec-card').forEach(setupCard);
         });
     });
+    
+    // Translations
+    const translations = {
+        uz: { nav_home:"Bosh sahifa", nav_liquidity:"Likvidlik", nav_assets:"Mis aktivlari", nav_spec:"Maxsus texnika", nav_cars:"Avtomobillar", nav_ev:"Elektromobillar", nav_seasonal:"Mavsumiy texnika", nav_equipment:"Uskunalar", nav_halal:"Halal lizing", nav_financial:"Moliyaviy vositalar", nav_contacts:"Kontaktlar", page_title:"Mavsumiy texnika lizingi", price_note_label:"✅ Barcha narxlar yetkazib berish va bojxona rasmiylashtiruvi bilan", table_advance:"Avans", table_rate_uzs:"UZS stavkasi", table_rate_myb:"MYB stavkasi", btn_uzs:"UZS", btn_myb:"MYB", cat_wheel_tractors:"G'ildirakli traktorlar", cat_track_tractors:"Tırtıllı traktorlar", cat_grain_harvesters:"Don o'rish kombaynlar", cat_forage_harvesters:"Yem-xashak kombaynlari", cat_tillage:"Tuproqqa ishlov berish texnikasi", advance_label:"Avans (%)", term_label:"Muddat (oy)", request_btn:"So'rov qoldirish", back_home:"← Bosh sahifaga", footer_text:"Mavsumiy texnika lizingi | 5 kategoriya, 18 model", footer_rates:"UZS stavkalari: 22.5–23.5% | MYB: 13.5–14.5%", wallet_text:"Hamyonni ulash" },
+        ru: { nav_home:"Главная", nav_liquidity:"Ликвидность", nav_assets:"Медные активы", nav_spec:"Спецтехника", nav_cars:"Авто", nav_ev:"Электромобили", nav_seasonal:"Сезонная", nav_equipment:"Оборудование", nav_halal:"Халяльный", nav_financial:"Фин. инструменты", nav_contacts:"Контакты", page_title:"Лизинг сезонной техники", price_note_label:"✅ Все цены с доставкой и растаможкой", table_advance:"Аванс", table_rate_uzs:"Ставка UZS", table_rate_myb:"Ставка MYB", btn_uzs:"UZS (сум)", btn_myb:"MYB", cat_wheel_tractors:"Тракторы колёсные", cat_track_tractors:"Тракторы гусеничные", cat_grain_harvesters:"Зерноуборочные комбайны", cat_forage_harvesters:"Кормоуборочные комбайны", cat_tillage:"Почвообрабатывающая техника", advance_label:"Аванс (%)", term_label:"Срок (мес)", request_btn:"Оставить заявку", back_home:"← На главную", footer_text:"Лизинг сезонной техники | 5 категорий, 18 моделей", footer_rates:"Ставки UZS: 22.5–23.5% | MYB: 13.5–14.5%", wallet_text:"Подключить кошелёк" },
+        en: { nav_home:"Home", nav_liquidity:"Liquidity", nav_assets:"Copper Assets", nav_spec:"Special Equipment", nav_cars:"Cars", nav_ev:"EV", nav_seasonal:"Seasonal", nav_equipment:"Equipment", nav_halal:"Halal Leasing", nav_financial:"Financial Instruments", nav_contacts:"Contacts", page_title:"Seasonal Equipment Leasing", price_note_label:"✅ All prices include delivery and customs clearance", table_advance:"Down Payment", table_rate_uzs:"UZS Rate", table_rate_myb:"MYB Rate", btn_uzs:"UZS", btn_myb:"MYB", cat_wheel_tractors:"Wheel Tractors", cat_track_tractors:"Crawler Tractors", cat_grain_harvesters:"Grain Harvesters", cat_forage_harvesters:"Forage Harvesters", cat_tillage:"Tillage Equipment", advance_label:"Down Payment (%)", term_label:"Term (months)", request_btn:"Leave a request", back_home:"← Back to Home", footer_text:"Seasonal Equipment Leasing | 5 categories, 18 models", footer_rates:"UZS rates: 22.5–23.5% | MYB: 13.5–14.5%", wallet_text:"Connect Wallet" }
+    };
+
+    let currentLang = localStorage.getItem('language') || 'ru';
+    function updateLanguage(lang) {
+        const t = translations[lang];
+        if (!t) return;
+        Object.keys(t).forEach(id => {
+            const el = document.getElementById(id);
+            if (el && !el.classList?.contains('spec-card')) el.innerHTML = t[id];
+        });
+        const langNames = { uz:"O‘zbekcha", ru:"Русский", kk:"Қазақша", ky:"Кыргызча", tg:"Тоҷикӣ", zh:"中文", en:"English", ar:"العربية", "ar-eg":"العربية (مصري)", fa:"فارسی", prs:"دری" };
+        document.getElementById('currentLangLabel').innerText = langNames[lang] || "Русский";
+        document.querySelectorAll('.lang-option').forEach(btn => btn.classList.toggle('active', btn.dataset.lang === lang));
+        localStorage.setItem('language', lang);
+        currentLang = lang;
+    }
+    document.getElementById('langToggleBtn').addEventListener('click', () => document.getElementById('langMenu').classList.toggle('show'));
+    document.querySelectorAll('.lang-option').forEach(btn => btn.addEventListener('click', () => { updateLanguage(btn.dataset.lang); document.getElementById('langMenu').classList.remove('show'); }));
+    document.addEventListener('click', (e) => { if (!e.target.closest('.language-switcher')) document.getElementById('langMenu').classList.remove('show'); });
+    updateLanguage(currentLang);
     document.getElementById('wallet-btn')?.addEventListener('click', () => alert('Connect wallet soon.'));
 </script>
 </body>
