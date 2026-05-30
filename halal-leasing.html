@@ -26,6 +26,17 @@
         .insurance-note { background: rgba(0,170,85,0.1); border-left: 3px solid #00FF88; padding: 15px; margin: 15px 0; }
         .only-myb-badge { display: inline-block; background: #00AA55; color: #fff; padding: 4px 12px; border-radius: 40px; font-size: 0.7rem; font-weight: bold; margin-bottom: 10px; }
         @media (max-width: 768px) { .grid-2 { grid-template-columns: 1fr; } .container { padding: 0 15px; } }
+        
+        /* Language Switcher */
+        .language-switcher { position: fixed; bottom: 20px; right: 20px; z-index: 1000; }
+        .lang-btn { background: #FFD700; color: #0A1E3D; border: none; border-radius: 50px; padding: 12px 18px; font-size: 1.2rem; font-weight: bold; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.3); transition: 0.3s; display: flex; align-items: center; gap: 8px; }
+        .lang-btn:hover { background: #FFA500; transform: scale(1.05); }
+        .lang-menu { position: absolute; bottom: 60px; right: 0; background: #0A1E3D; border: 1px solid #FFD700; border-radius: 16px; padding: 10px; display: none; flex-direction: column; gap: 8px; min-width: 180px; backdrop-filter: blur(10px); box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
+        .lang-menu.show { display: flex; }
+        .lang-option { background: transparent; border: none; color: #fff; padding: 8px 12px; text-align: left; cursor: pointer; border-radius: 8px; transition: 0.2s; font-size: 0.9rem; }
+        .lang-option:hover { background: #FFD700; color: #0A1E3D; }
+        .lang-option.active { background: #FFD700; color: #0A1E3D; font-weight: bold; }
+        @media (max-width: 768px) { .lang-btn { padding: 10px 14px; font-size: 1rem; } .lang-menu { min-width: 160px; } }
     </style>
 </head>
 <body>
@@ -36,113 +47,159 @@
             <img src="logo.png" style="height: 40px;" onerror="this.src='https://placehold.co/200x60/0A1E3D/FFD700?text=MYB'">
             <span style="font-size: 1.2rem; font-weight: bold;" class="gold-text">MIYBANK (MYB)</span>
         </div>
-        <button id="wallet-btn" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 8px 16px; border-radius: 40px; cursor: pointer;"><i class="fas fa-wallet"></i> Connect Wallet</button>
+        <button id="wallet-btn" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 8px 16px; border-radius: 40px; cursor: pointer;"><i class="fas fa-wallet"></i> <span id="wallet-text">Connect Wallet</span></button>
     </div>
     <div style="border-top: 1px solid rgba(255,255,255,0.1);">
         <div class="container" style="padding: 10px 20px; display: flex; flex-wrap: wrap; gap: 15px;">
-            <a href="index.html" class="nav-link">🏠 Home</a>
-            <a href="liquidity.html" class="nav-link">💧 Liquidity</a>
-            <a href="assets.html" class="nav-link">🏭 Copper Assets</a>
-            <a href="spec.html" class="nav-link">📦 Спецтехника</a>
-            <a href="cars.html" class="nav-link">🚗 Авто</a>
-            <a href="ev.html" class="nav-link">⚡ EV</a>
-            <a href="seasonal.html" class="nav-link">🌾 Сезонная</a>
-            <a href="halal-leasing.html" class="nav-link active-nav">☪️ Халяльный</a>
+            <a href="index.html" class="nav-link" id="nav-home">🏠 Home</a>
+            <a href="liquidity.html" class="nav-link" id="nav-liquidity">💧 Liquidity</a>
+            <a href="assets.html" class="nav-link" id="nav-assets">🏭 Copper Assets</a>
+            <a href="spec.html" class="nav-link" id="nav-spec">📦 Спецтехника</a>
+            <a href="cars.html" class="nav-link" id="nav-cars">🚗 Авто</a>
+            <a href="ev.html" class="nav-link" id="nav-ev">⚡ EV</a>
+            <a href="seasonal.html" class="nav-link" id="nav-seasonal">🌾 Сезонная</a>
+            <a href="equipment.html" class="nav-link" id="nav-equipment">🏭 Оборудование</a>
+            <a href="halal-leasing.html" class="nav-link active-nav" id="nav-halal">☪️ Халяльный</a>
+            <a href="financial-instruments.html" class="nav-link" id="nav-financial">💱 Fin Instruments</a>
+            <a href="contacts.html" class="nav-link" id="nav-contacts">📞 Контакты</a>
         </div>
     </div>
 </header>
 
 <main class="container" style="padding: 30px 20px;">
     <div class="bg-dark-card" style="text-align: center;">
-        <div class="only-myb-badge"><i class="fas fa-coins"></i> ТОЛЬКО MYB</div>
+        <div class="only-myb-badge"><i class="fas fa-coins"></i> <span id="only-myb-badge-text">ТОЛЬКО MYB</span></div>
         <i class="fas fa-star-and-crescent" style="font-size: 3rem; color: #00FF88; margin-bottom: 15px;"></i>
-        <h1 class="green-text" style="font-size: 2rem;">Халяльный лизинг</h1>
-        <p>Беспроцентное финансирование по принципам Шариата</p>
-        <p style="font-size: 0.9rem; color: #aaa;">Murabaha · Ijara · Нет riba (процентов) · Полное страхование техники</p>
-        <p style="font-size: 1rem; margin-top: 10px;"><strong class="gold-text">⚠️ Оплата только в токенах MYB</strong> (1 MYB ≈ 1 USD)</p>
+        <h1 class="green-text" style="font-size: 2rem;" id="page-title">Халяльный лизинг</h1>
+        <p id="page-subtitle">Беспроцентное финансирование по принципам Шариата</p>
+        <p style="font-size: 0.9rem; color: #aaa;" id="page-desc">Murabaha · Ijara · Нет riba (процентов) · Полное страхование техники</p>
+        <p style="font-size: 1rem; margin-top: 10px;"><strong class="gold-text"><span id="payment-warning">⚠️ Оплата только в токенах MYB</span></strong> <span id="payment-rate">(1 MYB ≈ 1 USD)</span></p>
     </div>
 
     <div class="bg-dark-card">
-        <h2 class="green-text"><i class="fas fa-balance-scale"></i> Как работает халяльный лизинг</h2>
-        <p>В исламском финансировании процент (riba) запрещён. MIYBANK предоставляет технику и оборудование по модели <strong>Murabaha</strong> (продажа с фиксированной наценкой) и <strong>Ijara</strong> (аренда с правом выкупа).</p>
-        <p style="margin-top: 10px;"><strong class="gold-text">Все платежи — в токенах MYB.</strong></p>
+        <h2 class="green-text" id="how-title"><i class="fas fa-balance-scale"></i> Как работает халяльный лизинг</h2>
+        <p id="how-text">В исламском финансировании процент (riba) запрещён. MIYBANK предоставляет технику и оборудование по модели <strong>Murabaha</strong> (продажа с фиксированной наценкой) и <strong>Ijara</strong> (аренда с правом выкупа).</p>
+        <p style="margin-top: 10px;"><strong class="gold-text" id="all-myb-payments">Все платежи — в токенах MYB.</strong></p>
         <div class="grid-2" style="margin-top: 20px;">
             <div style="background: rgba(0,170,85,0.1); padding: 20px; border-radius: 20px;">
                 <i class="fas fa-hand-holding-usd" style="font-size: 2rem; color: #00FF88;"></i>
-                <h3 class="green-text">Murabaha</h3>
-                <p>Банк покупает технику и продаёт клиенту с фиксированной наценкой (например, +20% к цене). Клиент платит в рассрочку без процентов.</p>
+                <h3 class="green-text" id="murabaha-title">Murabaha</h3>
+                <p id="murabaha-text">Банк покупает технику и продаёт клиенту с фиксированной наценкой (например, +20% к цене). Клиент платит в рассрочку без процентов.</p>
             </div>
             <div style="background: rgba(0,170,85,0.1); padding: 20px; border-radius: 20px;">
                 <i class="fas fa-home" style="font-size: 2rem; color: #00FF88;"></i>
-                <h3 class="green-text">Ijara</h3>
-                <p>Банк сдаёт технику в аренду с правом последующего выкупа. Арендные платежи не считаются процентами, а являются платой за пользование активом.</p>
+                <h3 class="green-text" id="ijara-title">Ijara</h3>
+                <p id="ijara-text">Банк сдаёт технику в аренду с правом последующего выкупа. Арендные платежи не считаются процентами, а являются платой за пользование активом.</p>
             </div>
         </div>
     </div>
 
     <div class="bg-dark-card">
-        <h2 class="green-text"><i class="fas fa-shield-alt"></i> Страхование (100% покрытие)</h2>
+        <h2 class="green-text" id="insurance-title"><i class="fas fa-shield-alt"></i> Страхование (100% покрытие)</h2>
         <div class="insurance-note">
-            <i class="fas fa-check-circle green-text"></i> <strong>Обязательное требование:</strong> страхование техники на <strong>100% от стоимости</strong> (угон, ущерб, гибель).<br>
-            <i class="fas fa-check-circle green-text"></i> <strong>Страховая премия:</strong> ~2% от стоимости техники в год (оплачивается в MYB в рассрочку вместе с платежами).<br>
-            <i class="fas fa-check-circle green-text"></i> <strong>Выгодоприобретатель:</strong> при полной гибели — страховая выплата идёт на погашение остатка суммы перед MIYBANK.
+            <i class="fas fa-check-circle green-text"></i> <strong id="insurance-required">Обязательное требование:</strong> <span id="insurance-text">страхование техники на <strong>100% от стоимости</strong> (угон, ущерб, гибель).</span><br>
+            <i class="fas fa-check-circle green-text"></i> <strong id="insurance-premium-title">Страховая премия:</strong> <span id="insurance-premium-text">~2% от стоимости техники в год (оплачивается в MYB в рассрочку вместе с платежами).</span><br>
+            <i class="fas fa-check-circle green-text"></i> <strong id="insurance-beneficiary-title">Выгодоприобретатель:</strong> <span id="insurance-beneficiary-text">при полной гибели — страховая выплата идёт на погашение остатка суммы перед MIYBANK.</span>
         </div>
     </div>
 
     <div class="bg-dark-card">
-        <h2 class="green-text"><i class="fas fa-calculator"></i> Пример расчёта (Murabaha + страхование) в MYB</h2>
-        <p>Техника стоимостью <strong>50 000 MYB</strong> (≈ 50 000 USD). Наценка (маржа) — <strong>20%</strong>. Срок — <strong>24 месяца</strong>. Страховка — <strong>2% от стоимости в год</strong>.</p>
+        <h2 class="green-text" id="example-title"><i class="fas fa-calculator"></i> Пример расчёта (Murabaha + страхование) в MYB</h2>
+        <p id="example-desc">Техника стоимостью <strong>50 000 MYB</strong> (≈ 50 000 USD). Наценка (маржа) — <strong>20%</strong>. Срок — <strong>24 месяца</strong>. Страховка — <strong>2% от стоимости в год</strong>.</p>
         <table style="width: 100%; margin: 15px 0; border-collapse: collapse;">
-            <tr style="border-bottom: 1px solid rgba(0,170,85,0.3);"><td style="padding: 8px;">Цена техники (MYB)</td><td style="text-align: right;">50 000 MYB</td></tr>
-            <tr style="border-bottom: 1px solid rgba(0,170,85,0.3);"><td style="padding: 8px;">Наценка (20%)</td><td style="text-align: right;">+10 000 MYB</td></tr>
-            <tr style="border-bottom: 1px solid rgba(0,170,85,0.3);"><td style="padding: 8px; font-weight: bold;">Общая сумма к оплате (без страховки)</td><td style="text-align: right; font-weight: bold;" class="green-text">60 000 MYB</td></tr>
-            <tr style="border-bottom: 1px solid rgba(0,170,85,0.3);"><td style="padding: 8px;">Аванс (20%)</td><td style="text-align: right;">12 000 MYB</td></tr>
-            <tr style="border-bottom: 1px solid rgba(0,170,85,0.3);"><td style="padding: 8px;">Остаток в рассрочку (24 месяца)</td><td style="text-align: right;">48 000 MYB → 2 000 MYB/мес</td></tr>
-            <tr style="border-bottom: 1px solid rgba(0,170,85,0.3);"><td style="padding: 8px;">Страховая премия (2% от 50 000 MYB в год × 2 года)</td><td style="text-align: right;">2 000 MYB</td></tr>
-            <tr style="border-bottom: 1px solid rgba(0,170,85,0.3);"><td style="padding: 8px;">Распределение страховки на 24 месяца</td><td style="text-align: right;">+83 MYB/мес</td></tr>
-            <tr style="background: rgba(0,170,85,0.2);"><td style="padding: 8px; font-weight: bold;">ИТОГО ежемесячный платёж (рассрочка + страховка)</td><td style="text-align: right; font-weight: bold;" class="green-text">2 083 MYB / мес</td></tr>
+            <tr style="border-bottom: 1px solid rgba(0,170,85,0.3);"><td style="padding: 8px;" id="table-price">Цена техники (MYB)</td><td style="text-align: right;">50 000 MYB</td></tr>
+            <tr style="border-bottom: 1px solid rgba(0,170,85,0.3);"><td style="padding: 8px;" id="table-markup">Наценка (20%)</td><td style="text-align: right;">+10 000 MYB</td></tr>
+            <tr style="border-bottom: 1px solid rgba(0,170,85,0.3);"><td style="padding: 8px; font-weight: bold;" id="table-total">Общая сумма к оплате (без страховки)</td><td style="text-align: right; font-weight: bold;" class="green-text">60 000 MYB</td></tr>
+            <tr style="border-bottom: 1px solid rgba(0,170,85,0.3);"><td style="padding: 8px;" id="table-down">Аванс (20%)</td><td style="text-align: right;">12 000 MYB</td></tr>
+            <tr style="border-bottom: 1px solid rgba(0,170,85,0.3);"><td style="padding: 8px;" id="table-installment">Остаток в рассрочку (24 месяца)</td><td style="text-align: right;">48 000 MYB → 2 000 MYB/мес</td></tr>
+            <tr style="border-bottom: 1px solid rgba(0,170,85,0.3);"><td style="padding: 8px;" id="table-insurance">Страховая премия (2% от 50 000 MYB в год × 2 года)</td><td style="text-align: right;">2 000 MYB</td></tr>
+            <tr style="border-bottom: 1px solid rgba(0,170,85,0.3);"><td style="padding: 8px;" id="table-insurance-monthly">Распределение страховки на 24 месяца</td><td style="text-align: right;">+83 MYB/мес</td></tr>
+            <tr style="background: rgba(0,170,85,0.2);"><td style="padding: 8px; font-weight: bold;" id="table-total-monthly">ИТОГО ежемесячный платёж (рассрочка + страховка)</td><td style="text-align: right; font-weight: bold;" class="green-text">2 083 MYB / мес</td></tr>
         </table>
-        <p class="green-text" style="font-size: 0.85rem;">☪️ Нет процентов — только фиксированная наценка и реальная стоимость страховки. Всё в MYB.</p>
+        <p class="green-text" style="font-size: 0.85rem;" id="example-note">☪️ Нет процентов — только фиксированная наценка и реальная стоимость страховки. Всё в MYB.</p>
     </div>
 
     <div class="bg-dark-card">
-        <h2 class="green-text"><i class="fas fa-check-circle"></i> Условия халяльного лизинга</h2>
+        <h2 class="green-text" id="conditions-title"><i class="fas fa-check-circle"></i> Условия халяльного лизинга</h2>
         <ul style="margin-left: 20px;">
-            <li>✅ Отсутствие riba (ссудного процента)</li>
-            <li>✅ Фиксированная наценка (маржа) — заранее известна</li>
-            <li>✅ Техника должна иметь реальное материальное существование</li>
-            <li>✅ <strong>Обязательное страхование 100% стоимости техники</strong> (страховая компания — партнёр MIYBANK)</li>
-            <li>✅ Договор не содержит штрафов за просрочку (только благотворительные взносы)</li>
-            <li>✅ <strong class="gold-text">Все платежи — только в токенах MYB</strong></li>
-            <li>✅ Шариатский аудит и сертификация (в процессе)</li>
+            <li id="cond1">✅ Отсутствие riba (ссудного процента)</li>
+            <li id="cond2">✅ Фиксированная наценка (маржа) — заранее известна</li>
+            <li id="cond3">✅ Техника должна иметь реальное материальное существование</li>
+            <li id="cond4">✅ <strong>Обязательное страхование 100% стоимости техники</strong> (страховая компания — партнёр MIYBANK)</li>
+            <li id="cond5">✅ Договор не содержит штрафов за просрочку (только благотворительные взносы)</li>
+            <li id="cond6">✅ <strong class="gold-text">Все платежи — только в токенах MYB</strong></li>
+            <li id="cond7">✅ Шариатский аудит и сертификация (в процессе)</li>
         </ul>
     </div>
 
     <div class="bg-dark-card">
-        <h2 class="green-text"><i class="fas fa-building"></i> Страховая компания-партнёр</h2>
-        <p>Страхование осуществляется через аккредитованную страховую компанию с рейтингом не ниже A. Полис покрывает:</p>
+        <h2 class="green-text" id="partner-title"><i class="fas fa-building"></i> Страховая компания-партнёр</h2>
+        <p id="partner-text">Страхование осуществляется через аккредитованную страховую компанию с рейтингом не ниже A. Полис покрывает:</p>
         <ul style="margin-left: 20px; margin-top: 10px;">
             <li>🔹 Угон / хищение техники — 100%</li>
             <li>🔹 Полная гибель (ДТП, пожар, стихия) — 100%</li>
             <li>🔹 Ущерб от третьих лиц — 100%</li>
             <li>🔹 Ремонт после ДТП (франшиза отсутствует для халяльных программ)</li>
         </ul>
-        <p style="margin-top: 10px;"><strong>Выгодоприобретатель по страховке:</strong> при полной гибели — MIYBANK (погашение остатка задолженности в MYB). При частичном ущербе — клиент (ремонт за счёт страховой).</p>
+        <p style="margin-top: 10px;" id="beneficiary-note"><strong>Выгодоприобретатель по страховке:</strong> при полной гибели — MIYBANK (погашение остатка задолженности в MYB). При частичном ущербе — клиент (ремонт за счёт страховой).</p>
     </div>
 
     <div class="bg-dark-card" style="text-align: center;">
         <i class="fas fa-mosque" style="font-size: 2rem; color: #00FF88;"></i>
-        <p style="margin: 15px 0;">Сертификация шариатского совета — в процессе. Все сделки соответствуют принципам исламской экономики. Страхование включено в ежемесячные платежи в MYB.</p>
-        <a href="#" class="btn-green">Заявка на халяльный лизинг</a>
-        <a href="index.html" class="btn-outline" style="margin-left: 15px;">← На главную</a>
+        <p style="margin: 15px 0;" id="cert-note">Сертификация шариатского совета — в процессе. Все сделки соответствуют принципам исламской экономики. Страхование включено в ежемесячные платежи в MYB.</p>
+        <a href="#" class="btn-green" id="request-btn">Заявка на халяльный лизинг</a>
+        <a href="index.html" class="btn-outline" style="margin-left: 15px;" id="back-home">← На главную</a>
     </div>
 </main>
 
 <footer>
-    <p>© 2025 MIYBANK (MYB) — Халяльный лизинг. Только MYB. Без процентов, с полным страхованием техники (100% стоимости).</p>
+    <p>© 2025 MIYBANK (MYB) — <span id="footer-text">Халяльный лизинг. Только MYB. Без процентов, с полным страхованием техники (100% стоимости).</span></p>
 </footer>
 
+<!-- Language Switcher -->
+<div class="language-switcher">
+    <button class="lang-btn" id="langToggleBtn">🌐 <span id="currentLangLabel">Русский</span></button>
+    <div class="lang-menu" id="langMenu">
+        <button class="lang-option" data-lang="uz">🇺🇿 O‘zbekcha</button>
+        <button class="lang-option" data-lang="ru">🇷🇺 Русский</button>
+        <button class="lang-option" data-lang="kk">🇰🇿 Қазақша</button>
+        <button class="lang-option" data-lang="ky">🇰🇬 Кыргызча</button>
+        <button class="lang-option" data-lang="tg">🇹🇯 Тоҷикӣ</button>
+        <button class="lang-option" data-lang="zh">🇨🇳 中文</button>
+        <button class="lang-option" data-lang="en">🇬🇧 English</button>
+        <button class="lang-option" data-lang="ar">🇸🇦 العربية</button>
+        <button class="lang-option" data-lang="ar-eg">🇪🇬 العربية (مصري)</button>
+        <button class="lang-option" data-lang="fa">🇮🇷 فارسی</button>
+        <button class="lang-option" data-lang="prs">🇦🇫 دری</button>
+    </div>
+</div>
+
 <script>
+    // Translations
+    const translations = {
+        uz: { only_myb_badge_text:"FAQAT MYB", page_title:"Halal lizing", page_subtitle:"Shariat tamoyillari bo'yicha foizsiz moliyalashtirish", page_desc:"Murabaha · Ijara · Riba yo'q · To'liq sug'urta", payment_warning:"⚠️ To'lov faqat MYB tokenlarida", payment_rate:"(1 MYB ≈ 1 USD)", how_title:"Halal lizing qanday ishlaydi", how_text:"Islom moliyasida foiz (riba) taqiqlangan. MIYBANK uskunalarni <strong>Murabaha</strong> va <strong>Ijara</strong> modellari bo'yicha taqdim etadi.", all_myb_payments:"Barcha to'lovlar MYB tokenlarida.", murabaha_title:"Murabaha", murabaha_text:"Bank uskunani sotib oladi va mijozga belgilangan ustama bilan sotadi (masalan, narxga +20%). Mijoz foizsiz bo'lib to'laydi.", ijara_title:"Ijara", ijara_text:"Bank uskunani keyinchalik sotib olish huquqi bilan ijaraga beradi. Ijara to'lovlari foiz hisoblanmaydi.", insurance_title:"Sug'urta (100% qoplash)", insurance_required:"Majburiy talab:", insurance_text:"uskunani <strong>100% qiymatida</strong> sug'urtalash (o'g'irlash, zarar, halokat)", insurance_premium_title:"Sug'urta mukofoti:", insurance_premium_text:"uskuna qiymatining yiliga ~2% (MYB da bo'lib to'lash bilan)", insurance_beneficiary_title:"Benefitsiar:", insurance_beneficiary_text:"to'liq halokatda — sug'urta to'lovi MIYBANK oldidagi qarzni to'lashga yo'naltiriladi.", example_title:"Hisoblash misoli (Murabaha + sug'urta) MYB da", example_desc:"Uskuna narxi <strong>50 000 MYB</strong> (≈ 50 000 USD). Ustama — <strong>20%</strong>. Muddat — <strong>24 oy</strong>. Sug'urta — <strong>yiliga 2%</strong>.", table_price:"Uskuna narxi (MYB)", table_markup:"Ustama (20%)", table_total:"To'lov uchun umumiy summa (sug'urtasiz)", table_down:"Avans (20%)", table_installment:"Bo'lib to'lash (24 oy)", table_insurance:"Sug'urta mukofoti (2% × 2 yil)", table_insurance_monthly:"Sug'urtani 24 oyga taqsimlash", table_total_monthly:"JAMI oylik to'lov (bo'lib to'lash + sug'urta)", example_note:"☪️ Foizlar yo'q — faqat belgilangan ustama va sug'urtaning haqiqiy qiymati. Hammasi MYB da.", conditions_title:"Halal lizing shartlari", cond1:"✅ Riba (foiz) yo'q", cond2:"✅ Belgilangan ustama — oldindan ma'lum", cond3:"✅ Uskuna haqiqiy moddiy mavjud bo'lishi kerak", cond4:"✅ Uskunani 100% sug'urtalash majburiy", cond5:"✅ Kechiktirilgan to'lov uchun jarimalar yo'q", cond6:"✅ Barcha to'lovlar faqat MYB tokenlarida", cond7:"✅ Shariat kengashi auditi va sertifikatlanishi (jarayonda)", partner_title:"Sug'urta kompaniyasi hamkori", partner_text:"Sug'urta reytingi A dan past bo'lmagan akkreditatsiyalangan sug'urta kompaniyasi orqali amalga oshiriladi. Polis qoplaydi:", beneficiary_note:"<strong>Sug'urta bo'yicha benefitsiar:</strong> to'liq halokatda — MIYBANK. Qisman zararda — mijoz.", cert_note:"Shariat kengashi sertifikati — jarayonda. Barcha bitimlar islom iqtisodiyoti tamoyillariga mos keladi.", request_btn:"Halal lizing uchun ariza", back_home:"← Bosh sahifaga", footer_text:"Halal lizing. Faqat MYB. Foizsiz, to'liq sug'urta bilan (100%).", wallet_text:"Hamyonni ulash" },
+        ru: { only_myb_badge_text:"ТОЛЬКО MYB", page_title:"Халяльный лизинг", page_subtitle:"Беспроцентное финансирование по принципам Шариата", page_desc:"Murabaha · Ijara · Нет riba (процентов) · Полное страхование техники", payment_warning:"⚠️ Оплата только в токенах MYB", payment_rate:"(1 MYB ≈ 1 USD)", how_title:"Как работает халяльный лизинг", how_text:"В исламском финансировании процент (riba) запрещён. MIYBANK предоставляет технику и оборудование по модели <strong>Murabaha</strong> (продажа с фиксированной наценкой) и <strong>Ijara</strong> (аренда с правом выкупа).", all_myb_payments:"Все платежи — в токенах MYB.", murabaha_title:"Murabaha", murabaha_text:"Банк покупает технику и продаёт клиенту с фиксированной наценкой (например, +20% к цене). Клиент платит в рассрочку без процентов.", ijara_title:"Ijara", ijara_text:"Банк сдаёт технику в аренду с правом последующего выкупа. Арендные платежи не считаются процентами, а являются платой за пользование активом.", insurance_title:"Страхование (100% покрытие)", insurance_required:"Обязательное требование:", insurance_text:"страхование техники на <strong>100% от стоимости</strong> (угон, ущерб, гибель)", insurance_premium_title:"Страховая премия:", insurance_premium_text:"~2% от стоимости техники в год (оплачивается в MYB в рассрочку вместе с платежами)", insurance_beneficiary_title:"Выгодоприобретатель:", insurance_beneficiary_text:"при полной гибели — страховая выплата идёт на погашение остатка суммы перед MIYBANK.", example_title:"Пример расчёта (Murabaha + страхование) в MYB", example_desc:"Техника стоимостью <strong>50 000 MYB</strong> (≈ 50 000 USD). Наценка (маржа) — <strong>20%</strong>. Срок — <strong>24 месяца</strong>. Страховка — <strong>2% от стоимости в год</strong>.", table_price:"Цена техники (MYB)", table_markup:"Наценка (20%)", table_total:"Общая сумма к оплате (без страховки)", table_down:"Аванс (20%)", table_installment:"Остаток в рассрочку (24 месяца)", table_insurance:"Страховая премия (2% от 50 000 MYB в год × 2 года)", table_insurance_monthly:"Распределение страховки на 24 месяца", table_total_monthly:"ИТОГО ежемесячный платёж (рассрочка + страховка)", example_note:"☪️ Нет процентов — только фиксированная наценка и реальная стоимость страховки. Всё в MYB.", conditions_title:"Условия халяльного лизинга", cond1:"✅ Отсутствие riba (ссудного процента)", cond2:"✅ Фиксированная наценка (маржа) — заранее известна", cond3:"✅ Техника должна иметь реальное материальное существование", cond4:"✅ Обязательное страхование 100% стоимости техники (страховая компания — партнёр MIYBANK)", cond5:"✅ Договор не содержит штрафов за просрочку (только благотворительные взносы)", cond6:"✅ Все платежи — только в токенах MYB", cond7:"✅ Шариатский аудит и сертификация (в процессе)", partner_title:"Страховая компания-партнёр", partner_text:"Страхование осуществляется через аккредитованную страховую компанию с рейтингом не ниже A. Полис покрывает:", beneficiary_note:"<strong>Выгодоприобретатель по страховке:</strong> при полной гибели — MIYBANK (погашение остатка задолженности в MYB). При частичном ущербе — клиент (ремонт за счёт страховой).", cert_note:"Сертификация шариатского совета — в процессе. Все сделки соответствуют принципам исламской экономики. Страхование включено в ежемесячные платежи в MYB.", request_btn:"Заявка на халяльный лизинг", back_home:"← На главную", footer_text:"Халяльный лизинг. Только MYB. Без процентов, с полным страхованием техники (100% стоимости).", wallet_text:"Подключить кошелёк" },
+        en: { only_myb_badge_text:"MYB ONLY", page_title:"Halal Leasing", page_subtitle:"Interest-free financing according to Sharia principles", page_desc:"Murabaha · Ijara · No riba (interest) · Full insurance", payment_warning:"⚠️ Payment only in MYB tokens", payment_rate:"(1 MYB ≈ 1 USD)", how_title:"How Halal Leasing Works", how_text:"In Islamic finance, interest (riba) is prohibited. MIYBANK provides equipment under <strong>Murabaha</strong> (sale with fixed markup) and <strong>Ijara</strong> (lease with purchase option) models.", all_myb_payments:"All payments in MYB tokens.", murabaha_title:"Murabaha", murabaha_text:"The bank purchases the equipment and sells it to the client with a fixed markup (e.g., +20%). The client pays in installments without interest.", ijara_title:"Ijara", ijara_text:"The bank leases the equipment with the right of subsequent purchase. Lease payments are not considered interest.", insurance_title:"Insurance (100% coverage)", insurance_required:"Mandatory requirement:", insurance_text:"equipment insurance for <strong>100% of value</strong> (theft, damage, loss)", insurance_premium_title:"Insurance premium:", insurance_premium_text:"~2% of equipment value per year (paid in MYB in installments)", insurance_beneficiary_title:"Beneficiary:", insurance_beneficiary_text:"in case of total loss — insurance payment goes to repay the remaining amount to MIYBANK.", example_title:"Calculation example (Murabaha + insurance) in MYB", example_desc:"Equipment price <strong>50,000 MYB</strong> (≈ 50,000 USD). Markup — <strong>20%</strong>. Term — <strong>24 months</strong>. Insurance — <strong>2% per year</strong>.", table_price:"Equipment price (MYB)", table_markup:"Markup (20%)", table_total:"Total amount payable (without insurance)", table_down:"Down payment (20%)", table_installment:"Remaining installment (24 months)", table_insurance:"Insurance premium (2% of 50,000 MYB per year × 2 years)", table_insurance_monthly:"Insurance distribution over 24 months", table_total_monthly:"TOTAL monthly payment (installment + insurance)", example_note:"☪️ No interest — only fixed markup and actual insurance cost. All in MYB.", conditions_title:"Halal Leasing Terms", cond1:"✅ No riba (interest)", cond2:"✅ Fixed markup — known in advance", cond3:"✅ Equipment must have real material existence", cond4:"✅ Mandatory 100% equipment insurance (insurance company — MIYBANK partner)", cond5:"✅ No late payment penalties (only charitable contributions)", cond6:"✅ All payments only in MYB tokens", cond7:"✅ Sharia audit and certification (in progress)", partner_title:"Partner Insurance Company", partner_text:"Insurance is provided through an accredited insurance company with a rating not lower than A. The policy covers:", beneficiary_note:"<strong>Insurance beneficiary:</strong> in case of total loss — MIYBANK (repayment of remaining debt in MYB). In case of partial damage — client (repair covered by insurance).", cert_note:"Sharia council certification — in progress. All transactions comply with Islamic economic principles.", request_btn:"Apply for Halal Leasing", back_home:"← Back to Home", footer_text:"Halal Leasing. MYB only. Interest-free, with full equipment insurance (100%).", wallet_text:"Connect Wallet" }
+    };
+
+    let currentLang = localStorage.getItem('language') || 'ru';
+    function updateLanguage(lang) {
+        const t = translations[lang];
+        if (!t) return;
+        Object.keys(t).forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.innerHTML = t[id];
+        });
+        const langNames = { uz:"O‘zbekcha", ru:"Русский", kk:"Қазақша", ky:"Кыргызча", tg:"Тоҷикӣ", zh:"中文", en:"English", ar:"العربية", "ar-eg":"العربية (مصري)", fa:"فارسی", prs:"دری" };
+        document.getElementById('currentLangLabel').innerText = langNames[lang] || "Русский";
+        document.querySelectorAll('.lang-option').forEach(btn => btn.classList.toggle('active', btn.dataset.lang === lang));
+        localStorage.setItem('language', lang);
+        currentLang = lang;
+    }
+    document.getElementById('langToggleBtn').addEventListener('click', () => document.getElementById('langMenu').classList.toggle('show'));
+    document.querySelectorAll('.lang-option').forEach(btn => btn.addEventListener('click', () => { updateLanguage(btn.dataset.lang); document.getElementById('langMenu').classList.remove('show'); }));
+    document.addEventListener('click', (e) => { if (!e.target.closest('.language-switcher')) document.getElementById('langMenu').classList.remove('show'); });
+    updateLanguage(currentLang);
     document.getElementById('wallet-btn')?.addEventListener('click', () => alert('Connect wallet soon.'));
 </script>
 </body>
