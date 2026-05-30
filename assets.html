@@ -23,10 +23,19 @@
         .gallery-item:hover { transform: translateY(-5px); border-color: #FFD700; }
         .gallery-item img, .gallery-item video { width: 100%; height: 240px; object-fit: cover; display: block; }
         .gallery-item .caption { padding: 15px; background: rgba(0,0,0,0.5); font-size: 0.8rem; }
-        .gallery-item .caption p { margin: 4px 0; }
-        .cert-badge { background: rgba(0,0,0,0.4); border-radius: 16px; padding: 15px; text-align: center; }
         .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin: 20px 0; }
         @media (max-width: 768px) { .grid-4 { grid-template-columns: repeat(2, 1fr); } .container { padding: 0 15px; } }
+        
+        /* Language Switcher */
+        .language-switcher { position: fixed; bottom: 20px; right: 20px; z-index: 1000; }
+        .lang-btn { background: #FFD700; color: #0A1E3D; border: none; border-radius: 50px; padding: 12px 18px; font-size: 1.2rem; font-weight: bold; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.3); transition: 0.3s; display: flex; align-items: center; gap: 8px; }
+        .lang-btn:hover { background: #FFA500; transform: scale(1.05); }
+        .lang-menu { position: absolute; bottom: 60px; right: 0; background: #0A1E3D; border: 1px solid #FFD700; border-radius: 16px; padding: 10px; display: none; flex-direction: column; gap: 8px; min-width: 180px; backdrop-filter: blur(10px); box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
+        .lang-menu.show { display: flex; }
+        .lang-option { background: transparent; border: none; color: #fff; padding: 8px 12px; text-align: left; cursor: pointer; border-radius: 8px; transition: 0.2s; font-size: 0.9rem; }
+        .lang-option:hover { background: #FFD700; color: #0A1E3D; }
+        .lang-option.active { background: #FFD700; color: #0A1E3D; font-weight: bold; }
+        @media (max-width: 768px) { .lang-btn { padding: 10px 14px; font-size: 1rem; } .lang-menu { min-width: 160px; } }
     </style>
 </head>
 <body>
@@ -37,15 +46,16 @@
             <img src="logo.png" style="height: 40px;" onerror="this.src='https://placehold.co/200x60/0A1E3D/FFD700?text=MYB'">
             <span style="font-size: 1.2rem; font-weight: bold;" class="gold-text">MIYBANK (MYB)</span>
         </div>
-        <button id="wallet-btn" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 8px 16px; border-radius: 40px; cursor: pointer;"><i class="fas fa-wallet"></i> Connect Wallet</button>
+        <button id="wallet-btn" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 8px 16px; border-radius: 40px; cursor: pointer;"><i class="fas fa-wallet"></i> <span id="wallet-text">Connect Wallet</span></button>
     </div>
     <div style="border-top: 1px solid rgba(255,255,255,0.1);">
-        <div class="container" style="padding: 10px 20px; display: flex; flex-wrap: wrap; gap: 15px;">
-            <a href="index.html" class="nav-link">🏠 Home</a>
-            <a href="liquidity.html" class="nav-link">💧 Liquidity</a>
-            <a href="assets.html" class="nav-link active-nav">🏭 Copper Assets</a>
-            <a href="spec.html" class="nav-link">📦 Спецтехника</a>
-            <a href="whitepaper.html" class="nav-link">📄 Whitepaper</a>
+        <div class="container" style="padding: 10px 20px;">
+            <a href="index.html" class="nav-link" id="nav-home">🏠 Home</a>
+            <a href="liquidity.html" class="nav-link" id="nav-liquidity">💧 Liquidity</a>
+            <a href="assets.html" class="nav-link active-nav" id="nav-assets">🏭 Copper Assets</a>
+            <a href="spec.html" class="nav-link" id="nav-spec">📦 Спецтехника</a>
+            <a href="whitepaper.html" class="nav-link" id="nav-whitepaper">📄 Whitepaper</a>
+            <a href="contacts.html" class="nav-link" id="nav-contacts">📞 Контакты</a>
         </div>
     </div>
 </header>
@@ -53,97 +63,91 @@
 <main class="container" style="padding: 30px 20px;">
     <div class="bg-dark-card" style="text-align: center;">
         <i class="fas fa-coins" style="font-size: 3rem; color: #FFD700; margin-bottom: 15px;"></i>
-        <h1 class="gold-text" style="font-size: 2rem;">Физический резерв — медные слитки</h1>
-        <p>4N Copper (99.99% purity) · 100 000 тонн · ОАЭ / СНГ</p>
-        <p style="font-size: 0.9rem; color: #aaa; margin-top: 10px;">Актив под управлением по стандарту SKR Framework</p>
+        <h1 class="gold-text" style="font-size: 2rem;" id="main-title">Физический резерв — медные слитки</h1>
+        <p id="main-subtitle">4N Copper (99.99% purity) · 100 000 тонн · ОАЭ / СНГ</p>
+        <p style="font-size: 0.9rem; color: #aaa; margin-top: 10px;" id="skr-text">Актив под управлением по стандарту SKR Framework</p>
     </div>
 
-    <!-- Метрики -->
     <div class="grid-4">
-        <div class="cert-badge"><i class="fas fa-weight-hanging gold-text"></i><br><strong>100 000 тонн</strong><br>Общий объём</div>
-        <div class="cert-badge"><i class="fas fa-certificate gold-text"></i><br><strong>99.99% (4N)</strong><br>Чистота</div>
-        <div class="cert-badge"><i class="fas fa-map-marker-alt gold-text"></i><br><strong>ОАЭ / СНГ</strong><br>Бондовые склады</div>
-        <div class="cert-badge"><i class="fas fa-chart-line gold-text"></i><br><strong>$850M–$1B</strong><br>Оценочная стоимость</div>
+        <div class="cert-badge" style="background: rgba(0,0,0,0.4); border-radius: 16px; padding: 15px; text-align: center;"><i class="fas fa-weight-hanging gold-text"></i><br><strong id="metric1">100 000 тонн</strong><br><span id="metric1-text">Общий объём</span></div>
+        <div class="cert-badge" style="background: rgba(0,0,0,0.4); border-radius: 16px; padding: 15px; text-align: center;"><i class="fas fa-certificate gold-text"></i><br><strong id="metric2">99.99% (4N)</strong><br><span id="metric2-text">Чистота</span></div>
+        <div class="cert-badge" style="background: rgba(0,0,0,0.4); border-radius: 16px; padding: 15px; text-align: center;"><i class="fas fa-map-marker-alt gold-text"></i><br><strong id="metric3">ОАЭ / СНГ</strong><br><span id="metric3-text">Бондовые склады</span></div>
+        <div class="cert-badge" style="background: rgba(0,0,0,0.4); border-radius: 16px; padding: 15px; text-align: center;"><i class="fas fa-chart-line gold-text"></i><br><strong id="metric4">$850M–$1B</strong><br><span id="metric4-text">Оценочная стоимость</span></div>
     </div>
 
-    <!-- Галерея подтверждающих файлов -->
     <div class="bg-dark-card">
-        <h2 class="gold-text"><i class="fas fa-images"></i> Подтверждение активов</h2>
-        <p style="margin-bottom: 15px;">Фактические фото и видео медных слитков с маркировкой, складские документы.</p>
+        <h2 class="gold-text" id="gallery-title"><i class="fas fa-images"></i> Подтверждение активов</h2>
+        <p style="margin-bottom: 15px;" id="gallery-text">Фактические фото и видео медных слитков с маркировкой, складские документы.</p>
         <div class="gallery">
-            <div class="gallery-item">
-                <img src="warehouse1.jpg" alt="Медные слитки CEBIL DIAMONDS 1" onerror="this.src='https://placehold.co/600x400/0A1E3D/FFD700?text=Copper+Ingots'">
-                <div class="caption">
-                    <p><strong>CEBIL DIAMONDS / UAE</strong></p>
-                    <p>Commodity: Copper 4N (99.99%)</p>
-                    <p>Lot Number: CD-CU-12MAY26</p>
-                    <p>Weight Allocated: 100,000 T</p>
-                </div>
-            </div>
-            <div class="gallery-item">
-                <img src="warehouse2.jpg" alt="Медные слитки CEBIL DIAMONDS 2" onerror="this.src='https://placehold.co/600x400/0A1E3D/FFD700?text=Warehouse+Storage'">
-                <div class="caption">
-                    <p><strong>CEBIL DIAMONDS / UAE</strong></p>
-                    <p>Commodity: Copper 4N (99.99%)</p>
-                    <p>Lot Number: CD-CU-12MAY26</p>
-                    <p>Inspection Date: 12 May 2026</p>
-                </div>
-            </div>
-            <div class="gallery-item">
-                <img src="warehouse3.jpg" alt="Медные слитки CEBIL DIAMONDS 3" onerror="this.src='https://placehold.co/600x400/0A1E3D/FFD700?text=Copper+Storage'">
-                <div class="caption">
-                    <p><strong>CEBIL DIAMONDS / UAE</strong></p>
-                    <p>Commodity: Copper 4N (99.99%)</p>
-                    <p>Physical Asset under SKR Framework</p>
-                </div>
-            </div>
-            <div class="gallery-item">
-                <video controls preload="metadata">
-                    <source src="warehouse_tour.mp4" type="video/mp4">
-                    Ваш браузер не поддерживает видео.
-                </video>
-                <div class="caption">
-                    <p><strong>Видеообзор склада</strong></p>
-                    <p>CEBIL DIAMONDS / UAE — Copper 4N (99.99%)</p>
-                    <p>Lot Number: CD-CU-12MAY26 | 100,000 T</p>
-                </div>
-            </div>
+            <div class="gallery-item"><img src="warehouse1.jpg" alt="Медные слитки" onerror="this.src='https://placehold.co/600x400/0A1E3D/FFD700?text=Copper'"><div class="caption"><strong>CEBIL DIAMONDS / UAE</strong><br>Commodity: Copper 4N (99.99%)<br>Lot Number: CD-CU-12MAY26<br>Weight: 100,000 T</div></div>
+            <div class="gallery-item"><img src="warehouse2.jpg" alt="Медные слитки" onerror="this.src='https://placehold.co/600x400/0A1E3D/FFD700?text=Warehouse'"><div class="caption"><strong>CEBIL DIAMONDS / UAE</strong><br>Inspection Date: 12 May 2026<br>Physical Asset under SKR Framework</div></div>
+            <div class="gallery-item"><img src="warehouse3.jpg" alt="Медные слитки" onerror="this.src='https://placehold.co/600x400/0A1E3D/FFD700?text=Storage'"><div class="caption"><strong>CEBIL DIAMONDS / UAE</strong><br>Copper 4N (99.99%)<br>Lot Number: CD-CU-12MAY26</div></div>
+            <div class="gallery-item"><video controls preload="metadata"><source src="warehouse_tour.mp4" type="video/mp4"></video><div class="caption"><strong>Видеообзор склада</strong><br>CEBIL DIAMONDS / UAE — Copper 4N (99.99%)<br>Lot Number: CD-CU-12MAY26 | 100,000 T</div></div>
         </div>
-        <p class="gold-text" style="font-size: 0.8rem; text-align: center; margin-top: 10px;">* Все файлы являются документальным подтверждением физического актива. Оригиналы доступны для верификации.</p>
+        <p class="gold-text" style="font-size: 0.8rem; text-align: center; margin-top: 10px;" id="gallery-note">* Все файлы являются документальным подтверждением физического актива. Оригиналы доступны для верификации.</p>
     </div>
 
-    <!-- Сертификаты и блокчейн-нотаризация -->
     <div class="bg-dark-card">
-        <h2 class="gold-text"><i class="fas fa-file-alt"></i> Сертификация и блокчейн</h2>
+        <h2 class="gold-text" id="cert-title"><i class="fas fa-file-alt"></i> Сертификация и блокчейн</h2>
         <div class="grid-4" style="margin-bottom: 15px;">
-            <div class="cert-badge"><i class="fas fa-microscope"></i><br>Assay Report<br><span style="font-size: 0.7rem;">SGS / Bureau Veritas</span></div>
-            <div class="cert-badge"><i class="fas fa-truck"></i><br>Origin & Logistics<br><span style="font-size: 0.7rem;">CEBIL DIAMONDS, UAE</span></div>
-            <div class="cert-badge"><i class="fas fa-store"></i><br>Warehouse Receipts<br><span style="font-size: 0.7rem;">Бондовое хранение</span></div>
-            <div class="cert-badge"><i class="fas fa-link"></i><br>Blockchain Hash<br><span style="font-size: 0.7rem;">Solana Notarization</span></div>
+            <div class="cert-badge" style="background: rgba(0,0,0,0.3); border-radius: 16px; padding: 15px; text-align: center;"><i class="fas fa-microscope"></i><br>Assay Report<br><span style="font-size: 0.7rem;">SGS / Bureau Veritas</span></div>
+            <div class="cert-badge" style="background: rgba(0,0,0,0.3); border-radius: 16px; padding: 15px; text-align: center;"><i class="fas fa-truck"></i><br>Origin & Logistics<br><span style="font-size: 0.7rem;">CEBIL DIAMONDS, UAE</span></div>
+            <div class="cert-badge" style="background: rgba(0,0,0,0.3); border-radius: 16px; padding: 15px; text-align: center;"><i class="fas fa-store"></i><br>Warehouse Receipts<br><span style="font-size: 0.7rem;">Бондовое хранение</span></div>
+            <div class="cert-badge" style="background: rgba(0,0,0,0.3); border-radius: 16px; padding: 15px; text-align: center;"><i class="fas fa-link"></i><br>Blockchain Hash<br><span style="font-size: 0.7rem;">Solana Notarization</span></div>
         </div>
-        <p class="green-text" style="font-size: 0.85rem; text-align: center;">✔ Все документы захешированы и занотарированы в блокчейне Solana. Физический осмотр возможен по запросу.</p>
-    </div>
-
-    <!-- Юридическая информация -->
-    <div class="bg-dark-card">
-        <h2 class="gold-text"><i class="fas fa-gavel"></i> SKR Framework</h2>
-        <p>Актив зарегистрирован в рамках стандарта SKR (Strategic Key Reserve) — международного протокола учёта и верификации стратегических сырьевых резервов. Полная прозрачность, независимый аудит, привязка к блокчейну.</p>
-        <p style="margin-top: 10px;"><strong>Lot Number:</strong> CD-CU-12MAY26</p>
-        <p><strong>Inspection Date:</strong> 12 May 2026</p>
-        <p><strong>Physical Asset under SKR Framework — верифицирован.</strong></p>
+        <p class="green-text" style="font-size: 0.85rem; text-align: center;" id="cert-note">✔ Все документы захешированы и занотарированы в блокчейне Solana. Физический осмотр возможен по запросу.</p>
     </div>
 
     <div style="text-align: center; margin-top: 20px;">
-        <a href="index.html" class="btn-outline"><i class="fas fa-arrow-left"></i> На главную</a>
+        <a href="index.html" class="btn-outline" id="back-home">← На главную</a>
     </div>
 </main>
 
 <footer>
-    <p>© 2025 MIYBANK (MYB) — Физический резерв: 100 000 тонн меди 4N, CEBIL DIAMONDS / UAE</p>
-    <p>Asset verification available upon NDA. Blockchain notarization: Solana</p>
+    <p>© 2025 MIYBANK (MYB) — <span id="footer-text">Первый семейный банковский токен с лизинговой экосистемой</span></p>
+    <p id="footer-asset">Физический резерв: 100 000 тонн меди 4N, CEBIL DIAMONDS / UAE. Blockchain notarization: Solana</p>
 </footer>
 
+<!-- Language Switcher -->
+<div class="language-switcher">
+    <button class="lang-btn" id="langToggleBtn">🌐 <span id="currentLangLabel">Русский</span></button>
+    <div class="lang-menu" id="langMenu">
+        <button class="lang-option" data-lang="uz">🇺🇿 O‘zbekcha</button><button class="lang-option" data-lang="ru">🇷🇺 Русский</button>
+        <button class="lang-option" data-lang="kk">🇰🇿 Қазақша</button><button class="lang-option" data-lang="ky">🇰🇬 Кыргызча</button>
+        <button class="lang-option" data-lang="tg">🇹🇯 Тоҷикӣ</button><button class="lang-option" data-lang="zh">🇨🇳 中文</button>
+        <button class="lang-option" data-lang="en">🇬🇧 English</button><button class="lang-option" data-lang="ar">🇸🇦 العربية</button>
+        <button class="lang-option" data-lang="ar-eg">🇪🇬 العربية (مصري)</button><button class="lang-option" data-lang="fa">🇮🇷 فارسی</button>
+        <button class="lang-option" data-lang="prs">🇦🇫 دری</button>
+    </div>
+</div>
+
 <script>
+    const translations = {
+        uz: { nav_home:"Bosh sahifa", nav_liquidity:"Likvidlik", nav_assets:"Mis aktivlari", nav_spec:"Maxsus texnika", nav_whitepaper:"Whitepaper", nav_contacts:"Kontaktlar",
+            main_title:"Jismoniy zahira — mis quymalari", main_subtitle:"4N Copper (99.99%) · 100 000 tonna · BAA/MDH", skr_text:"Aktiv SKR Framework standarti bo'yicha boshqariladi",
+            metric1:"100 000 tonna", metric1_text:"Umumiy hajm", metric2:"99.99% (4N)", metric2_text:"Tozalik", metric3:"BAA / MDH", metric3_text:"Bond omborlari", metric4:"$850M–$1B", metric4_text:"Baholangan qiymat",
+            gallery_title:"Aktivlarni tasdiqlash", gallery_text:"Markali mis quymalarning haqiqiy fotosuratlari va videolari, ombor hujjatlari.", gallery_note:"* Barcha fayllar jismoniy aktivning hujjatli tasdig'idir. Asl nusxalar tekshirish uchun mavjud.",
+            cert_title:"Sertifikatlash va blockchain", cert_note:"✔ Barcha hujjatlar Solana blokcheynida xeshlangan va notarial tasdiqlangan. Jismoniy tekshiruv so'rov bo'yicha mumkin.",
+            back_home:"← Bosh sahifaga qaytish", footer_text:"Birinchi oilaviy bank tokeni lizing ekotizimi bilan", footer_asset:"Jismoniy zahira: 100 000 tonna 4N mis, CEBIL DIAMONDS / BAA. Blockchain notarization: Solana", wallet_text:"Hamyonni ulash" },
+        ru: { nav_home:"Главная", nav_liquidity:"Ликвидность", nav_assets:"Медные активы", nav_spec:"Спецтехника", nav_whitepaper:"Whitepaper", nav_contacts:"Контакты",
+            main_title:"Физический резерв — медные слитки", main_subtitle:"4N Copper (99.99%) · 100 000 тонн · ОАЭ / СНГ", skr_text:"Актив под управлением по стандарту SKR Framework",
+            metric1:"100 000 тонн", metric1_text:"Общий объём", metric2:"99.99% (4N)", metric2_text:"Чистота", metric3:"ОАЭ / СНГ", metric3_text:"Бондовые склады", metric4:"$850M–$1B", metric4_text:"Оценочная стоимость",
+            gallery_title:"Подтверждение активов", gallery_text:"Фактические фото и видео медных слитков с маркировкой, складские документы.", gallery_note:"* Все файлы являются документальным подтверждением физического актива. Оригиналы доступны для верификации.",
+            cert_title:"Сертификация и блокчейн", cert_note:"✔ Все документы захешированы и занотарированы в блокчейне Solana. Физический осмотр возможен по запросу.",
+            back_home:"← На главную", footer_text:"Первый семейный банковский токен с лизинговой экосистемой", footer_asset:"Физический резерв: 100 000 тонн меди 4N, CEBIL DIAMONDS / UAE. Blockchain notarization: Solana", wallet_text:"Подключить кошелёк" } };
+    let currentLang = localStorage.getItem('language') || 'ru';
+    function updateLanguage(lang) {
+        const t = translations[lang]; if (!t) return;
+        Object.keys(t).forEach(id => { let el = document.getElementById(id); if (el) el.innerHTML = t[id]; });
+        const langNames = { uz:"O‘zbekcha", ru:"Русский", kk:"Қазақша", ky:"Кыргызча", tg:"Тоҷикӣ", zh:"中文", en:"English", ar:"العربية", "ar-eg":"العربية (مصري)", fa:"فارسی", prs:"دری" };
+        document.getElementById('currentLangLabel').innerText = langNames[lang] || "Русский";
+        document.querySelectorAll('.lang-option').forEach(btn => { if (btn.dataset.lang === lang) btn.classList.add('active'); else btn.classList.remove('active'); });
+        localStorage.setItem('language', lang); currentLang = lang;
+    }
+    document.getElementById('langToggleBtn').addEventListener('click', () => { document.getElementById('langMenu').classList.toggle('show'); });
+    document.querySelectorAll('.lang-option').forEach(btn => { btn.addEventListener('click', () => { updateLanguage(btn.dataset.lang); document.getElementById('langMenu').classList.remove('show'); }); });
+    document.addEventListener('click', (e) => { if (!e.target.closest('.language-switcher')) document.getElementById('langMenu').classList.remove('show'); });
+    updateLanguage(currentLang);
     document.getElementById('wallet-btn')?.addEventListener('click', () => alert('Connect wallet soon.'));
 </script>
 </body>
