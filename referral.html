@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>MIYBANK (MYB) | Уровни агентов</title>
+    <title>MIYBANK | Реферальная программа — Уровни агентов</title>
     <style>
         * {
             margin: 0;
@@ -12,294 +12,297 @@
         }
 
         body {
-            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
-            background: linear-gradient(145deg, #f4f7fc 0%, #eef2f5 100%);
-            color: #1a2c3e;
-            line-height: 1.4;
-            padding: 20px;
+            background: linear-gradient(145deg, #eef2f9 0%, #e0e8f0 100%);
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            padding: 2rem 1.5rem;
+            color: #0a2b35;
         }
 
-        /* основной контейнер */
-        .app-container {
-            max-width: 1300px;
+        /* главная карточка страницы */
+        .referral-card {
+            max-width: 1280px;
             margin: 0 auto;
             background: #ffffff;
-            border-radius: 32px;
-            box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.25);
+            border-radius: 2rem;
+            box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.2);
             overflow: hidden;
             transition: all 0.2s;
         }
 
-        /* шапка / навигация */
-        .navbar {
-            background: #0b2b3b;
-            padding: 0.9rem 2rem;
+        /* хедер с брендом и переключателем языков */
+        .page-header {
+            background: #0f2e3a;
+            padding: 1rem 2rem;
             display: flex;
             flex-wrap: wrap;
             align-items: center;
             justify-content: space-between;
-            gap: 15px;
-            border-bottom: 3px solid #f5b042;
+            gap: 1rem;
+            border-bottom: 3px solid #f4b13e;
         }
 
-        .logo-area {
-            display: flex;
-            align-items: baseline;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
-
-        .logo {
+        .brand h1 {
             font-size: 1.8rem;
-            font-weight: 800;
-            letter-spacing: -0.5px;
-            background: linear-gradient(135deg, #FFFFFF 0%, #FFE6B3 100%);
+            font-weight: 700;
+            letter-spacing: -0.3px;
+            background: linear-gradient(135deg, #fff, #ffe2b5);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.1);
         }
 
-        .badge {
-            background: #f5b04220;
-            backdrop-filter: blur(2px);
-            color: #ffdd99;
+        .brand p {
+            color: #9fc7d6;
             font-size: 0.75rem;
-            font-weight: 600;
-            padding: 4px 10px;
-            border-radius: 60px;
-            border: 0.5px solid #f5b04280;
+            margin-top: 4px;
         }
 
-        .nav-links {
+        /* рабочий переключатель языков */
+        .lang-rail {
             display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-            row-gap: 8px;
-        }
-
-        .nav-links a {
-            color: #eef4ff;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.9rem;
-            padding: 6px 12px;
-            border-radius: 40px;
-            transition: 0.2s;
-            background: #1e4a62;
-        }
-
-        .nav-links a:hover {
-            background: #f5b042;
-            color: #0b2b3b;
-        }
-
-        /* языковой переключатель — РАБОЧИЙ */
-        .lang-switch {
-            display: flex;
-            gap: 8px;
-            background: #0a2532;
-            padding: 5px 12px;
+            gap: 10px;
+            background: #0a212b;
+            padding: 0.3rem 0.8rem;
             border-radius: 60px;
         }
 
         .lang-btn {
             background: transparent;
             border: none;
-            font-size: 0.9rem;
             font-weight: 600;
-            padding: 6px 14px;
+            font-size: 0.9rem;
+            padding: 0.5rem 1.2rem;
             border-radius: 40px;
+            color: #cbdbe6;
             cursor: pointer;
             transition: 0.2s;
-            color: #ccdee8;
+            font-family: inherit;
         }
 
         .lang-btn.active {
-            background: #f5b042;
-            color: #0b2b3b;
+            background: #f4b13e;
+            color: #0f2e3a;
             box-shadow: 0 2px 6px rgba(0,0,0,0.2);
         }
 
         .lang-btn:not(.active):hover {
-            background: #2c607a;
+            background: #2f5e72;
             color: white;
         }
 
-        /* основной контент */
-        .main-content {
-            padding: 2rem 2rem 2.5rem;
-        }
-
-        /* хлебные крошки / на главную */
-        .top-link {
-            margin-bottom: 28px;
-        }
-
-        .back-home {
-            display: inline-flex;
+        /* навигация вверху (короткая) */
+        .top-nav {
+            background: #f9fbfd;
+            padding: 0.8rem 2rem;
+            border-bottom: 1px solid #e2ecf3;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
             align-items: center;
-            gap: 8px;
-            background: #f0f3f8;
-            padding: 8px 18px;
-            border-radius: 60px;
+            justify-content: space-between;
+        }
+
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .nav-links a {
             text-decoration: none;
-            color: #1e4a62;
+            color: #2c5a6e;
+            font-size: 0.85rem;
             font-weight: 500;
+            padding: 0.3rem 0.7rem;
+            border-radius: 30px;
             transition: 0.2s;
         }
 
-        .back-home:hover {
-            background: #e2e8f0;
-            color: #f5b042;
+        .nav-links a:hover {
+            background: #f4b13e20;
+            color: #f4b13e;
         }
 
-        /* заголовок секции */
-        .section-title {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            background: linear-gradient(120deg, #0b2b3b, #2c607a);
+        .back-link {
+            background: #eef2f6;
+            padding: 0.3rem 1rem;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .back-link a {
+            text-decoration: none;
+            color: #1f5a70;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* основной контент */
+        .content {
+            padding: 2rem 2rem 2.5rem;
+        }
+
+        .title-section {
+            margin-bottom: 1.8rem;
+        }
+
+        .title-section h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            background: linear-gradient(120deg, #0f2e3a, #2b6f8a);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
+            letter-spacing: -0.3px;
         }
 
-        .sub {
-            color: #4a6272;
-            margin-bottom: 2rem;
-            font-size: 1rem;
-            border-left: 4px solid #f5b042;
-            padding-left: 16px;
+        .title-section p {
+            color: #5e7f8f;
+            margin-top: 0.5rem;
+            border-left: 4px solid #f4b13e;
+            padding-left: 1rem;
         }
 
-        /* ТАБЛИЦА — полностью адаптивная, без хаоса */
-        .agents-table-wrapper {
+        /* таблица — идеально ровная */
+        .table-wrapper {
             overflow-x: auto;
-            margin: 2rem 0 2rem;
-            border-radius: 24px;
-            border: 1px solid #dce5ec;
+            margin: 2rem 0 2.2rem;
+            border-radius: 1.5rem;
+            border: 1px solid #e6edf2;
             background: white;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.03);
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.02);
         }
 
-        .agents-table {
+        .agent-levels {
             width: 100%;
             border-collapse: collapse;
             font-size: 1rem;
             min-width: 580px;
         }
 
-        .agents-table th {
-            background: #eef2f7;
-            color: #0f3b4b;
+        .agent-levels th {
+            background: #f3f7fb;
+            color: #0f3f4f;
             font-weight: 700;
-            padding: 16px 20px;
+            padding: 1.2rem 1.5rem;
             text-align: left;
-            border-bottom: 2px solid #cbdbe2;
             font-size: 0.95rem;
+            border-bottom: 2px solid #daebf2;
         }
 
-        .agents-table td {
-            padding: 14px 20px;
-            border-bottom: 1px solid #e2e8f0;
-            color: #1f3e4b;
+        .agent-levels td {
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid #ecf3f8;
             font-weight: 500;
+            color: #1b4b5e;
         }
 
-        .agents-table tr:last-child td {
+        .agent-levels tr:last-child td {
             border-bottom: none;
         }
 
-        .agents-table tr:hover td {
-            background-color: #fef8e7;
+        .agent-levels tr:hover td {
+            background-color: #fff9ef;
         }
 
         .level-name {
             font-weight: 800;
-            color: #0b2b3b;
+            color: #00313f;
+            font-size: 1.05rem;
         }
 
-        .bonus-badge {
-            background: #f5b04220;
-            padding: 4px 10px;
-            border-radius: 60px;
-            font-weight: 600;
+        .extra-bonus {
+            background: #f4b13e18;
             display: inline-block;
+            padding: 0.2rem 0.9rem;
+            border-radius: 40px;
+            font-weight: 700;
             font-size: 0.85rem;
-            color: #a7671a;
+            color: #c97e00;
         }
 
-        /* карточка вопросов */
-        .contact-block {
-            margin-top: 40px;
-            padding: 20px 24px;
-            background: #f8fbfd;
-            border-radius: 28px;
+        /* блок контактов */
+        .contact-box {
+            background: #f8fbfe;
+            border-radius: 1.5rem;
+            padding: 1.2rem 1.8rem;
             display: flex;
             flex-wrap: wrap;
             align-items: center;
             justify-content: space-between;
-            gap: 20px;
-            border: 1px solid #e2edf2;
+            margin-top: 2rem;
+            border: 1px solid #e2edf5;
         }
 
-        .question-text {
+        .contact-text {
             font-weight: 600;
-            font-size: 1.1rem;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         .contact-btn {
-            background: #0b2b3b;
-            color: white;
+            background: #0f2e3a;
             border: none;
-            padding: 12px 28px;
+            color: white;
+            padding: 0.7rem 1.6rem;
             border-radius: 60px;
             font-weight: 600;
             cursor: pointer;
             transition: 0.2s;
+            font-family: inherit;
         }
 
         .contact-btn:hover {
-            background: #f5b042;
-            color: #0b2b3b;
+            background: #f4b13e;
+            color: #0f2e3a;
         }
 
-        /* footer */
-        .footer-note {
-            margin-top: 35px;
+        .footer-info {
+            margin-top: 2rem;
             text-align: center;
-            font-size: 0.75rem;
-            color: #7e95a3;
-            border-top: 1px solid #e0e9f0;
-            padding-top: 20px;
+            font-size: 0.7rem;
+            color: #9bb3bf;
+            border-top: 1px solid #e9f0f5;
+            padding-top: 1.5rem;
         }
 
-        @media (max-width: 760px) {
-            .main-content {
+        @media (max-width: 700px) {
+            body {
+                padding: 1rem;
+            }
+            .content {
                 padding: 1.5rem;
             }
-            .section-title {
-                font-size: 1.6rem;
+            .title-section h2 {
+                font-size: 1.7rem;
             }
-            .navbar {
-                flex-direction: column;
-                align-items: stretch;
-            }
-            .lang-switch {
-                align-self: flex-start;
+            .agent-levels th, .agent-levels td {
+                padding: 0.8rem 1rem;
             }
         }
     </style>
 </head>
 <body>
-<div class="app-container">
-    <!-- Верхняя панель с навигацией и рабочим переключателем языков -->
-    <div class="navbar">
-        <div class="logo-area">
-            <div class="logo">MIYBANK (MYB)</div>
-            <div class="badge">⚡ Digital Assets</div>
+
+<div class="referral-card">
+    <!-- Хедер: логотип + рабочий переключатель языков -->
+    <div class="page-header">
+        <div class="brand">
+            <h1>MIYBANK <span style="font-weight:500">(MYB)</span></h1>
+            <p>Реферальная платформа</p>
         </div>
+        <div class="lang-rail" id="langSwitchComponent">
+            <button class="lang-btn active" data-lang="ru">Русский</button>
+            <button class="lang-btn" data-lang="en">English</button>
+        </div>
+    </div>
+
+    <!-- Верхняя навигация (быстрая) + кнопка "На главную" -->
+    <div class="top-nav">
         <div class="nav-links">
             <a href="#">Home</a>
             <a href="#">Liquidity</a>
@@ -314,205 +317,198 @@
             <a href="#">Реферальная</a>
             <a href="#">Контакты</a>
         </div>
-        <!-- ✅ РАБОЧИЙ ПЕРЕКЛЮЧАТЕЛЬ ЯЗЫКОВ (Русский / English) -->
-        <div class="lang-switch" id="langSwitcher">
-            <button class="lang-btn active" data-lang="ru">Русский</button>
-            <button class="lang-btn" data-lang="en">English</button>
+        <div class="back-link">
+            <a href="#" id="goHomeBtn">← <span data-i18n="back_home">На главную</span></a>
         </div>
     </div>
 
-    <div class="main-content">
-        <!-- ссылка "На главную" -->
-        <div class="top-link">
-            <a href="#" class="back-home" id="backHomeBtn">← <span data-i18n="back_main">На главную</span></a>
+    <div class="content">
+        <div class="title-section">
+            <h2 data-i18n="pageTitle">Уровни агентов</h2>
+            <p data-i18n="pageSub">Станьте партнёром MIYBANK — зарабатывайте с каждой сделки</p>
         </div>
 
-        <!-- Заголовок и текст, который меняется по языку -->
-        <h1 class="section-title" data-i18n="agents_title">Уровни агентов</h1>
-        <div class="sub" data-i18n="agents_sub">Профессиональная партнерская программа — прозрачные комиссии и бонусы</div>
-
-        <!-- ТАБЛИЦА УРОВНЕЙ АГЕНТОВ — ПОЛНАЯ, СТРУКТУРИРОВАННАЯ, БЕСПОРЯДКА УСТРАНЕНА -->
-        <div class="agents-table-wrapper">
-            <table class="agents-table">
+        <!-- Таблица уровней агентов — очищена от хаоса, всё чётко -->
+        <div class="table-wrapper">
+            <table class="agent-levels">
                 <thead>
-                <tr>
-                    <th data-i18n="th_level">Уровень</th>
-                    <th data-i18n="th_condition">Условие</th>
-                    <th data-i18n="th_base_fee">Базовая комиссия</th>
-                    <th data-i18n="th_extra_bonus">Доп. бонус</th>
-                </tr>
+                    <tr>
+                        <th data-i18n="th_level">Уровень</th>
+                        <th data-i18n="th_condition">Условие</th>
+                        <th data-i18n="th_base">Базовая комиссия</th>
+                        <th data-i18n="th_bonus">Доп. бонус</th>
+                    </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td class="level-name" data-i18n="level_beginner">Начинающий</td>
-                        <td data-i18n="cond_beginner">Регистрация</td>
+                        <td class="level-name" data-i18n="lvl1">Начинающий</td>
+                        <td data-i18n="cond1">Регистрация</td>
                         <td>0.5%</td>
                         <td>—</td>
                     </tr>
                     <tr>
-                        <td class="level-name" data-i18n="level_silver">Серебряный</td>
-                        <td data-i18n="cond_silver">3 сделки/мес</td>
+                        <td class="level-name" data-i18n="lvl2">Серебряный</td>
+                        <td data-i18n="cond2">3 сделки/мес</td>
                         <td>0.66%</td>
-                        <td><span class="bonus-badge">+ 33 MYB</span></td>
+                        <td><span class="extra-bonus">+ 33 MYB</span></td>
                     </tr>
                     <tr>
-                        <td class="level-name" data-i18n="level_gold">Золотой</td>
-                        <td data-i18n="cond_gold">7 сделок/мес</td>
+                        <td class="level-name" data-i18n="lvl3">Золотой</td>
+                        <td data-i18n="cond3">7 сделок/мес</td>
                         <td>0.83%</td>
-                        <td><span class="bonus-badge">+ 100 MYB</span></td>
+                        <td><span class="extra-bonus">+ 100 MYB</span></td>
                     </tr>
                     <tr>
-                        <td class="level-name" data-i18n="level_platinum">Платиновый</td>
-                        <td data-i18n="cond_platinum">15+ сделок/мес</td>
+                        <td class="level-name" data-i18n="lvl4">Платиновый</td>
+                        <td data-i18n="cond4">15+ сделок/мес</td>
                         <td>1%</td>
-                        <td><span class="bonus-badge">+ 166 MYB</span></td>
+                        <td><span class="extra-bonus">+ 166 MYB</span></td>
                     </tr>
                 </tbody>
             </table>
         </div>
 
-        <!-- Блок вопросов -->
-        <div class="contact-block">
-            <span class="question-text" data-i18n="questions_text">📞 Есть вопросы? Свяжитесь с нами</span>
-            <button class="contact-btn" id="contactBtn" data-i18n="contact_btn">Написать в поддержку</button>
+        <!-- Блок "Есть вопросы? Свяжитесь с нами" -->
+        <div class="contact-box">
+            <div class="contact-text">
+                <span>📞</span> <span data-i18n="contactMsg">Есть вопросы? Свяжитесь с нами</span>
+            </div>
+            <button class="contact-btn" id="supportBtn" data-i18n="contactBtnText">Связаться</button>
         </div>
 
-        <div class="footer-note">
-            MIYBANK — Реферальная программа агентов | Актуальные условия
+        <div class="footer-info">
+            MIYBANK — Реферальная программа агентов | Актуальные данные
         </div>
     </div>
 </div>
 
 <script>
-    // ======================= ПОЛНОСТЬЮ РАБОЧАЯ МНОГОЯЗЫЧНОСТЬ =======================
-    // словарь для русского и английского (все ключи)
-    const translations = {
+    // ============================== ПОЛНОСТЬЮ РАБОЧАЯ МНОГОЯЗЫЧНОСТЬ ==============================
+    // Все тексты для русского и английского
+    const langData = {
         ru: {
-            back_main: "На главную",
-            agents_title: "Уровни агентов",
-            agents_sub: "Профессиональная партнерская программа — прозрачные комиссии и бонусы",
+            back_home: "На главную",
+            pageTitle: "Уровни агентов",
+            pageSub: "Станьте партнёром MIYBANK — зарабатывайте с каждой сделки",
             th_level: "Уровень",
             th_condition: "Условие",
-            th_base_fee: "Базовая комиссия",
-            th_extra_bonus: "Доп. бонус",
-            level_beginner: "Начинающий",
-            level_silver: "Серебряный",
-            level_gold: "Золотой",
-            level_platinum: "Платиновый",
-            cond_beginner: "Регистрация",
-            cond_silver: "3 сделки/мес",
-            cond_gold: "7 сделок/мес",
-            cond_platinum: "15+ сделок/мес",
-            questions_text: "📞 Есть вопросы? Свяжитесь с нами",
-            contact_btn: "Написать в поддержку"
+            th_base: "Базовая комиссия",
+            th_bonus: "Доп. бонус",
+            lvl1: "Начинающий",
+            lvl2: "Серебряный",
+            lvl3: "Золотой",
+            lvl4: "Платиновый",
+            cond1: "Регистрация",
+            cond2: "3 сделки/мес",
+            cond3: "7 сделок/мес",
+            cond4: "15+ сделок/мес",
+            contactMsg: "Есть вопросы? Свяжитесь с нами",
+            contactBtnText: "Связаться"
         },
         en: {
-            back_main: "Back to home",
-            agents_title: "Agent Levels",
-            agents_sub: "Professional partner program — transparent commissions and bonuses",
+            back_home: "Back to home",
+            pageTitle: "Agent Levels",
+            pageSub: "Become a MIYBANK partner — earn on every deal",
             th_level: "Level",
             th_condition: "Requirement",
-            th_base_fee: "Base commission",
-            th_extra_bonus: "Extra bonus",
-            level_beginner: "Starter",
-            level_silver: "Silver",
-            level_gold: "Gold",
-            level_platinum: "Platinum",
-            cond_beginner: "Registration",
-            cond_silver: "3 deals/month",
-            cond_gold: "7 deals/month",
-            cond_platinum: "15+ deals/month",
-            questions_text: "📞 Any questions? Contact us",
-            contact_btn: "Contact support"
+            th_base: "Base commission",
+            th_bonus: "Extra bonus",
+            lvl1: "Starter",
+            lvl2: "Silver",
+            lvl3: "Gold",
+            lvl4: "Platinum",
+            cond1: "Registration",
+            cond2: "3 deals/month",
+            cond3: "7 deals/month",
+            cond4: "15+ deals/month",
+            contactMsg: "Any questions? Contact us",
+            contactBtnText: "Contact"
         }
     };
 
-    let currentLang = 'ru';   // текущий язык по умолчанию
+    let currentLang = 'ru';
 
-    // Функция обновления текста на странице
-    function setLanguage(lang) {
-        if (!translations[lang]) return;
+    function updatePageLanguage(lang) {
+        if (!langData[lang]) return;
         currentLang = lang;
-        // Находим все элементы, у которых есть атрибут data-i18n
         const elements = document.querySelectorAll('[data-i18n]');
         elements.forEach(el => {
             const key = el.getAttribute('data-i18n');
-            if (translations[lang][key]) {
-                // Сохраняем innerHTML (можно и текст, но сохраним поддержку возможных иконок)
-                el.innerHTML = translations[lang][key];
+            if (langData[lang][key]) {
+                // Внутри могут быть иконки, но мы сохраняем структуру
+                el.innerHTML = langData[lang][key];
             }
         });
-        // Активная кнопка стиля
+        // обновить активные классы кнопок
         document.querySelectorAll('.lang-btn').forEach(btn => {
-            if (btn.getAttribute('data-lang') === lang) {
+            const langVal = btn.getAttribute('data-lang');
+            if (langVal === lang) {
                 btn.classList.add('active');
             } else {
                 btn.classList.remove('active');
             }
         });
-        // Сохраняем выбранный язык в localStorage, чтобы при перезагрузке не сбрасывалось
-        localStorage.setItem('mybank_lang', lang);
+        localStorage.setItem('mybank_ref_lang', lang);
     }
 
-    // Инициализация переключателя и обработчиков
-    function initLanguageSwitcher() {
-        const savedLang = localStorage.getItem('mybank_lang');
-        if (savedLang && (savedLang === 'ru' || savedLang === 'en')) {
-            currentLang = savedLang;
+    // Инициализация языкового переключателя
+    function initLang() {
+        const saved = localStorage.getItem('mybank_ref_lang');
+        if (saved === 'en') {
+            currentLang = 'en';
+        } else if (saved === 'ru') {
+            currentLang = 'ru';
         } else {
-            // можно определить язык браузера, но оставим ru по умолчанию (или проверка)
+            // если нет сохраненного, проверяем язык браузера
             const browserLang = navigator.language.slice(0,2);
-            if (browserLang === 'en') currentLang = 'en';
-            else currentLang = 'ru';
+            currentLang = (browserLang === 'en') ? 'en' : 'ru';
         }
-        setLanguage(currentLang);
+        updatePageLanguage(currentLang);
 
         const langBtns = document.querySelectorAll('.lang-btn');
         langBtns.forEach(btn => {
             btn.addEventListener('click', (e) => {
-                const langCode = btn.getAttribute('data-lang');
-                if (langCode && langCode !== currentLang) {
-                    setLanguage(langCode);
+                const targetLang = btn.getAttribute('data-lang');
+                if (targetLang && targetLang !== currentLang) {
+                    updatePageLanguage(targetLang);
                 }
             });
         });
     }
 
-    // Вспомогательные UI фишки (кнопка "На главную" / "Контакты")
-    function initUIInteractions() {
-        const backBtn = document.getElementById('backHomeBtn');
-        if (backBtn) {
-            backBtn.addEventListener('click', (e) => {
+    // небольшие интеракции (кнопка "На главную" и поддержка)
+    function initActions() {
+        const homeBtn = document.getElementById('goHomeBtn');
+        if (homeBtn) {
+            homeBtn.addEventListener('click', (e) => {
                 e.preventDefault();
-                alert(currentLang === 'ru' ? 'Переход на главную страницу' : 'Redirect to main page');
-                // Здесь можно сделать редирект: window.location.href = "/";
-            });
-        }
-
-        const contactBtn = document.getElementById('contactBtn');
-        if (contactBtn) {
-            contactBtn.addEventListener('click', () => {
-                const msg = currentLang === 'ru' ? 'Открыта форма связи с поддержкой MIYBANK' : 'Opening support chat for MIYBANK';
+                const msg = currentLang === 'ru' ? 'Переход на главную страницу MIYBANK' : 'Redirect to MIYBANK main page';
                 alert(msg + ' (demo)');
-                // в реальном проекте тут можно подставить модальное окно или ссылку на почту
+                // Здесь можно сделать реальный редирект: window.location.href = '/';
             });
         }
-
-        // Доп. пример: все навигационные ссылки не ломают логику, показывают демо-сообщение
-        const allNavLinks = document.querySelectorAll('.nav-links a');
-        allNavLinks.forEach(link => {
+        const support = document.getElementById('supportBtn');
+        if (support) {
+            support.addEventListener('click', () => {
+                const msg = currentLang === 'ru' ? 'Открыть форму связи с командой MIYBANK' : 'Open contact form with MIYBANK team';
+                alert(msg + '\n support@miybank.com (demo)');
+            });
+        }
+        // добавим поведение для всех навигационных ссылок (чтобы не перезагружали)
+        const allNav = document.querySelectorAll('.nav-links a');
+        allNav.forEach(link => {
             link.addEventListener('click', (e) => {
                 e.preventDefault();
-                const demoMsg = currentLang === 'ru' ? `Раздел "${link.innerText}" в разработке` : `Section "${link.innerText}" under development`;
+                const demoMsg = currentLang === 'ru' ? `Раздел "${link.innerText}" временно в разработке` : `Section "${link.innerText}" is under development`;
                 alert(demoMsg);
             });
         });
     }
 
-    // Запускаем после загрузки DOM
+    // запуск при загрузке DOM
     document.addEventListener('DOMContentLoaded', () => {
-        initLanguageSwitcher();
-        initUIInteractions();
+        initLang();
+        initActions();
     });
 </script>
 </body>
