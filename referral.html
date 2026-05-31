@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>MIYBANK — Реферальная программа | Личный кабинет</title>
+    <title>MIYBANK — Реферальная программа | Зарабатывайте MYB</title>
     <link rel="icon" href="favicon.ico">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
@@ -25,7 +25,6 @@
         .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin: 20px 0; }
         .program-card { background: rgba(0,0,0,0.3); border-radius: 20px; padding: 24px; text-align: center; border: 1px solid rgba(255,215,0,0.2); transition: 0.3s; }
         .program-card:hover { transform: translateY(-5px); border-color: #FFD700; }
-        .cabinet-card { background: linear-gradient(135deg, rgba(0,170,85,0.15), rgba(0,0,0,0.3)); border-radius: 20px; padding: 20px; text-align: center; border: 1px solid rgba(0,255,136,0.3); }
         .commission-table { width: 100%; border-collapse: collapse; margin: 20px 0; }
         .commission-table th, .commission-table td { padding: 12px; text-align: center; border-bottom: 1px solid rgba(255,215,0,0.2); }
         .commission-table th { color: #FFD700; }
@@ -34,15 +33,18 @@
         .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 12px; border-radius: 12px; border: 1px solid rgba(255,215,0,0.3); background: rgba(0,0,0,0.3); color: #fff; font-size: 1rem; }
         .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: #FFD700; }
         .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .error-message { background: rgba(255,0,0,0.2); border: 1px solid #FF4444; border-radius: 12px; padding: 12px; text-align: center; margin-top: 15px; display: none; }
         .success-message { background: rgba(0,255,0,0.2); border: 1px solid #00FF88; border-radius: 12px; padding: 12px; text-align: center; margin-top: 15px; display: none; }
-        .referral-link-box { background: rgba(0,0,0,0.4); border-radius: 12px; padding: 15px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; margin-top: 15px; }
-        .referral-link-box code { font-family: monospace; font-size: 0.9rem; word-break: break-all; }
-        .copy-btn { background: #FFD700; color: #0A1E3D; border: none; padding: 8px 16px; border-radius: 40px; cursor: pointer; font-weight: bold; }
         .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin: 20px 0; }
         .stat-card { background: rgba(0,0,0,0.3); border-radius: 16px; padding: 15px; text-align: center; }
         .stat-value { font-size: 2rem; font-weight: bold; color: #FFD700; }
-        .referred-list { margin-top: 20px; }
-        .referred-item { display: flex; justify-content: space-between; padding: 10px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .referral-link-box { background: rgba(0,0,0,0.4); border-radius: 12px; padding: 15px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; margin-top: 15px; }
+        .referral-link-box code { font-family: monospace; font-size: 0.9rem; word-break: break-all; }
+        .copy-btn { background: #FFD700; color: #0A1E3D; border: none; padding: 8px 16px; border-radius: 40px; cursor: pointer; font-weight: bold; }
+        .referred-list, .history-list { margin-top: 20px; }
+        .list-item { display: flex; justify-content: space-between; padding: 10px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .badge { display: inline-block; background: rgba(0,170,85,0.2); padding: 2px 8px; border-radius: 20px; font-size: 0.7rem; color: #00FF88; }
+        .verify-btn { background: #FFD700; color: #0A1E3D; border: none; padding: 4px 12px; border-radius: 20px; cursor: pointer; font-size: 0.7rem; margin-left: 10px; }
         @media (max-width: 768px) { .grid-2 { grid-template-columns: 1fr; } .form-row { grid-template-columns: 1fr; } .stats-grid { grid-template-columns: 1fr; } .container { padding: 0 15px; } }
         
         .language-switcher { position: fixed; bottom: 20px; right: 20px; z-index: 1000; }
@@ -68,18 +70,18 @@
     </div>
     <div style="border-top: 1px solid rgba(255,255,255,0.1);">
         <div class="container" style="padding: 10px 20px;">
-            <a href="index.html" class="nav-link" id="nav-home">🏠 Home</a>
-            <a href="liquidity.html" class="nav-link" id="nav-liquidity">💧 Liquidity</a>
-            <a href="assets.html" class="nav-link" id="nav-assets">🏭 Copper Assets</a>
-            <a href="spec.html" class="nav-link" id="nav-spec">📦 Спецтехника</a>
-            <a href="cars.html" class="nav-link" id="nav-cars">🚗 Авто</a>
-            <a href="ev.html" class="nav-link" id="nav-ev">⚡ EV</a>
-            <a href="seasonal.html" class="nav-link" id="nav-seasonal">🌾 Сезонная</a>
-            <a href="equipment.html" class="nav-link" id="nav-equipment">🏭 Оборудование</a>
-            <a href="halal-leasing.html" class="nav-link" id="nav-halal">☪️ Халяльный</a>
-            <a href="financial-instruments.html" class="nav-link" id="nav-financial">💱 Fin Instruments</a>
-            <a href="referral.html" class="nav-link active-nav" id="nav-referral">🎁 Реферальная</a>
-            <a href="contacts.html" class="nav-link" id="nav-contacts">📞 Контакты</a>
+            <a href="index.html" class="nav-link">🏠 Home</a>
+            <a href="liquidity.html" class="nav-link">💧 Liquidity</a>
+            <a href="assets.html" class="nav-link">🏭 Copper Assets</a>
+            <a href="spec.html" class="nav-link">📦 Спецтехника</a>
+            <a href="cars.html" class="nav-link">🚗 Авто</a>
+            <a href="ev.html" class="nav-link">⚡ EV</a>
+            <a href="seasonal.html" class="nav-link">🌾 Сезонная</a>
+            <a href="equipment.html" class="nav-link">🏭 Оборудование</a>
+            <a href="halal-leasing.html" class="nav-link">☪️ Халяльный</a>
+            <a href="financial-instruments.html" class="nav-link">💱 Fin Instruments</a>
+            <a href="referral.html" class="nav-link active-nav">🎁 Реферальная</a>
+            <a href="contacts.html" class="nav-link">📞 Контакты</a>
         </div>
     </div>
 </header>
@@ -89,38 +91,27 @@
     <div class="bg-dark-card">
         <h2 class="gold-text" style="text-align: center; margin-bottom: 20px;" id="cabinet-title">👤 Личный кабинет</h2>
         
-        <!-- Неавторизованное состояние (форма входа/регистрации) -->
+        <!-- Неавторизованное состояние -->
         <div id="unauthorized-view">
             <div class="form-row">
-                <div class="form-group">
-                    <label id="login-label">Email или Telegram ID</label>
-                    <input type="text" id="login-username" placeholder="your@email.com или @telegram">
-                </div>
-                <div class="form-group">
-                    <label id="password-label">Пароль</label>
-                    <input type="password" id="login-password" placeholder="••••••••">
-                </div>
+                <div class="form-group"><label id="login-label">Email или Telegram ID</label><input type="text" id="login-username" placeholder="your@email.com или @telegram"></div>
+                <div class="form-group"><label id="password-label">Пароль</label><input type="password" id="login-password" placeholder="••••••••"></div>
             </div>
             <div style="display: flex; gap: 15px; justify-content: center;">
                 <button onclick="login()" class="btn-primary" id="login-btn">Войти</button>
                 <button onclick="showRegister()" class="btn-outline" id="register-btn">Зарегистрироваться</button>
             </div>
             <div id="register-form" style="display: none; margin-top: 20px;">
-                <div class="form-row">
-                    <div class="form-group"><label id="reg-name-label">Ваше имя *</label><input type="text" id="reg-name" placeholder="Иван Иванов"></div>
-                    <div class="form-group"><label id="reg-email-label">Email *</label><input type="email" id="reg-email" placeholder="ivan@example.com"></div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group"><label id="reg-phone-label">Телефон *</label><input type="tel" id="reg-phone" placeholder="+998 90 123 45 67"></div>
-                    <div class="form-group"><label id="reg-type-label">Участвую как</label><select id="reg-type"><option value="client">Клиент</option><option value="agent">Агент</option><option value="both">И то, и другое</option></select></div>
-                </div>
+                <div class="form-row"><div class="form-group"><label id="reg-name-label">Ваше имя *</label><input type="text" id="reg-name" placeholder="Иван Иванов"></div><div class="form-group"><label id="reg-email-label">Email *</label><input type="email" id="reg-email" placeholder="ivan@example.com"></div></div>
+                <div class="form-row"><div class="form-group"><label id="reg-phone-label">Телефон *</label><input type="tel" id="reg-phone" placeholder="+998 90 123 45 67"></div><div class="form-group"><label id="reg-type-label">Участвую как</label><select id="reg-type"><option value="client">Клиент</option><option value="agent">Агент</option><option value="both">И то, и другое</option></select></div></div>
                 <div class="form-group"><label id="reg-password-label">Пароль *</label><input type="password" id="reg-password" placeholder="••••••••"></div>
+                <div class="form-group"><label id="reg-ref-label">Реферальный код (если есть)</label><input type="text" id="reg-ref-code" placeholder="Введите код пригласившего"></div>
                 <button onclick="register()" class="btn-green" id="reg-submit-btn">Зарегистрироваться</button>
             </div>
-            <div id="login-error" class="error-message" style="display: none; color: #FF4444; text-align: center; margin-top: 10px;"></div>
+            <div id="login-error" class="error-message"></div>
         </div>
 
-        <!-- Авторизованное состояние (личный кабинет) -->
+        <!-- Авторизованное состояние -->
         <div id="authorized-view" style="display: none;">
             <div style="display: flex; justify-content: space-between; flex-wrap: wrap; align-items: center; margin-bottom: 20px;">
                 <h3 class="gold-text" id="welcome-text">Добро пожаловать, <span id="user-name"></span>!</h3>
@@ -135,52 +126,49 @@
 
             <div class="referral-link-box">
                 <span id="referral-link-label">Ваша реферальная ссылка:</span>
-                <code id="referral-link">https://miybank.github.io/mb/?ref=</code>
+                <code id="referral-link"></code>
                 <button onclick="copyReferralLink()" class="copy-btn" id="copy-btn">📋 Копировать</button>
             </div>
 
             <div class="referred-list">
                 <h4 class="gold-text" id="referred-title">📋 Приглашённые клиенты</h4>
-                <div id="referred-list-container">
-                    <p class="text-gray-400" id="no-referred-text">У вас пока нет приглашённых клиентов</p>
-                </div>
+                <div id="referred-list-container"><p class="text-gray-400" id="no-referred-text">У вас пока нет приглашённых клиентов</p></div>
             </div>
 
-            <div class="commission-table">
+            <div class="history-list">
                 <h4 class="gold-text" id="history-title">📜 История начислений</h4>
-                <div id="history-container">
-                    <p class="text-gray-400" id="no-history-text">История пуста</p>
-                </div>
+                <div id="history-container"><p class="text-gray-400" id="no-history-text">История пуста</p></div>
             </div>
         </div>
     </div>
 
-    <!-- Условия программы (сокращённые выплаты) -->
+    <!-- Условия программы -->
     <div class="grid-2">
         <div class="program-card">
             <i class="fas fa-users" style="font-size: 2rem; color: #FFD700;"></i>
             <h3 class="gold-text" style="margin: 10px 0;" id="clients-title">👥 Для клиентов</h3>
             <div class="commission-table">
                 <table>
-                    <thead><tr><th id="clients-action">Действие</th><th id="clients-reward">Вознаграждение</th></tr></thead>
+                    <thead><tr><th id="clients-action">Условие</th><th id="clients-reward">Вознаграждение пригласившему</th></tr></thead>
                     <tbody>
-                        <tr><td id="clients-reg">Регистрация по вашей ссылке</td><td class="green-text">15 MYB</td></tr>
-                        <tr><td id="clients-first">Первая оплата лизинга</td><td class="green-text">0.33% от платежа</td></tr>
-                        <tr><td id="clients-deal">Закрытие сделки</td><td class="green-text">0.16% от суммы контракта</td></tr>
+                        <tr><td id="clients-first">Приглашённый закрыл первую сделку (лизинг / SBLC/BG) после получения аванса ≥30%</td><td class="green-text">15 MYB</td></tr>
+                        <tr><td id="clients-payment">Регулярные платежи приглашённого по лизингу</td><td class="green-text">0.33% от фактически поступившей суммы</td></tr>
+                        <tr><td id="clients-sblc">Успешное закрытие SBLC/BG приглашённым</td><td class="green-text">0.5% от комиссии банка</td></tr>
                     </tbody>
                 </table>
             </div>
+            <p class="text-gray-400" style="font-size: 0.8rem;">* Регистрация бесплатна. Бонус начисляется только после фактического поступления денег.</p>
         </div>
         <div class="program-card">
             <i class="fas fa-briefcase" style="font-size: 2rem; color: #FFD700;"></i>
             <h3 class="gold-text" style="margin: 10px 0;" id="agents-title">🤝 Для агентов</h3>
             <div class="commission-table">
                 <table>
-                    <thead><tr><th id="agents-action">Действие</th><th id="agents-reward">Вознаграждение</th></tr></thead>
+                    <thead><tr><th id="agents-action">Условие</th><th id="agents-reward">Вознаграждение</th></tr></thead>
                     <tbody>
-                        <tr><td id="agents-leasing">Привлечение на лизинг</td><td class="green-text">1% от суммы</td></tr>
-                        <tr><td id="agents-sblc">Привлечение на SBLC/BG</td><td class="green-text">0.5% от комиссии</td></tr>
-                        <tr><td id="agents-bonus">Ежемесячная активность (5+ сделок)</td><td class="green-text">+0.33% к бонусу</td></tr>
+                        <tr><td id="agents-leasing">Привлечение клиента на лизинг (успешная сделка)</td><td class="green-text">1% от суммы сделки</td></tr>
+                        <tr><td id="agents-sblc">Привлечение клиента на SBLC/BG (успешная выдача)</td><td class="green-text">0.5% от комиссии банка</td></tr>
+                        <tr><td id="agents-bonus">Ежемесячная активность (5+ успешных сделок)</td><td class="green-text">+0.33% к комиссии</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -194,9 +182,9 @@
             <thead><tr><th id="level-title">Уровень</th><th id="condition-title">Условие</th><th id="bonus-title">Базовая комиссия</th><th id="extra-title">Доп. бонус</th></tr></thead>
             <tbody>
                 <tr><td class="gold-text">Начинающий</td><td>Регистрация</td><td>0.5%</td><td>—</td></tr>
-                <tr><td class="gold-text">Серебряный</td><td>3 клиента/мес</td><td>0.66%</td><td class="green-text">+33 MYB</td></tr>
-                <tr><td class="gold-text">Золотой</td><td>7 клиентов/мес</td><td>0.83%</td><td class="green-text">+100 MYB</td></tr>
-                <tr><td class="gold-text">Платиновый</td><td>15+ клиентов/мес</td><td>1%</td><td class="green-text">+166 MYB</td></tr>
+                <tr><td class="gold-text">Серебряный</td><td>3 сделки/мес</td><td>0.66%</td><td class="green-text">+33 MYB</td></tr>
+                <tr><td class="gold-text">Золотой</td><td>7 сделок/мес</td><td>0.83%</td><td class="green-text">+100 MYB</td></tr>
+                <tr><td class="gold-text">Платиновый</td><td>15+ сделок/мес</td><td>1%</td><td class="green-text">+166 MYB</td></tr>
             </tbody>
         </table>
     </div>
@@ -209,7 +197,7 @@
 
 <footer>
     <p>© 2025 MIYBANK (MYB) — <span id="footer-text">Первый семейный банковский токен с лизинговой экосистемой</span></p>
-    <p id="footer-referral">Реферальная программа: бонусы в MYB. Выплаты начисляются после верификации сделки.</p>
+    <p id="footer-referral">Реферальная программа: бонусы начисляются после верификации сделки и фактического поступления средств.</p>
 </footer>
 
 <div class="language-switcher">
@@ -230,7 +218,7 @@
 </div>
 
 <script>
-    // Хранилище пользователей (в реальном проекте — на сервере)
+    // ==================== ХРАНИЛИЩЕ (localStorage) ====================
     let users = JSON.parse(localStorage.getItem('referral_users')) || {};
     let currentUser = JSON.parse(localStorage.getItem('referral_current_user')) || null;
     let nextId = parseInt(localStorage.getItem('referral_next_id')) || 1;
@@ -241,24 +229,69 @@
     }
 
     function generateReferralCode(userId) {
-        return btoa('ref_' + userId + '_' + Date.now()).substring(0, 16);
+        return 'REF' + userId + Math.random().toString(36).substring(2, 8).toUpperCase();
     }
 
-    function login() {
-        const username = document.getElementById('login-username').value;
-        const password = document.getElementById('login-password').value;
-        
-        for (let id in users) {
-            if ((users[id].email === username || users[id].telegram === username) && users[id].password === password) {
-                currentUser = users[id];
+    // Добавление бонуса (симуляция — в реальности вызывается после верификации сделки)
+    function addBonus(userId, amount, description) {
+        if (users[userId]) {
+            users[userId].balance += amount;
+            users[userId].history.unshift({ description, amount, date: new Date().toLocaleString() });
+            if (users[userId].balance < 0) users[userId].balance = 0;
+            saveUsers();
+            if (currentUser && currentUser.id === userId) {
+                currentUser.balance = users[userId].balance;
+                currentUser.history = users[userId].history;
                 localStorage.setItem('referral_current_user', JSON.stringify(currentUser));
-                showCabinet();
-                document.getElementById('login-error').style.display = 'none';
-                return;
+                updateCabinetUI();
             }
+            return true;
         }
-        document.getElementById('login-error').style.display = 'block';
-        document.getElementById('login-error').innerText = 'Неверный email/телеграм или пароль';
+        return false;
+    }
+
+    // Верификация сделки приглашённого (вызывается администратором)
+    function verifyDeal(userId, dealAmount, dealType) {
+        const referrerId = users[userId]?.referredBy;
+        if (!referrerId) return;
+        
+        let bonus = 0;
+        let description = '';
+        
+        if (dealType === 'first_deal') {
+            bonus = 15;
+            description = `Бонус за первую сделку приглашённого пользователя ${users[userId].name}`;
+        } else if (dealType === 'lease_payment') {
+            bonus = Math.floor(dealAmount * 0.0033);
+            description = `0.33% от платежа (${dealAmount} MYB) приглашённого ${users[userId].name}`;
+        } else if (dealType === 'sblc') {
+            bonus = Math.floor(dealAmount * 0.005);
+            description = `0.5% от комиссии SBLC/BG (${dealAmount} MYB) приглашённого ${users[userId].name}`;
+        }
+        
+        if (bonus > 0) {
+            addBonus(referrerId, bonus, description);
+            
+            // Обновить уровень пригласившего
+            updateUserLevel(referrerId);
+        }
+    }
+
+    function updateUserLevel(userId) {
+        const user = users[userId];
+        if (!user) return;
+        
+        const dealsCount = user.referredUsers?.length || 0;
+        if (dealsCount >= 15) user.level = 'Платиновый';
+        else if (dealsCount >= 7) user.level = 'Золотой';
+        else if (dealsCount >= 3) user.level = 'Серебряный';
+        else user.level = 'Начинающий';
+        
+        saveUsers();
+        if (currentUser && currentUser.id === userId) {
+            currentUser.level = user.level;
+            localStorage.setItem('referral_current_user', JSON.stringify(currentUser));
+        }
     }
 
     function register() {
@@ -267,14 +300,33 @@
         const phone = document.getElementById('reg-phone').value;
         const type = document.getElementById('reg-type').value;
         const password = document.getElementById('reg-password').value;
+        const refCode = document.getElementById('reg-ref-code').value;
         
         if (!name || !email || !phone || !password) {
-            alert('Заполните все поля');
+            alert('Заполните все обязательные поля');
             return;
+        }
+        
+        // Проверка на существующий email
+        for (let id in users) {
+            if (users[id].email === email) {
+                alert('Пользователь с таким email уже существует');
+                return;
+            }
         }
         
         const userId = nextId++;
         const referralCode = generateReferralCode(userId);
+        
+        let referredBy = null;
+        if (refCode) {
+            for (let id in users) {
+                if (users[id].referralCode === refCode) {
+                    referredBy = parseInt(id);
+                    break;
+                }
+            }
+        }
         
         users[userId] = {
             id: userId,
@@ -285,18 +337,46 @@
             password: password,
             balance: 0,
             referralCode: referralCode,
-            referredCount: 0,
+            referredBy: referredBy,
             referredUsers: [],
             history: [],
             level: 'Начинающий',
-            levelBonus: 0,
-            monthlyDeals: 0
+            createdAt: new Date().toISOString()
         };
+        
+        // Если есть пригласивший
+        if (referredBy && users[referredBy]) {
+            users[referredBy].referredUsers.push({
+                id: userId,
+                name: name,
+                date: new Date().toLocaleString(),
+                bonus: 0
+            });
+            saveUsers();
+            updateUserLevel(referredBy);
+        }
         
         saveUsers();
         currentUser = users[userId];
         localStorage.setItem('referral_current_user', JSON.stringify(currentUser));
         showCabinet();
+    }
+
+    function login() {
+        const username = document.getElementById('login-username').value;
+        const password = document.getElementById('login-password').value;
+        
+        for (let id in users) {
+            if ((users[id].email === username || users[id].phone === username) && users[id].password === password) {
+                currentUser = users[id];
+                localStorage.setItem('referral_current_user', JSON.stringify(currentUser));
+                showCabinet();
+                document.getElementById('login-error').style.display = 'none';
+                return;
+            }
+        }
+        document.getElementById('login-error').style.display = 'block';
+        document.getElementById('login-error').innerText = 'Неверный email/телефон или пароль';
     }
 
     function logout() {
@@ -306,8 +386,8 @@
     }
 
     function showRegister() {
-        const registerForm = document.getElementById('register-form');
-        registerForm.style.display = registerForm.style.display === 'none' ? 'block' : 'none';
+        const form = document.getElementById('register-form');
+        form.style.display = form.style.display === 'none' ? 'block' : 'none';
     }
 
     function showLogin() {
@@ -324,19 +404,19 @@
         
         document.getElementById('user-name').innerText = currentUser.name;
         document.getElementById('balance').innerText = Math.floor(currentUser.balance);
-        document.getElementById('referral-count').innerText = currentUser.referredCount;
+        document.getElementById('referral-count').innerText = currentUser.referredUsers?.length || 0;
         document.getElementById('level-name').innerHTML = currentUser.level;
         document.getElementById('referral-link').innerHTML = `https://miybank.github.io/mb/?ref=${currentUser.referralCode}`;
         
         // Список приглашённых
         const referredContainer = document.getElementById('referred-list-container');
-        if (currentUser.referredUsers.length === 0) {
+        if (!currentUser.referredUsers || currentUser.referredUsers.length === 0) {
             referredContainer.innerHTML = '<p class="text-gray-400">У вас пока нет приглашённых клиентов</p>';
         } else {
             referredContainer.innerHTML = currentUser.referredUsers.map(u => `
-                <div class="referred-item">
+                <div class="list-item">
                     <span>${u.name}</span>
-                    <span class="gold-text">+${u.bonus} MYB</span>
+                    <span class="green-text">+${u.bonus || 0} MYB</span>
                     <span>${u.date}</span>
                 </div>
             `).join('');
@@ -344,11 +424,11 @@
         
         // История начислений
         const historyContainer = document.getElementById('history-container');
-        if (currentUser.history.length === 0) {
+        if (!currentUser.history || currentUser.history.length === 0) {
             historyContainer.innerHTML = '<p class="text-gray-400">История пуста</p>';
         } else {
             historyContainer.innerHTML = currentUser.history.map(h => `
-                <div class="referred-item">
+                <div class="list-item">
                     <span>${h.description}</span>
                     <span class="green-text">+${h.amount} MYB</span>
                     <span>${h.date}</span>
@@ -363,6 +443,22 @@
         alert('Ссылка скопирована!');
     }
 
+    function updateCabinetUI() {
+        if (currentUser) {
+            document.getElementById('balance').innerText = Math.floor(currentUser.balance);
+            document.getElementById('referral-count').innerText = currentUser.referredUsers?.length || 0;
+            document.getElementById('level-name').innerHTML = currentUser.level;
+        }
+    }
+
+    // Обработка реферального параметра в URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const refCode = urlParams.get('ref');
+    if (refCode && !currentUser) {
+        document.getElementById('reg-ref-code').value = refCode;
+        showRegister();
+    }
+
     // Инициализация
     if (currentUser) {
         showCabinet();
@@ -370,69 +466,41 @@
         showLogin();
     }
 
-    // Обработка реферального параметра в URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const refCode = urlParams.get('ref');
-    if (refCode && !currentUser) {
-        localStorage.setItem('pending_ref', refCode);
-        alert('Добро пожаловать! Зарегистрируйтесь, и реферальная ссылка будет активирована.');
+    // Для демонстрации — добавим тестового пользователя, если никого нет
+    if (Object.keys(users).length === 0) {
+        users[1] = {
+            id: 1, name: 'Тестовый Пользователь', email: 'test@test.com', phone: '+998901234567',
+            type: 'both', password: '123', balance: 0, referralCode: 'TEST123',
+            referredUsers: [], history: [], level: 'Начинающий', createdAt: new Date().toISOString()
+        };
+        nextId = 2;
+        saveUsers();
     }
 
     // Translations
     const translations = {
         ru: {
-            cabinet_title: "Личный кабинет", login_label: "Email или Telegram ID", password_label: "Пароль", login_btn: "Войти",
-            register_btn: "Зарегистрироваться", reg_name_label: "Ваше имя *", reg_email_label: "Email *", reg_phone_label: "Телефон *",
-            reg_type_label: "Участвую как", reg_submit_btn: "Зарегистрироваться", welcome_text: "Добро пожаловать",
-            logout_btn: "Выйти", balance_label: "MYB (бонусы)", referral_count_label: "Приглашено клиентов",
-            level_label: "Ваш уровень", referral_link_label: "Ваша реферальная ссылка:", copy_btn: "Копировать",
+            cabinet_title: "Личный кабинет", login_label: "Email или телефон", password_label: "Пароль", login_btn: "Войти",
+            register_btn: "Зарегистрироваться", reg_name_label: "Ваше имя *", reg_email_label: "Email *",
+            reg_phone_label: "Телефон *", reg_type_label: "Участвую как", reg_password_label: "Пароль *",
+            reg_ref_label: "Реферальный код (если есть)", reg_submit_btn: "Зарегистрироваться",
+            welcome_text: "Добро пожаловать", logout_btn: "Выйти", balance_label: "MYB (бонусы)",
+            referral_count_label: "Приглашено клиентов", level_label: "Ваш уровень",
+            referral_link_label: "Ваша реферальная ссылка:", copy_btn: "Копировать",
             referred_title: "Приглашённые клиенты", no_referred_text: "У вас пока нет приглашённых клиентов",
             history_title: "История начислений", no_history_text: "История пуста",
-            clients_title: "Для клиентов", clients_action: "Действие", clients_reward: "Вознаграждение",
-            clients_reg: "Регистрация по вашей ссылке", clients_first: "Первая оплата лизинга", clients_deal: "Закрытие сделки",
-            agents_title: "Для агентов", agents_action: "Действие", agents_reward: "Вознаграждение",
-            agents_leasing: "Привлечение на лизинг", agents_sblc: "Привлечение на SBLC/BG", agents_bonus: "Ежемесячная активность (5+ сделок)",
-            levels_title: "Уровни агентов", level_title: "Уровень", condition_title: "Условие", bonus_title: "Базовая комиссия", extra_title: "Доп. бонус",
+            clients_title: "Для клиентов", clients_action: "Условие", clients_reward: "Вознаграждение пригласившему",
+            clients_first: "Приглашённый закрыл первую сделку (лизинг / SBLC/BG)", clients_payment: "Регулярные платежи приглашённого по лизингу",
+            clients_sblc: "Успешное закрытие SBLC/BG приглашённым",
+            agents_title: "Для агентов", agents_action: "Условие", agents_reward: "Вознаграждение",
+            agents_leasing: "Привлечение клиента на лизинг (успешная сделка)", agents_sblc: "Привлечение клиента на SBLC/BG (успешная выдача)",
+            agents_bonus: "Ежемесячная активность (5+ успешных сделок)",
+            levels_title: "Уровни агентов", level_title: "Уровень", condition_title: "Условие",
+            bonus_title: "Базовая комиссия", extra_title: "Доп. бонус",
             contacts_link: "Есть вопросы? Свяжитесь с нами", back_home: "На главную",
             footer_text: "Первый семейный банковский токен с лизинговой экосистемой",
-            footer_referral: "Реферальная программа: бонусы в MYB. Выплаты начисляются после верификации сделки.",
+            footer_referral: "Реферальная программа: бонусы начисляются после верификации сделки",
             wallet_text: "Подключить кошелёк"
-        },
-        uz: {
-            cabinet_title: "Shaxsiy kabinet", login_label: "Email yoki Telegram ID", password_label: "Parol", login_btn: "Kirish",
-            register_btn: "Ro'yxatdan o'tish", reg_name_label: "Ismingiz *", reg_email_label: "Email *", reg_phone_label: "Telefon *",
-            reg_type_label: "Qatnashish turi", reg_submit_btn: "Ro'yxatdan o'tish", welcome_text: "Xush kelibsiz",
-            logout_btn: "Chiqish", balance_label: "MYB (bonuslar)", referral_count_label: "Taklif qilingan mijozlar",
-            level_label: "Sizning darajangiz", referral_link_label: "Sizning referal havolangiz:", copy_btn: "Nusxalash",
-            referred_title: "Taklif qilingan mijozlar", no_referred_text: "Hali taklif qilingan mijozlar yo'q",
-            history_title: "Hisob-kitob tarixi", no_history_text: "Tarix bo'sh",
-            clients_title: "Mijozlar uchun", clients_action: "Harakat", clients_reward: "Mukofot",
-            clients_reg: "Sizning havolangiz orqali ro'yxatdan o'tish", clients_first: "Birinchi lizing to'lovi", clients_deal: "Bitimning yopilishi",
-            agents_title: "Agentlar uchun", agents_action: "Harakat", agents_reward: "Mukofot",
-            agents_leasing: "Lizingga jalb qilish", agents_sblc: "SBLC/BG ga jalb qilish", agents_bonus: "Oylik faollik (5+ bitim)",
-            levels_title: "Agent darajalari", level_title: "Daraja", condition_title: "Shart", bonus_title: "Asosiy komissiya", extra_title: "Qo'shimcha bonus",
-            contacts_link: "Savolingiz bormi? Biz bilan bog'lanishing", back_home: "Bosh sahifaga",
-            footer_text: "Birinchi oilaviy bank tokeni lizing ekotizimi bilan",
-            footer_referral: "Referal dastur: MYB da bonuslar. To'lovlar bitim tekshirilgandan keyin hisoblanadi.",
-            wallet_text: "Hamyonni ulash"
-        },
-        en: {
-            cabinet_title: "Personal Cabinet", login_label: "Email or Telegram ID", password_label: "Password", login_btn: "Login",
-            register_btn: "Register", reg_name_label: "Your Name *", reg_email_label: "Email *", reg_phone_label: "Phone *",
-            reg_type_label: "Participate as", reg_submit_btn: "Register", welcome_text: "Welcome",
-            logout_btn: "Logout", balance_label: "MYB (bonuses)", referral_count_label: "Referred clients",
-            level_label: "Your level", referral_link_label: "Your referral link:", copy_btn: "Copy",
-            referred_title: "Referred clients", no_referred_text: "No referred clients yet",
-            history_title: "Transaction history", no_history_text: "History is empty",
-            clients_title: "For Clients", clients_action: "Action", clients_reward: "Reward",
-            clients_reg: "Registration via your link", clients_first: "First lease payment", clients_deal: "Deal closing",
-            agents_title: "For Agents", agents_action: "Action", agents_reward: "Reward",
-            agents_leasing: "Leasing referral", agents_sblc: "SBLC/BG referral", agents_bonus: "Monthly activity (5+ deals)",
-            levels_title: "Agent Levels", level_title: "Level", condition_title: "Condition", bonus_title: "Base commission", extra_title: "Extra bonus",
-            contacts_link: "Questions? Contact us", back_home: "Back to Home",
-            footer_text: "The first family banking token with a leasing ecosystem",
-            footer_referral: "Referral program: bonuses in MYB. Payouts are credited after deal verification.",
-            wallet_text: "Connect Wallet"
         }
     };
 
