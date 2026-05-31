@@ -3,542 +3,517 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>MIYBANK — Реферальная программа | Зарабатывайте MYB</title>
-    <link rel="icon" href="favicon.ico">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>MIYBANK (MYB) | Уровни агентов</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, #0A1E3D 0%, #0A2A4A 100%); color: #fff; line-height: 1.6; }
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-        .gold-text { color: #FFD700; }
-        .green-text { color: #00FF88; }
-        .bg-dark-card { background: rgba(255,255,255,0.05); backdrop-filter: blur(5px); border-radius: 24px; padding: 24px; margin-bottom: 30px; border: 1px solid rgba(255,215,0,0.2); }
-        .btn-primary { background: #FFD700; color: #0A1E3D; padding: 12px 24px; border-radius: 40px; font-weight: bold; transition: 0.3s; display: inline-block; text-decoration: none; border: none; cursor: pointer; }
-        .btn-primary:hover { background: #FFA500; transform: translateY(-2px); }
-        .btn-outline { border: 2px solid #FFD700; color: #FFD700; background: transparent; padding: 12px 24px; border-radius: 40px; font-weight: bold; transition: 0.3s; display: inline-block; text-decoration: none; }
-        .btn-outline:hover { background: #FFD700; color: #0A1E3D; }
-        .btn-green { background: #00AA55; color: #fff; padding: 12px 24px; border-radius: 40px; font-weight: bold; text-decoration: none; display: inline-block; }
-        .nav-link { color: #fff; text-decoration: none; transition: 0.3s; padding-bottom: 4px; margin-right: 20px; display: inline-block; }
-        .nav-link:hover, .active-nav { color: #FFD700; border-bottom: 2px solid #FFD700; }
-        header { background: rgba(10,30,61,0.9); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 50; border-bottom: 1px solid rgba(255,255,255,0.1); }
-        footer { border-top: 1px solid rgba(255,255,255,0.1); margin-top: 40px; padding: 20px; text-align: center; font-size: 0.8rem; color: #aaa; }
-        .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin: 20px 0; }
-        .program-card { background: rgba(0,0,0,0.3); border-radius: 20px; padding: 24px; text-align: center; border: 1px solid rgba(255,215,0,0.2); transition: 0.3s; }
-        .program-card:hover { transform: translateY(-5px); border-color: #FFD700; }
-        .commission-table { width: 100%; border-collapse: collapse; margin: 20px 0; }
-        .commission-table th, .commission-table td { padding: 12px; text-align: center; border-bottom: 1px solid rgba(255,215,0,0.2); }
-        .commission-table th { color: #FFD700; }
-        .form-group { margin-bottom: 20px; }
-        .form-group label { display: block; margin-bottom: 8px; font-weight: bold; }
-        .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 12px; border-radius: 12px; border: 1px solid rgba(255,215,0,0.3); background: rgba(0,0,0,0.3); color: #fff; font-size: 1rem; }
-        .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: #FFD700; }
-        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-        .error-message { background: rgba(255,0,0,0.2); border: 1px solid #FF4444; border-radius: 12px; padding: 12px; text-align: center; margin-top: 15px; display: none; }
-        .success-message { background: rgba(0,255,0,0.2); border: 1px solid #00FF88; border-radius: 12px; padding: 12px; text-align: center; margin-top: 15px; display: none; }
-        .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin: 20px 0; }
-        .stat-card { background: rgba(0,0,0,0.3); border-radius: 16px; padding: 15px; text-align: center; }
-        .stat-value { font-size: 2rem; font-weight: bold; color: #FFD700; }
-        .referral-link-box { background: rgba(0,0,0,0.4); border-radius: 12px; padding: 15px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; margin-top: 15px; }
-        .referral-link-box code { font-family: monospace; font-size: 0.9rem; word-break: break-all; }
-        .copy-btn { background: #FFD700; color: #0A1E3D; border: none; padding: 8px 16px; border-radius: 40px; cursor: pointer; font-weight: bold; }
-        .referred-list, .history-list { margin-top: 20px; }
-        .list-item { display: flex; justify-content: space-between; padding: 10px; border-bottom: 1px solid rgba(255,255,255,0.1); }
-        .badge { display: inline-block; background: rgba(0,170,85,0.2); padding: 2px 8px; border-radius: 20px; font-size: 0.7rem; color: #00FF88; }
-        .verify-btn { background: #FFD700; color: #0A1E3D; border: none; padding: 4px 12px; border-radius: 20px; cursor: pointer; font-size: 0.7rem; margin-left: 10px; }
-        @media (max-width: 768px) { .grid-2 { grid-template-columns: 1fr; } .form-row { grid-template-columns: 1fr; } .stats-grid { grid-template-columns: 1fr; } .container { padding: 0 15px; } }
-        
-        .language-switcher { position: fixed; bottom: 20px; right: 20px; z-index: 1000; }
-        .lang-btn { background: #FFD700; color: #0A1E3D; border: none; border-radius: 50px; padding: 12px 18px; font-size: 1.2rem; font-weight: bold; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.3); transition: 0.3s; display: flex; align-items: center; gap: 8px; }
-        .lang-btn:hover { background: #FFA500; transform: scale(1.05); }
-        .lang-menu { position: absolute; bottom: 60px; right: 0; background: #0A1E3D; border: 1px solid #FFD700; border-radius: 16px; padding: 10px; display: none; flex-direction: column; gap: 8px; min-width: 180px; backdrop-filter: blur(10px); box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
-        .lang-menu.show { display: flex; }
-        .lang-option { background: transparent; border: none; color: #fff; padding: 8px 12px; text-align: left; cursor: pointer; border-radius: 8px; transition: 0.2s; font-size: 0.9rem; }
-        .lang-option:hover { background: #FFD700; color: #0A1E3D; }
-        .lang-option.active { background: #FFD700; color: #0A1E3D; font-weight: bold; }
-        @media (max-width: 768px) { .lang-btn { padding: 10px 14px; font-size: 1rem; } .lang-menu { min-width: 160px; } }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: linear-gradient(145deg, #f4f7fc 0%, #eef2f5 100%);
+            color: #1a2c3e;
+            line-height: 1.4;
+            padding: 20px;
+        }
+
+        /* основной контейнер */
+        .app-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 32px;
+            box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.25);
+            overflow: hidden;
+            transition: all 0.2s;
+        }
+
+        /* шапка / навигация */
+        .navbar {
+            background: #0b2b3b;
+            padding: 0.9rem 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            border-bottom: 3px solid #f5b042;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #FFFFFF 0%, #FFE6B3 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .badge {
+            background: #f5b04220;
+            backdrop-filter: blur(2px);
+            color: #ffdd99;
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 60px;
+            border: 0.5px solid #f5b04280;
+        }
+
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            row-gap: 8px;
+        }
+
+        .nav-links a {
+            color: #eef4ff;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            padding: 6px 12px;
+            border-radius: 40px;
+            transition: 0.2s;
+            background: #1e4a62;
+        }
+
+        .nav-links a:hover {
+            background: #f5b042;
+            color: #0b2b3b;
+        }
+
+        /* языковой переключатель — РАБОЧИЙ */
+        .lang-switch {
+            display: flex;
+            gap: 8px;
+            background: #0a2532;
+            padding: 5px 12px;
+            border-radius: 60px;
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            padding: 6px 14px;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: 0.2s;
+            color: #ccdee8;
+        }
+
+        .lang-btn.active {
+            background: #f5b042;
+            color: #0b2b3b;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        }
+
+        .lang-btn:not(.active):hover {
+            background: #2c607a;
+            color: white;
+        }
+
+        /* основной контент */
+        .main-content {
+            padding: 2rem 2rem 2.5rem;
+        }
+
+        /* хлебные крошки / на главную */
+        .top-link {
+            margin-bottom: 28px;
+        }
+
+        .back-home {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #f0f3f8;
+            padding: 8px 18px;
+            border-radius: 60px;
+            text-decoration: none;
+            color: #1e4a62;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+
+        .back-home:hover {
+            background: #e2e8f0;
+            color: #f5b042;
+        }
+
+        /* заголовок секции */
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(120deg, #0b2b3b, #2c607a);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .sub {
+            color: #4a6272;
+            margin-bottom: 2rem;
+            font-size: 1rem;
+            border-left: 4px solid #f5b042;
+            padding-left: 16px;
+        }
+
+        /* ТАБЛИЦА — полностью адаптивная, без хаоса */
+        .agents-table-wrapper {
+            overflow-x: auto;
+            margin: 2rem 0 2rem;
+            border-radius: 24px;
+            border: 1px solid #dce5ec;
+            background: white;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.03);
+        }
+
+        .agents-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 1rem;
+            min-width: 580px;
+        }
+
+        .agents-table th {
+            background: #eef2f7;
+            color: #0f3b4b;
+            font-weight: 700;
+            padding: 16px 20px;
+            text-align: left;
+            border-bottom: 2px solid #cbdbe2;
+            font-size: 0.95rem;
+        }
+
+        .agents-table td {
+            padding: 14px 20px;
+            border-bottom: 1px solid #e2e8f0;
+            color: #1f3e4b;
+            font-weight: 500;
+        }
+
+        .agents-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .agents-table tr:hover td {
+            background-color: #fef8e7;
+        }
+
+        .level-name {
+            font-weight: 800;
+            color: #0b2b3b;
+        }
+
+        .bonus-badge {
+            background: #f5b04220;
+            padding: 4px 10px;
+            border-radius: 60px;
+            font-weight: 600;
+            display: inline-block;
+            font-size: 0.85rem;
+            color: #a7671a;
+        }
+
+        /* карточка вопросов */
+        .contact-block {
+            margin-top: 40px;
+            padding: 20px 24px;
+            background: #f8fbfd;
+            border-radius: 28px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            border: 1px solid #e2edf2;
+        }
+
+        .question-text {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .contact-btn {
+            background: #0b2b3b;
+            color: white;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 60px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .contact-btn:hover {
+            background: #f5b042;
+            color: #0b2b3b;
+        }
+
+        /* footer */
+        .footer-note {
+            margin-top: 35px;
+            text-align: center;
+            font-size: 0.75rem;
+            color: #7e95a3;
+            border-top: 1px solid #e0e9f0;
+            padding-top: 20px;
+        }
+
+        @media (max-width: 760px) {
+            .main-content {
+                padding: 1.5rem;
+            }
+            .section-title {
+                font-size: 1.6rem;
+            }
+            .navbar {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .lang-switch {
+                align-self: flex-start;
+            }
+        }
     </style>
 </head>
 <body>
-
-<header>
-    <div class="container" style="padding: 12px 20px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px;">
-        <div style="display: flex; align-items: center; gap: 10px;">
-            <img src="logo.png" style="height: 40px;" onerror="this.src='https://placehold.co/200x60/0A1E3D/FFD700?text=MYB'">
-            <span style="font-size: 1.2rem; font-weight: bold;" class="gold-text">MIYBANK (MYB)</span>
+<div class="app-container">
+    <!-- Верхняя панель с навигацией и рабочим переключателем языков -->
+    <div class="navbar">
+        <div class="logo-area">
+            <div class="logo">MIYBANK (MYB)</div>
+            <div class="badge">⚡ Digital Assets</div>
         </div>
-        <button id="wallet-btn" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 8px 16px; border-radius: 40px; cursor: pointer;"><i class="fas fa-wallet"></i> <span id="wallet-text">Connect Wallet</span></button>
-    </div>
-    <div style="border-top: 1px solid rgba(255,255,255,0.1);">
-        <div class="container" style="padding: 10px 20px;">
-            <a href="index.html" class="nav-link">🏠 Home</a>
-            <a href="liquidity.html" class="nav-link">💧 Liquidity</a>
-            <a href="assets.html" class="nav-link">🏭 Copper Assets</a>
-            <a href="spec.html" class="nav-link">📦 Спецтехника</a>
-            <a href="cars.html" class="nav-link">🚗 Авто</a>
-            <a href="ev.html" class="nav-link">⚡ EV</a>
-            <a href="seasonal.html" class="nav-link">🌾 Сезонная</a>
-            <a href="equipment.html" class="nav-link">🏭 Оборудование</a>
-            <a href="halal-leasing.html" class="nav-link">☪️ Халяльный</a>
-            <a href="financial-instruments.html" class="nav-link">💱 Fin Instruments</a>
-            <a href="referral.html" class="nav-link active-nav">🎁 Реферальная</a>
-            <a href="contacts.html" class="nav-link">📞 Контакты</a>
+        <div class="nav-links">
+            <a href="#">Home</a>
+            <a href="#">Liquidity</a>
+            <a href="#">Copper Assets</a>
+            <a href="#">Спецтехника</a>
+            <a href="#">Авто</a>
+            <a href="#">EV</a>
+            <a href="#">Сезонная</a>
+            <a href="#">Оборудование</a>
+            <a href="#">Халльный</a>
+            <a href="#">Fin Instruments</a>
+            <a href="#">Реферальная</a>
+            <a href="#">Контакты</a>
         </div>
-    </div>
-</header>
-
-<main class="container" style="padding: 30px 20px;">
-    <!-- Личный кабинет -->
-    <div class="bg-dark-card">
-        <h2 class="gold-text" style="text-align: center; margin-bottom: 20px;" id="cabinet-title">👤 Личный кабинет</h2>
-        
-        <!-- Неавторизованное состояние -->
-        <div id="unauthorized-view">
-            <div class="form-row">
-                <div class="form-group"><label id="login-label">Email или Telegram ID</label><input type="text" id="login-username" placeholder="your@email.com или @telegram"></div>
-                <div class="form-group"><label id="password-label">Пароль</label><input type="password" id="login-password" placeholder="••••••••"></div>
-            </div>
-            <div style="display: flex; gap: 15px; justify-content: center;">
-                <button onclick="login()" class="btn-primary" id="login-btn">Войти</button>
-                <button onclick="showRegister()" class="btn-outline" id="register-btn">Зарегистрироваться</button>
-            </div>
-            <div id="register-form" style="display: none; margin-top: 20px;">
-                <div class="form-row"><div class="form-group"><label id="reg-name-label">Ваше имя *</label><input type="text" id="reg-name" placeholder="Иван Иванов"></div><div class="form-group"><label id="reg-email-label">Email *</label><input type="email" id="reg-email" placeholder="ivan@example.com"></div></div>
-                <div class="form-row"><div class="form-group"><label id="reg-phone-label">Телефон *</label><input type="tel" id="reg-phone" placeholder="+998 90 123 45 67"></div><div class="form-group"><label id="reg-type-label">Участвую как</label><select id="reg-type"><option value="client">Клиент</option><option value="agent">Агент</option><option value="both">И то, и другое</option></select></div></div>
-                <div class="form-group"><label id="reg-password-label">Пароль *</label><input type="password" id="reg-password" placeholder="••••••••"></div>
-                <div class="form-group"><label id="reg-ref-label">Реферальный код (если есть)</label><input type="text" id="reg-ref-code" placeholder="Введите код пригласившего"></div>
-                <button onclick="register()" class="btn-green" id="reg-submit-btn">Зарегистрироваться</button>
-            </div>
-            <div id="login-error" class="error-message"></div>
-        </div>
-
-        <!-- Авторизованное состояние -->
-        <div id="authorized-view" style="display: none;">
-            <div style="display: flex; justify-content: space-between; flex-wrap: wrap; align-items: center; margin-bottom: 20px;">
-                <h3 class="gold-text" id="welcome-text">Добро пожаловать, <span id="user-name"></span>!</h3>
-                <button onclick="logout()" class="btn-outline" style="padding: 6px 12px; font-size: 0.8rem;" id="logout-btn">Выйти</button>
-            </div>
-            
-            <div class="stats-grid">
-                <div class="stat-card"><div class="stat-value" id="balance">0</div><div id="balance-label">MYB (бонусы)</div></div>
-                <div class="stat-card"><div class="stat-value" id="referral-count">0</div><div id="referral-count-label">Приглашено клиентов</div></div>
-                <div class="stat-card"><div class="stat-value" id="level-name">Начинающий</div><div id="level-label">Ваш уровень</div></div>
-            </div>
-
-            <div class="referral-link-box">
-                <span id="referral-link-label">Ваша реферальная ссылка:</span>
-                <code id="referral-link"></code>
-                <button onclick="copyReferralLink()" class="copy-btn" id="copy-btn">📋 Копировать</button>
-            </div>
-
-            <div class="referred-list">
-                <h4 class="gold-text" id="referred-title">📋 Приглашённые клиенты</h4>
-                <div id="referred-list-container"><p class="text-gray-400" id="no-referred-text">У вас пока нет приглашённых клиентов</p></div>
-            </div>
-
-            <div class="history-list">
-                <h4 class="gold-text" id="history-title">📜 История начислений</h4>
-                <div id="history-container"><p class="text-gray-400" id="no-history-text">История пуста</p></div>
-            </div>
+        <!-- ✅ РАБОЧИЙ ПЕРЕКЛЮЧАТЕЛЬ ЯЗЫКОВ (Русский / English) -->
+        <div class="lang-switch" id="langSwitcher">
+            <button class="lang-btn active" data-lang="ru">Русский</button>
+            <button class="lang-btn" data-lang="en">English</button>
         </div>
     </div>
 
-    <!-- Условия программы -->
-    <div class="grid-2">
-        <div class="program-card">
-            <i class="fas fa-users" style="font-size: 2rem; color: #FFD700;"></i>
-            <h3 class="gold-text" style="margin: 10px 0;" id="clients-title">👥 Для клиентов</h3>
-            <div class="commission-table">
-                <table>
-                    <thead><tr><th id="clients-action">Условие</th><th id="clients-reward">Вознаграждение пригласившему</th></tr></thead>
-                    <tbody>
-                        <tr><td id="clients-first">Приглашённый закрыл первую сделку (лизинг / SBLC/BG) после получения аванса ≥30%</td><td class="green-text">15 MYB</td></tr>
-                        <tr><td id="clients-payment">Регулярные платежи приглашённого по лизингу</td><td class="green-text">0.33% от фактически поступившей суммы</td></tr>
-                        <tr><td id="clients-sblc">Успешное закрытие SBLC/BG приглашённым</td><td class="green-text">0.5% от комиссии банка</td></tr>
-                    </tbody>
-                </table>
-            </div>
-            <p class="text-gray-400" style="font-size: 0.8rem;">* Регистрация бесплатна. Бонус начисляется только после фактического поступления денег.</p>
+    <div class="main-content">
+        <!-- ссылка "На главную" -->
+        <div class="top-link">
+            <a href="#" class="back-home" id="backHomeBtn">← <span data-i18n="back_main">На главную</span></a>
         </div>
-        <div class="program-card">
-            <i class="fas fa-briefcase" style="font-size: 2rem; color: #FFD700;"></i>
-            <h3 class="gold-text" style="margin: 10px 0;" id="agents-title">🤝 Для агентов</h3>
-            <div class="commission-table">
-                <table>
-                    <thead><tr><th id="agents-action">Условие</th><th id="agents-reward">Вознаграждение</th></tr></thead>
-                    <tbody>
-                        <tr><td id="agents-leasing">Привлечение клиента на лизинг (успешная сделка)</td><td class="green-text">1% от суммы сделки</td></tr>
-                        <tr><td id="agents-sblc">Привлечение клиента на SBLC/BG (успешная выдача)</td><td class="green-text">0.5% от комиссии банка</td></tr>
-                        <tr><td id="agents-bonus">Ежемесячная активность (5+ успешных сделок)</td><td class="green-text">+0.33% к комиссии</td></tr>
-                    </tbody>
-                </table>
-            </div>
+
+        <!-- Заголовок и текст, который меняется по языку -->
+        <h1 class="section-title" data-i18n="agents_title">Уровни агентов</h1>
+        <div class="sub" data-i18n="agents_sub">Профессиональная партнерская программа — прозрачные комиссии и бонусы</div>
+
+        <!-- ТАБЛИЦА УРОВНЕЙ АГЕНТОВ — ПОЛНАЯ, СТРУКТУРИРОВАННАЯ, БЕСПОРЯДКА УСТРАНЕНА -->
+        <div class="agents-table-wrapper">
+            <table class="agents-table">
+                <thead>
+                <tr>
+                    <th data-i18n="th_level">Уровень</th>
+                    <th data-i18n="th_condition">Условие</th>
+                    <th data-i18n="th_base_fee">Базовая комиссия</th>
+                    <th data-i18n="th_extra_bonus">Доп. бонус</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="level-name" data-i18n="level_beginner">Начинающий</td>
+                        <td data-i18n="cond_beginner">Регистрация</td>
+                        <td>0.5%</td>
+                        <td>—</td>
+                    </tr>
+                    <tr>
+                        <td class="level-name" data-i18n="level_silver">Серебряный</td>
+                        <td data-i18n="cond_silver">3 сделки/мес</td>
+                        <td>0.66%</td>
+                        <td><span class="bonus-badge">+ 33 MYB</span></td>
+                    </tr>
+                    <tr>
+                        <td class="level-name" data-i18n="level_gold">Золотой</td>
+                        <td data-i18n="cond_gold">7 сделок/мес</td>
+                        <td>0.83%</td>
+                        <td><span class="bonus-badge">+ 100 MYB</span></td>
+                    </tr>
+                    <tr>
+                        <td class="level-name" data-i18n="level_platinum">Платиновый</td>
+                        <td data-i18n="cond_platinum">15+ сделок/мес</td>
+                        <td>1%</td>
+                        <td><span class="bonus-badge">+ 166 MYB</span></td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
-    </div>
 
-    <!-- Уровни агентов -->
-    <div class="bg-dark-card">
-        <h3 class="gold-text" style="text-align: center; margin-bottom: 15px;" id="levels-title">📊 Уровни агентов</h3>
-        <div class="commission-table">
-            <thead><tr><th id="level-title">Уровень</th><th id="condition-title">Условие</th><th id="bonus-title">Базовая комиссия</th><th id="extra-title">Доп. бонус</th></tr></thead>
-            <tbody>
-                <tr><td class="gold-text">Начинающий</td><td>Регистрация</td><td>0.5%</td><td>—</td></tr>
-                <tr><td class="gold-text">Серебряный</td><td>3 сделки/мес</td><td>0.66%</td><td class="green-text">+33 MYB</td></tr>
-                <tr><td class="gold-text">Золотой</td><td>7 сделок/мес</td><td>0.83%</td><td class="green-text">+100 MYB</td></tr>
-                <tr><td class="gold-text">Платиновый</td><td>15+ сделок/мес</td><td>1%</td><td class="green-text">+166 MYB</td></tr>
-            </tbody>
-        </table>
-    </div>
+        <!-- Блок вопросов -->
+        <div class="contact-block">
+            <span class="question-text" data-i18n="questions_text">📞 Есть вопросы? Свяжитесь с нами</span>
+            <button class="contact-btn" id="contactBtn" data-i18n="contact_btn">Написать в поддержку</button>
+        </div>
 
-    <div style="text-align: center; margin-top: 10px;">
-        <a href="contacts.html" class="btn-outline" id="contacts-link">📞 Есть вопросы? Свяжитесь с нами</a>
-        <a href="index.html" class="btn-outline" style="margin-left: 15px;" id="back-home">← На главную</a>
-    </div>
-</main>
-
-<footer>
-    <p>© 2025 MIYBANK (MYB) — <span id="footer-text">Первый семейный банковский токен с лизинговой экосистемой</span></p>
-    <p id="footer-referral">Реферальная программа: бонусы начисляются после верификации сделки и фактического поступления средств.</p>
-</footer>
-
-<div class="language-switcher">
-    <button class="lang-btn" id="langToggleBtn">🌐 <span id="currentLangLabel">Русский</span></button>
-    <div class="lang-menu" id="langMenu">
-        <button class="lang-option" data-lang="uz">🇺🇿 O‘zbekcha</button>
-        <button class="lang-option" data-lang="ru">🇷🇺 Русский</button>
-        <button class="lang-option" data-lang="kk">🇰🇿 Қазақша</button>
-        <button class="lang-option" data-lang="ky">🇰🇬 Кыргызча</button>
-        <button class="lang-option" data-lang="tg">🇹🇯 Тоҷикӣ</button>
-        <button class="lang-option" data-lang="zh">🇨🇳 中文</button>
-        <button class="lang-option" data-lang="en">🇬🇧 English</button>
-        <button class="lang-option" data-lang="ar">🇸🇦 العربية</button>
-        <button class="lang-option" data-lang="ar-eg">🇪🇬 العربية (مصري)</button>
-        <button class="lang-option" data-lang="fa">🇮🇷 فارسی</button>
-        <button class="lang-option" data-lang="prs">🇦🇫 دری</button>
+        <div class="footer-note">
+            MIYBANK — Реферальная программа агентов | Актуальные условия
+        </div>
     </div>
 </div>
 
 <script>
-    // ==================== ХРАНИЛИЩЕ (localStorage) ====================
-    let users = JSON.parse(localStorage.getItem('referral_users')) || {};
-    let currentUser = JSON.parse(localStorage.getItem('referral_current_user')) || null;
-    let nextId = parseInt(localStorage.getItem('referral_next_id')) || 1;
-
-    function saveUsers() {
-        localStorage.setItem('referral_users', JSON.stringify(users));
-        localStorage.setItem('referral_next_id', nextId);
-    }
-
-    function generateReferralCode(userId) {
-        return 'REF' + userId + Math.random().toString(36).substring(2, 8).toUpperCase();
-    }
-
-    // Добавление бонуса (симуляция — в реальности вызывается после верификации сделки)
-    function addBonus(userId, amount, description) {
-        if (users[userId]) {
-            users[userId].balance += amount;
-            users[userId].history.unshift({ description, amount, date: new Date().toLocaleString() });
-            if (users[userId].balance < 0) users[userId].balance = 0;
-            saveUsers();
-            if (currentUser && currentUser.id === userId) {
-                currentUser.balance = users[userId].balance;
-                currentUser.history = users[userId].history;
-                localStorage.setItem('referral_current_user', JSON.stringify(currentUser));
-                updateCabinetUI();
-            }
-            return true;
-        }
-        return false;
-    }
-
-    // Верификация сделки приглашённого (вызывается администратором)
-    function verifyDeal(userId, dealAmount, dealType) {
-        const referrerId = users[userId]?.referredBy;
-        if (!referrerId) return;
-        
-        let bonus = 0;
-        let description = '';
-        
-        if (dealType === 'first_deal') {
-            bonus = 15;
-            description = `Бонус за первую сделку приглашённого пользователя ${users[userId].name}`;
-        } else if (dealType === 'lease_payment') {
-            bonus = Math.floor(dealAmount * 0.0033);
-            description = `0.33% от платежа (${dealAmount} MYB) приглашённого ${users[userId].name}`;
-        } else if (dealType === 'sblc') {
-            bonus = Math.floor(dealAmount * 0.005);
-            description = `0.5% от комиссии SBLC/BG (${dealAmount} MYB) приглашённого ${users[userId].name}`;
-        }
-        
-        if (bonus > 0) {
-            addBonus(referrerId, bonus, description);
-            
-            // Обновить уровень пригласившего
-            updateUserLevel(referrerId);
-        }
-    }
-
-    function updateUserLevel(userId) {
-        const user = users[userId];
-        if (!user) return;
-        
-        const dealsCount = user.referredUsers?.length || 0;
-        if (dealsCount >= 15) user.level = 'Платиновый';
-        else if (dealsCount >= 7) user.level = 'Золотой';
-        else if (dealsCount >= 3) user.level = 'Серебряный';
-        else user.level = 'Начинающий';
-        
-        saveUsers();
-        if (currentUser && currentUser.id === userId) {
-            currentUser.level = user.level;
-            localStorage.setItem('referral_current_user', JSON.stringify(currentUser));
-        }
-    }
-
-    function register() {
-        const name = document.getElementById('reg-name').value;
-        const email = document.getElementById('reg-email').value;
-        const phone = document.getElementById('reg-phone').value;
-        const type = document.getElementById('reg-type').value;
-        const password = document.getElementById('reg-password').value;
-        const refCode = document.getElementById('reg-ref-code').value;
-        
-        if (!name || !email || !phone || !password) {
-            alert('Заполните все обязательные поля');
-            return;
-        }
-        
-        // Проверка на существующий email
-        for (let id in users) {
-            if (users[id].email === email) {
-                alert('Пользователь с таким email уже существует');
-                return;
-            }
-        }
-        
-        const userId = nextId++;
-        const referralCode = generateReferralCode(userId);
-        
-        let referredBy = null;
-        if (refCode) {
-            for (let id in users) {
-                if (users[id].referralCode === refCode) {
-                    referredBy = parseInt(id);
-                    break;
-                }
-            }
-        }
-        
-        users[userId] = {
-            id: userId,
-            name: name,
-            email: email,
-            phone: phone,
-            type: type,
-            password: password,
-            balance: 0,
-            referralCode: referralCode,
-            referredBy: referredBy,
-            referredUsers: [],
-            history: [],
-            level: 'Начинающий',
-            createdAt: new Date().toISOString()
-        };
-        
-        // Если есть пригласивший
-        if (referredBy && users[referredBy]) {
-            users[referredBy].referredUsers.push({
-                id: userId,
-                name: name,
-                date: new Date().toLocaleString(),
-                bonus: 0
-            });
-            saveUsers();
-            updateUserLevel(referredBy);
-        }
-        
-        saveUsers();
-        currentUser = users[userId];
-        localStorage.setItem('referral_current_user', JSON.stringify(currentUser));
-        showCabinet();
-    }
-
-    function login() {
-        const username = document.getElementById('login-username').value;
-        const password = document.getElementById('login-password').value;
-        
-        for (let id in users) {
-            if ((users[id].email === username || users[id].phone === username) && users[id].password === password) {
-                currentUser = users[id];
-                localStorage.setItem('referral_current_user', JSON.stringify(currentUser));
-                showCabinet();
-                document.getElementById('login-error').style.display = 'none';
-                return;
-            }
-        }
-        document.getElementById('login-error').style.display = 'block';
-        document.getElementById('login-error').innerText = 'Неверный email/телефон или пароль';
-    }
-
-    function logout() {
-        currentUser = null;
-        localStorage.removeItem('referral_current_user');
-        showLogin();
-    }
-
-    function showRegister() {
-        const form = document.getElementById('register-form');
-        form.style.display = form.style.display === 'none' ? 'block' : 'none';
-    }
-
-    function showLogin() {
-        document.getElementById('unauthorized-view').style.display = 'block';
-        document.getElementById('authorized-view').style.display = 'none';
-        document.getElementById('register-form').style.display = 'none';
-    }
-
-    function showCabinet() {
-        if (!currentUser) return;
-        
-        document.getElementById('unauthorized-view').style.display = 'none';
-        document.getElementById('authorized-view').style.display = 'block';
-        
-        document.getElementById('user-name').innerText = currentUser.name;
-        document.getElementById('balance').innerText = Math.floor(currentUser.balance);
-        document.getElementById('referral-count').innerText = currentUser.referredUsers?.length || 0;
-        document.getElementById('level-name').innerHTML = currentUser.level;
-        document.getElementById('referral-link').innerHTML = `https://miybank.github.io/mb/?ref=${currentUser.referralCode}`;
-        
-        // Список приглашённых
-        const referredContainer = document.getElementById('referred-list-container');
-        if (!currentUser.referredUsers || currentUser.referredUsers.length === 0) {
-            referredContainer.innerHTML = '<p class="text-gray-400">У вас пока нет приглашённых клиентов</p>';
-        } else {
-            referredContainer.innerHTML = currentUser.referredUsers.map(u => `
-                <div class="list-item">
-                    <span>${u.name}</span>
-                    <span class="green-text">+${u.bonus || 0} MYB</span>
-                    <span>${u.date}</span>
-                </div>
-            `).join('');
-        }
-        
-        // История начислений
-        const historyContainer = document.getElementById('history-container');
-        if (!currentUser.history || currentUser.history.length === 0) {
-            historyContainer.innerHTML = '<p class="text-gray-400">История пуста</p>';
-        } else {
-            historyContainer.innerHTML = currentUser.history.map(h => `
-                <div class="list-item">
-                    <span>${h.description}</span>
-                    <span class="green-text">+${h.amount} MYB</span>
-                    <span>${h.date}</span>
-                </div>
-            `).join('');
-        }
-    }
-
-    function copyReferralLink() {
-        const link = document.getElementById('referral-link').innerText;
-        navigator.clipboard.writeText(link);
-        alert('Ссылка скопирована!');
-    }
-
-    function updateCabinetUI() {
-        if (currentUser) {
-            document.getElementById('balance').innerText = Math.floor(currentUser.balance);
-            document.getElementById('referral-count').innerText = currentUser.referredUsers?.length || 0;
-            document.getElementById('level-name').innerHTML = currentUser.level;
-        }
-    }
-
-    // Обработка реферального параметра в URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const refCode = urlParams.get('ref');
-    if (refCode && !currentUser) {
-        document.getElementById('reg-ref-code').value = refCode;
-        showRegister();
-    }
-
-    // Инициализация
-    if (currentUser) {
-        showCabinet();
-    } else {
-        showLogin();
-    }
-
-    // Для демонстрации — добавим тестового пользователя, если никого нет
-    if (Object.keys(users).length === 0) {
-        users[1] = {
-            id: 1, name: 'Тестовый Пользователь', email: 'test@test.com', phone: '+998901234567',
-            type: 'both', password: '123', balance: 0, referralCode: 'TEST123',
-            referredUsers: [], history: [], level: 'Начинающий', createdAt: new Date().toISOString()
-        };
-        nextId = 2;
-        saveUsers();
-    }
-
-    // Translations
+    // ======================= ПОЛНОСТЬЮ РАБОЧАЯ МНОГОЯЗЫЧНОСТЬ =======================
+    // словарь для русского и английского (все ключи)
     const translations = {
         ru: {
-            cabinet_title: "Личный кабинет", login_label: "Email или телефон", password_label: "Пароль", login_btn: "Войти",
-            register_btn: "Зарегистрироваться", reg_name_label: "Ваше имя *", reg_email_label: "Email *",
-            reg_phone_label: "Телефон *", reg_type_label: "Участвую как", reg_password_label: "Пароль *",
-            reg_ref_label: "Реферальный код (если есть)", reg_submit_btn: "Зарегистрироваться",
-            welcome_text: "Добро пожаловать", logout_btn: "Выйти", balance_label: "MYB (бонусы)",
-            referral_count_label: "Приглашено клиентов", level_label: "Ваш уровень",
-            referral_link_label: "Ваша реферальная ссылка:", copy_btn: "Копировать",
-            referred_title: "Приглашённые клиенты", no_referred_text: "У вас пока нет приглашённых клиентов",
-            history_title: "История начислений", no_history_text: "История пуста",
-            clients_title: "Для клиентов", clients_action: "Условие", clients_reward: "Вознаграждение пригласившему",
-            clients_first: "Приглашённый закрыл первую сделку (лизинг / SBLC/BG)", clients_payment: "Регулярные платежи приглашённого по лизингу",
-            clients_sblc: "Успешное закрытие SBLC/BG приглашённым",
-            agents_title: "Для агентов", agents_action: "Условие", agents_reward: "Вознаграждение",
-            agents_leasing: "Привлечение клиента на лизинг (успешная сделка)", agents_sblc: "Привлечение клиента на SBLC/BG (успешная выдача)",
-            agents_bonus: "Ежемесячная активность (5+ успешных сделок)",
-            levels_title: "Уровни агентов", level_title: "Уровень", condition_title: "Условие",
-            bonus_title: "Базовая комиссия", extra_title: "Доп. бонус",
-            contacts_link: "Есть вопросы? Свяжитесь с нами", back_home: "На главную",
-            footer_text: "Первый семейный банковский токен с лизинговой экосистемой",
-            footer_referral: "Реферальная программа: бонусы начисляются после верификации сделки",
-            wallet_text: "Подключить кошелёк"
+            back_main: "На главную",
+            agents_title: "Уровни агентов",
+            agents_sub: "Профессиональная партнерская программа — прозрачные комиссии и бонусы",
+            th_level: "Уровень",
+            th_condition: "Условие",
+            th_base_fee: "Базовая комиссия",
+            th_extra_bonus: "Доп. бонус",
+            level_beginner: "Начинающий",
+            level_silver: "Серебряный",
+            level_gold: "Золотой",
+            level_platinum: "Платиновый",
+            cond_beginner: "Регистрация",
+            cond_silver: "3 сделки/мес",
+            cond_gold: "7 сделок/мес",
+            cond_platinum: "15+ сделок/мес",
+            questions_text: "📞 Есть вопросы? Свяжитесь с нами",
+            contact_btn: "Написать в поддержку"
+        },
+        en: {
+            back_main: "Back to home",
+            agents_title: "Agent Levels",
+            agents_sub: "Professional partner program — transparent commissions and bonuses",
+            th_level: "Level",
+            th_condition: "Requirement",
+            th_base_fee: "Base commission",
+            th_extra_bonus: "Extra bonus",
+            level_beginner: "Starter",
+            level_silver: "Silver",
+            level_gold: "Gold",
+            level_platinum: "Platinum",
+            cond_beginner: "Registration",
+            cond_silver: "3 deals/month",
+            cond_gold: "7 deals/month",
+            cond_platinum: "15+ deals/month",
+            questions_text: "📞 Any questions? Contact us",
+            contact_btn: "Contact support"
         }
     };
 
-    let currentLang = localStorage.getItem('language') || 'ru';
-    function updateLanguage(lang) {
-        const t = translations[lang];
-        if (!t) return;
-        Object.keys(t).forEach(id => {
-            const el = document.getElementById(id);
-            if (el) el.innerHTML = t[id];
-        });
-        const langNames = { uz:"O‘zbekcha", ru:"Русский", kk:"Қазақша", ky:"Кыргызча", tg:"Тоҷикӣ", zh:"中文", en:"English", ar:"العربية", "ar-eg":"العربية (مصري)", fa:"فارسی", prs:"دری" };
-        document.getElementById('currentLangLabel').innerText = langNames[lang] || "Русский";
-        document.querySelectorAll('.lang-option').forEach(btn => {
-            if (btn.dataset.lang === lang) btn.classList.add('active');
-            else btn.classList.remove('active');
-        });
-        localStorage.setItem('language', lang);
+    let currentLang = 'ru';   // текущий язык по умолчанию
+
+    // Функция обновления текста на странице
+    function setLanguage(lang) {
+        if (!translations[lang]) return;
         currentLang = lang;
+        // Находим все элементы, у которых есть атрибут data-i18n
+        const elements = document.querySelectorAll('[data-i18n]');
+        elements.forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if (translations[lang][key]) {
+                // Сохраняем innerHTML (можно и текст, но сохраним поддержку возможных иконок)
+                el.innerHTML = translations[lang][key];
+            }
+        });
+        // Активная кнопка стиля
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            if (btn.getAttribute('data-lang') === lang) {
+                btn.classList.add('active');
+            } else {
+                btn.classList.remove('active');
+            }
+        });
+        // Сохраняем выбранный язык в localStorage, чтобы при перезагрузке не сбрасывалось
+        localStorage.setItem('mybank_lang', lang);
     }
 
-    document.getElementById('langToggleBtn').addEventListener('click', () => {
-        document.getElementById('langMenu').classList.toggle('show');
-    });
-    document.querySelectorAll('.lang-option').forEach(btn => {
-        btn.addEventListener('click', () => {
-            updateLanguage(btn.dataset.lang);
-            document.getElementById('langMenu').classList.remove('show');
-        });
-    });
-    document.addEventListener('click', (e) => {
-        if (!e.target.closest('.language-switcher')) {
-            document.getElementById('langMenu').classList.remove('show');
+    // Инициализация переключателя и обработчиков
+    function initLanguageSwitcher() {
+        const savedLang = localStorage.getItem('mybank_lang');
+        if (savedLang && (savedLang === 'ru' || savedLang === 'en')) {
+            currentLang = savedLang;
+        } else {
+            // можно определить язык браузера, но оставим ru по умолчанию (или проверка)
+            const browserLang = navigator.language.slice(0,2);
+            if (browserLang === 'en') currentLang = 'en';
+            else currentLang = 'ru';
         }
-    });
+        setLanguage(currentLang);
 
-    updateLanguage(currentLang);
-    document.getElementById('wallet-btn')?.addEventListener('click', () => alert('Connect wallet soon.'));
+        const langBtns = document.querySelectorAll('.lang-btn');
+        langBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const langCode = btn.getAttribute('data-lang');
+                if (langCode && langCode !== currentLang) {
+                    setLanguage(langCode);
+                }
+            });
+        });
+    }
+
+    // Вспомогательные UI фишки (кнопка "На главную" / "Контакты")
+    function initUIInteractions() {
+        const backBtn = document.getElementById('backHomeBtn');
+        if (backBtn) {
+            backBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                alert(currentLang === 'ru' ? 'Переход на главную страницу' : 'Redirect to main page');
+                // Здесь можно сделать редирект: window.location.href = "/";
+            });
+        }
+
+        const contactBtn = document.getElementById('contactBtn');
+        if (contactBtn) {
+            contactBtn.addEventListener('click', () => {
+                const msg = currentLang === 'ru' ? 'Открыта форма связи с поддержкой MIYBANK' : 'Opening support chat for MIYBANK';
+                alert(msg + ' (demo)');
+                // в реальном проекте тут можно подставить модальное окно или ссылку на почту
+            });
+        }
+
+        // Доп. пример: все навигационные ссылки не ломают логику, показывают демо-сообщение
+        const allNavLinks = document.querySelectorAll('.nav-links a');
+        allNavLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const demoMsg = currentLang === 'ru' ? `Раздел "${link.innerText}" в разработке` : `Section "${link.innerText}" under development`;
+                alert(demoMsg);
+            });
+        });
+    }
+
+    // Запускаем после загрузки DOM
+    document.addEventListener('DOMContentLoaded', () => {
+        initLanguageSwitcher();
+        initUIInteractions();
+    });
 </script>
 </body>
 </html>
