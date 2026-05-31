@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>MIYBANK — Реферальная программа | Зарабатывайте с MIYBANK</title>
+    <link rel="icon" href="favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, #0A1E3D 0%, #0A2A4A 100%); color: #fff; line-height: 1.6; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .gold-text { color: #FFD700; }
+        .green-text { color: #00FF88; }
+        .bg-dark-card { background: rgba(255,255,255,0.05); backdrop-filter: blur(5px); border-radius: 24px; padding: 24px; margin-bottom: 30px; border: 1px solid rgba(255,215,0,0.2); }
+        .btn-primary { background: #FFD700; color: #0A1E3D; padding: 12px 24px; border-radius: 40px; font-weight: bold; transition: 0.3s; display: inline-block; text-decoration: none; border: none; cursor: pointer; }
+        .btn-primary:hover { background: #FFA500; transform: translateY(-2px); }
+        .btn-outline { border: 2px solid #FFD700; color: #FFD700; background: transparent; padding: 12px 24px; border-radius: 40px; font-weight: bold; transition: 0.3s; display: inline-block; text-decoration: none; }
+        .btn-outline:hover { background: #FFD700; color: #0A1E3D; }
+        .btn-green { background: #00AA55; color: #fff; padding: 12px 24px; border-radius: 40px; font-weight: bold; text-decoration: none; display: inline-block; }
+        .nav-link { color: #fff; text-decoration: none; transition: 0.3s; padding-bottom: 4px; margin-right: 20px; display: inline-block; }
+        .nav-link:hover, .active-nav { color: #FFD700; border-bottom: 2px solid #FFD700; }
+        header { background: rgba(10,30,61,0.9); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 50; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        footer { border-top: 1px solid rgba(255,255,255,0.1); margin-top: 40px; padding: 20px; text-align: center; font-size: 0.8rem; color: #aaa; }
+        .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin: 20px 0; }
+        .program-card { background: rgba(0,0,0,0.3); border-radius: 20px; padding: 24px; text-align: center; border: 1px solid rgba(255,215,0,0.2); transition: 0.3s; }
+        .program-card:hover { transform: translateY(-5px); border-color: #FFD700; }
+        .commission-table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        .commission-table th, .commission-table td { padding: 12px; text-align: center; border-bottom: 1px solid rgba(255,215,0,0.2); }
+        .commission-table th { color: #FFD700; }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: bold; }
+        .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 12px; border-radius: 12px; border: 1px solid rgba(255,215,0,0.3); background: rgba(0,0,0,0.3); color: #fff; font-size: 1rem; }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: #FFD700; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .success-message { background: rgba(0,255,0,0.2); border: 1px solid #00FF88; border-radius: 12px; padding: 12px; text-align: center; margin-top: 15px; display: none; }
+        @media (max-width: 768px) { .grid-2 { grid-template-columns: 1fr; } .form-row { grid-template-columns: 1fr; } .container { padding: 0 15px; } }
+        
+        /* Language Switcher */
+        .language-switcher { position: fixed; bottom: 20px; right: 20px; z-index: 1000; }
+        .lang-btn { background: #FFD700; color: #0A1E3D; border: none; border-radius: 50px; padding: 12px 18px; font-size: 1.2rem; font-weight: bold; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.3); transition: 0.3s; display: flex; align-items: center; gap: 8px; }
+        .lang-btn:hover { background: #FFA500; transform: scale(1.05); }
+        .lang-menu { position: absolute; bottom: 60px; right: 0; background: #0A1E3D; border: 1px solid #FFD700; border-radius: 16px; padding: 10px; display: none; flex-direction: column; gap: 8px; min-width: 180px; backdrop-filter: blur(10px); box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
+        .lang-menu.show { display: flex; }
+        .lang-option { background: transparent; border: none; color: #fff; padding: 8px 12px; text-align: left; cursor: pointer; border-radius: 8px; transition: 0.2s; font-size: 0.9rem; }
+        .lang-option:hover { background: #FFD700; color: #0A1E3D; }
+        .lang-option.active { background: #FFD700; color: #0A1E3D; font-weight: bold; }
+        @media (max-width: 768px) { .lang-btn { padding: 10px 14px; font-size: 1rem; } .lang-menu { min-width: 160px; } }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container" style="padding: 12px 20px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px;">
+        <div style="display: flex; align-items: center; gap: 10px;">
+            <img src="logo.png" style="height: 40px;" onerror="this.src='https://placehold.co/200x60/0A1E3D/FFD700?text=MYB'">
+            <span style="font-size: 1.2rem; font-weight: bold;" class="gold-text">MIYBANK (MYB)</span>
+        </div>
+        <button id="wallet-btn" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 8px 16px; border-radius: 40px; cursor: pointer;"><i class="fas fa-wallet"></i> <span id="wallet-text">Connect Wallet</span></button>
+    </div>
+    <div style="border-top: 1px solid rgba(255,255,255,0.1);">
+        <div class="container" style="padding: 10px 20px;">
+            <a href="index.html" class="nav-link" id="nav-home">🏠 Home</a>
+            <a href="liquidity.html" class="nav-link" id="nav-liquidity">💧 Liquidity</a>
+            <a href="assets.html" class="nav-link" id="nav-assets">🏭 Copper Assets</a>
+            <a href="spec.html" class="nav-link" id="nav-spec">📦 Спецтехника</a>
+            <a href="cars.html" class="nav-link" id="nav-cars">🚗 Авто</a>
+            <a href="ev.html" class="nav-link" id="nav-ev">⚡ EV</a>
+            <a href="seasonal.html" class="nav-link" id="nav-seasonal">🌾 Сезонная</a>
+            <a href="equipment.html" class="nav-link" id="nav-equipment">🏭 Оборудование</a>
+            <a href="halal-leasing.html" class="nav-link" id="nav-halal">☪️ Халяльный</a>
+            <a href="financial-instruments.html" class="nav-link" id="nav-financial">💱 Fin Instruments</a>
+            <a href="referral.html" class="nav-link active-nav" id="nav-referral">🎁 Реферальная</a>
+            <a href="contacts.html" class="nav-link" id="nav-contacts">📞 Контакты</a>
+        </div>
+    </div>
+</header>
+
+<main class="container" style="padding: 30px 20px;">
+    <div class="bg-dark-card" style="text-align: center;">
+        <i class="fas fa-gift" style="font-size: 3rem; color: #FFD700; margin-bottom: 15px;"></i>
+        <h1 class="gold-text" style="font-size: 2rem;" id="main-title">Реферальная программа MIYBANK</h1>
+        <p id="main-subtitle">Зарабатывайте вместе с MIYBANK — приводите клиентов и получайте вознаграждение</p>
+    </div>
+
+    <!-- Две программы: для клиентов и для агентов -->
+    <div class="grid-2">
+        <!-- Для клиентов -->
+        <div class="program-card">
+            <i class="fas fa-users" style="font-size: 2.5rem; color: #FFD700;"></i>
+            <h2 class="gold-text" style="margin: 15px 0;" id="clients-title">👥 Для клиентов</h2>
+            <p id="clients-desc">Приводите друзей и знакомых в MIYBANK. Получайте бонусы за каждую успешную сделку.</p>
+            <div class="commission-table">
+                <table>
+                    <thead><tr><th id="clients-action">Действие</th><th id="clients-reward">Вознаграждение</th></tr></thead>
+                    <tbody>
+                        <tr><td>Регистрация по вашей ссылке</td><td class="green-text">50 MYB</td></tr>
+                        <tr><td>Первая оплата лизинга</td><td class="green-text">1% от суммы платежа в MYB</td></tr>
+                        <tr><td>Успешное закрытие сделки</td><td class="green-text">0.5% от суммы контракта в MYB</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="green-text" style="font-size: 0.8rem;" id="clients-note">* Вознаграждение начисляется в MYB по курсу на момент сделки</p>
+        </div>
+
+        <!-- Для агентов -->
+        <div class="program-card">
+            <i class="fas fa-briefcase" style="font-size: 2.5rem; color: #FFD700;"></i>
+            <h2 class="gold-text" style="margin: 15px 0;" id="agents-title">🤝 Для агентов</h2>
+            <p id="agents-desc">Станьте официальным агентом MIYBANK. Приводите корпоративных клиентов и получайте комиссию.</p>
+            <div class="commission-table">
+                <table>
+                    <thead><tr><th id="agents-action">Действие</th><th id="agents-reward">Вознаграждение</th></tr></thead>
+                    <tbody>
+                        <tr><td>Привлечение клиента на лизинг</td><td class="green-text">3% от суммы сделки в MYB</td></tr>
+                        <tr><td>Привлечение клиента на SBLC/BG</td><td class="green-text">1.5% от комиссии в MYB</td></tr>
+                        <tr><td>Ежемесячная активность (5+ сделок)</td><td class="green-text">+1% к бонусу</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="green-text" style="font-size: 0.8rem;" id="agents-note">* Для агентов действует многоуровневая система (уровень 1 — 3%, уровень 2 — 1%, уровень 3 — 0.5%)</p>
+        </div>
+    </div>
+
+    <!-- Таблица уровней агентов -->
+    <div class="bg-dark-card">
+        <h2 class="gold-text" style="text-align: center; margin-bottom: 20px;" id="levels-title">📊 Уровни агентов и бонусы</h2>
+        <div style="overflow-x: auto;">
+            <table class="commission-table">
+                <thead>
+                    <tr><th id="level-title">Уровень</th><th id="condition-title">Условие</th><th id="bonus-title">Базовая комиссия</th><th id="extra-title">Дополнительный бонус</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td class="gold-text">Начинающий</td><td>Регистрация агента</td><td>1.5%</td><td>—</td></tr>
+                    <tr><td class="gold-text">Серебряный</td><td>3 клиента / месяц</td><td>2%</td><td class="green-text">+100 MYB</td></tr>
+                    <tr><td class="gold-text">Золотой</td><td>7 клиентов / месяц</td><td>2.5%</td><td class="green-text">+300 MYB</td></tr>
+                    <tr><td class="gold-text">Платиновый</td><td>15+ клиентов / месяц</td><td>3%</td><td class="green-text">+500 MYB</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Форма заявки -->
+    <div class="bg-dark-card">
+        <h2 class="gold-text" style="text-align: center; margin-bottom: 20px;" id="form-title">📝 Стать участником программы</h2>
+        <form id="referralForm" action="https://formspree.io/f/xvgpgonq" method="POST">
+            <input type="hidden" name="_subject" value="Заявка на реферальную программу MIYBANK">
+            <div class="form-row">
+                <div class="form-group">
+                    <label id="name-label">Ваше имя *</label>
+                    <input type="text" name="name" required placeholder="Иван Иванов">
+                </div>
+                <div class="form-group">
+                    <label id="email-label">Email *</label>
+                    <input type="email" name="email" required placeholder="ivan@example.com">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label id="phone-label">Телефон *</label>
+                    <input type="tel" name="phone" required placeholder="+998 90 123 45 67">
+                </div>
+                <div class="form-group">
+                    <label id="type-label">Я хочу участвовать как *</label>
+                    <select name="participant_type" required>
+                        <option value="client" id="type-client">Клиент (приводить друзей)</option>
+                        <option value="agent" id="type-agent">Агент (приводить корпоративных клиентов)</option>
+                        <option value="both" id="type-both">И то, и другое</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label id="comment-label">Комментарий (опыт, количество клиентов)</label>
+                <textarea name="comment" rows="3" placeholder="Расскажите о себе, опыте в продажах, сколько клиентов планируете привести..."></textarea>
+            </div>
+            <div style="text-align: center;">
+                <button type="submit" class="btn-green" id="submit-btn">Отправить заявку</button>
+            </div>
+            <div id="successMessage" class="success-message">✅ Заявка отправлена! Мы свяжемся с вами в ближайшее время для подключения к программе.</div>
+        </form>
+    </div>
+
+    <div style="text-align: center; margin-top: 10px;">
+        <a href="contacts.html" class="btn-outline" id="contacts-link">📞 Есть вопросы? Свяжитесь с нами</a>
+        <a href="index.html" class="btn-outline" style="margin-left: 15px;" id="back-home">← На главную</a>
+    </div>
+</main>
+
+<footer>
+    <p>© 2025 MIYBANK (MYB) — <span id="footer-text">Первый семейный банковский токен с лизинговой экосистемой</span></p>
+    <p id="footer-referral">Реферальная программа: зарабатывайте до 3% от суммы сделки в MYB</p>
+</footer>
+
+<!-- Language Switcher -->
+<div class="language-switcher">
+    <button class="lang-btn" id="langToggleBtn">🌐 <span id="currentLangLabel">Русский</span></button>
+    <div class="lang-menu" id="langMenu">
+        <button class="lang-option" data-lang="uz">🇺🇿 O‘zbekcha</button>
+        <button class="lang-option" data-lang="ru">🇷🇺 Русский</button>
+        <button class="lang-option" data-lang="kk">🇰🇿 Қазақша</button>
+        <button class="lang-option" data-lang="ky">🇰🇬 Кыргызча</button>
+        <button class="lang-option" data-lang="tg">🇹🇯 Тоҷикӣ</button>
+        <button class="lang-option" data-lang="zh">🇨🇳 中文</button>
+        <button class="lang-option" data-lang="en">🇬🇧 English</button>
+        <button class="lang-option" data-lang="ar">🇸🇦 العربية</button>
+        <button class="lang-option" data-lang="ar-eg">🇪🇬 العربية (مصري)</button>
+        <button class="lang-option" data-lang="fa">🇮🇷 فارسی</button>
+        <button class="lang-option" data-lang="prs">🇦🇫 دری</button>
+    </div>
+</div>
+
+<script>
+    const translations = {
+        uz: {
+            nav_home: "Bosh sahifa", nav_liquidity: "Likvidlik", nav_assets: "Mis aktivlari", nav_spec: "Maxsus texnika",
+            nav_cars: "Avtomobillar", nav_ev: "Elektromobillar", nav_seasonal: "Mavsumiy texnika", nav_equipment: "Uskunalar",
+            nav_halal: "Halal lizing", nav_financial: "Moliyaviy vositalar", nav_referral: "Referal dastur", nav_contacts: "Kontaktlar",
+            main_title: "MIYBANK referal dasturi", main_subtitle: "MIYBANK bilan birga daromad qiling — mijozlarni olib keling va mukofot oling",
+            clients_title: "👥 Mijozlar uchun", clients_desc: "Do'stlaringizni MIYBANK'ga taklif qiling. Har bir muvaffaqiyatli bitim uchun bonus oling.",
+            clients_action: "Harakat", clients_reward: "Mukofot", clients_note: "* Mukofot bitim vaqtidagi kurs bo'yicha MYB da hisoblanadi",
+            agents_title: "🤝 Agentlar uchun", agents_desc: "MIYBANK rasmiy agenti bo'ling. Korporativ mijozlarni olib keling va komissiya oling.",
+            agents_action: "Harakat", agents_reward: "Mukofot", agents_note: "* Agentlar uchun ko'p darajali tizim mavjud",
+            levels_title: "Agent darajalari va bonuslar", level_title: "Daraja", condition_title: "Shart", bonus_title: "Asosiy komissiya", extra_title: "Qo'shimcha bonus",
+            form_title: "Dastur ishtirokchisi bo'ling", name_label: "Ismingiz *", email_label: "Email *", phone_label: "Telefon *",
+            type_label: "Men qatnashmoqchiman", type_client: "Mijoz sifatida", type_agent: "Agent sifatida", type_both: "Ikkalasi ham",
+            comment_label: "Izoh", submit_btn: "Ariza yuborish", contacts_link: "📞 Savolingiz bormi? Biz bilan bog'lanishing", back_home: "← Bosh sahifaga",
+            footer_text: "Birinchi oilaviy bank tokeni lizing ekotizimi bilan", footer_referral: "Referal dastur: MYB da bitim summasidan 3% gacha daromad oling",
+            wallet_text: "Hamyonni ulash"
+        },
+        ru: {
+            nav_home: "Главная", nav_liquidity: "Ликвидность", nav_assets: "Медные активы", nav_spec: "Спецтехника",
+            nav_cars: "Авто", nav_ev: "Электромобили", nav_seasonal: "Сезонная", nav_equipment: "Оборудование",
+            nav_halal: "Халяльный", nav_financial: "Фин. инструменты", nav_referral: "Реферальная", nav_contacts: "Контакты",
+            main_title: "Реферальная программа MIYBANK", main_subtitle: "Зарабатывайте вместе с MIYBANK — приводите клиентов и получайте вознаграждение",
+            clients_title: "👥 Для клиентов", clients_desc: "Приводите друзей и знакомых в MIYBANK. Получайте бонусы за каждую успешную сделку.",
+            clients_action: "Действие", clients_reward: "Вознаграждение", clients_note: "* Вознаграждение начисляется в MYB по курсу на момент сделки",
+            agents_title: "🤝 Для агентов", agents_desc: "Станьте официальным агентом MIYBANK. Приводите корпоративных клиентов и получайте комиссию.",
+            agents_action: "Действие", agents_reward: "Вознаграждение", agents_note: "* Для агентов действует многоуровневая система",
+            levels_title: "Уровни агентов и бонусы", level_title: "Уровень", condition_title: "Условие", bonus_title: "Базовая комиссия", extra_title: "Дополнительный бонус",
+            form_title: "Стать участником программы", name_label: "Ваше имя *", email_label: "Email *", phone_label: "Телефон *",
+            type_label: "Я хочу участвовать как", type_client: "Клиент (приводить друзей)", type_agent: "Агент (приводить корпоративных клиентов)", type_both: "И то, и другое",
+            comment_label: "Комментарий (опыт, количество клиентов)", submit_btn: "Отправить заявку", contacts_link: "📞 Есть вопросы? Свяжитесь с нами", back_home: "← На главную",
+            footer_text: "Первый семейный банковский токен с лизинговой экосистемой", footer_referral: "Реферальная программа: зарабатывайте до 3% от суммы сделки в MYB",
+            wallet_text: "Подключить кошелёк"
+        },
+        en: {
+            nav_home: "Home", nav_liquidity: "Liquidity", nav_assets: "Copper Assets", nav_spec: "Special Equipment",
+            nav_cars: "Cars", nav_ev: "EV", nav_seasonal: "Seasonal", nav_equipment: "Equipment",
+            nav_halal: "Halal Leasing", nav_financial: "Financial Instruments", nav_referral: "Referral", nav_contacts: "Contacts",
+            main_title: "MIYBANK Referral Program", main_subtitle: "Earn with MIYBANK — bring clients and get rewards",
+            clients_title: "👥 For Clients", clients_desc: "Invite friends to MIYBANK. Get bonuses for every successful deal.",
+            clients_action: "Action", clients_reward: "Reward", clients_note: "* Reward is paid in MYB at the exchange rate at the time of the deal",
+            agents_title: "🤝 For Agents", agents_desc: "Become an official MIYBANK agent. Bring corporate clients and earn commission.",
+            agents_action: "Action", agents_reward: "Reward", agents_note: "* Multi-level system for agents",
+            levels_title: "Agent Levels & Bonuses", level_title: "Level", condition_title: "Condition", bonus_title: "Base Commission", extra_title: "Extra Bonus",
+            form_title: "Join the Program", name_label: "Your Name *", email_label: "Email *", phone_label: "Phone *",
+            type_label: "I want to participate as", type_client: "Client (invite friends)", type_agent: "Agent (bring corporate clients)", type_both: "Both",
+            comment_label: "Comment (experience, number of clients)", submit_btn: "Submit Application", contacts_link: "📞 Questions? Contact us", back_home: "← Back to Home",
+            footer_text: "The first family banking token with a leasing ecosystem", footer_referral: "Referral program: earn up to 3% of the deal amount in MYB",
+            wallet_text: "Connect Wallet"
+        }
+    };
+
+    let currentLang = localStorage.getItem('language') || 'ru';
+
+    function updateLanguage(lang) {
+        const t = translations[lang];
+        if (!t) return;
+        Object.keys(t).forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.innerHTML = t[id];
+        });
+        const langNames = { uz:"O‘zbekcha", ru:"Русский", kk:"Қазақша", ky:"Кыргызча", tg:"Тоҷикӣ", zh:"中文", en:"English", ar:"العربية", "ar-eg":"العربية (مصري)", fa:"فارسی", prs:"دری" };
+        document.getElementById('currentLangLabel').innerText = langNames[lang] || "Русский";
+        document.querySelectorAll('.lang-option').forEach(btn => {
+            if (btn.dataset.lang === lang) btn.classList.add('active');
+            else btn.classList.remove('active');
+        });
+        localStorage.setItem('language', lang);
+        currentLang = lang;
+    }
+
+    document.getElementById('langToggleBtn').addEventListener('click', () => {
+        document.getElementById('langMenu').classList.toggle('show');
+    });
+    document.querySelectorAll('.lang-option').forEach(btn => {
+        btn.addEventListener('click', () => {
+            updateLanguage(btn.dataset.lang);
+            document.getElementById('langMenu').classList.remove('show');
+        });
+    });
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.language-switcher')) {
+            document.getElementById('langMenu').classList.remove('show');
+        }
+    });
+
+    updateLanguage(currentLang);
+
+    // Form submission
+    const form = document.getElementById('referralForm');
+    const successDiv = document.getElementById('successMessage');
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        successDiv.style.display = 'none';
+        
+        const formData = new FormData(form);
+        
+        try {
+            const response = await fetch(form.action, {
+                method: 'POST',
+                body: formData,
+                headers: { 'Accept': 'application/json' }
+            });
+            
+            if (response.ok) {
+                successDiv.style.display = 'block';
+                form.reset();
+                setTimeout(() => { successDiv.style.display = 'none'; }, 5000);
+            } else {
+                alert('Ошибка отправки. Пожалуйста, попробуйте позже или напишите нам на MIYBANK@protonmail.com');
+            }
+        } catch (error) {
+            alert('Ошибка отправки. Пожалуйста, попробуйте позже или напишите нам на MIYBANK@protonmail.com');
+        }
+    });
+
+    document.getElementById('wallet-btn')?.addEventListener('click', () => alert('Connect wallet soon.'));
+</script>
+</body>
+</html>
