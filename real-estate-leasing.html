@@ -140,6 +140,15 @@
             <li>✅ Выкуп в конце срока: <strong>право собственности переходит клиенту</strong></li>
             <li>✅ Объект остаётся в залоге до полного погашения</li>
             <li>✅ Возможно досрочное погашение без штрафов</li>
+            <li>⚖️ <strong>Юридическое сопровождение сделки (платно):</strong>
+                <ul style="margin-left: 20px; margin-top: 5px;">
+                    <li>Составление договора — <strong>200 000 UZS / 12 MYB</strong></li>
+                    <li>Проверка залога (техника/недвижимость) — <strong>400 000 UZS / 24 MYB</strong></li>
+                    <li>Регистрация обременения (залога) — <strong>600 000 UZS / 36 MYB</strong></li>
+                    <li>Полное сопровождение сделки (под ключ) — <strong>2 000 000 UZS / 120 MYB</strong></li>
+                    <li>Консультация юриста (1 час) — <strong>400 000 UZS / 24 MYB</strong></li>
+                </ul>
+            </li>
         </ul>
         <div style="text-align: center; margin-top: 20px;">
             <a href="#" class="btn-primary">Оставить заявку</a>
@@ -220,7 +229,6 @@
     leaseCurrency.addEventListener('change', calculate);
     calculate();
     
-    // Translations
     const translations = { ru: { wallet_text: "Подключить кошелёк" }, uz: { wallet_text: "Hamyonni ulash" }, en: { wallet_text: "Connect Wallet" } };
     let currentLang = localStorage.getItem('language') || 'ru';
     function updateLanguage(lang) { const t = translations[lang]; if (t && t.wallet_text) document.getElementById('wallet-text').innerHTML = t.wallet_text; const langNames = { uz:"O‘zbekcha", ru:"Русский", kk:"Қазақша", ky:"Кыргызча", tg:"Тоҷикӣ", zh:"中文", en:"English", ar:"العربية", "ar-eg":"العربية (مصري)", fa:"فارسی", prs:"دری" }; document.getElementById('currentLangLabel').innerText = langNames[lang] || "Русский"; document.querySelectorAll('.lang-option').forEach(btn => { if (btn.dataset.lang === lang) btn.classList.add('active'); else btn.classList.remove('active'); }); localStorage.setItem('language', lang); currentLang = lang; }
